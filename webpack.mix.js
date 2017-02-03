@@ -1,5 +1,5 @@
 const { mix } = require('laravel-mix');
-
+$ = JQuery = require('jquery');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -20,14 +20,26 @@ const { mix } = require('laravel-mix');
         'resources/assets/css/font-awesome-4.7.0/css/font-awesome.min.css',
         'resources/assets/css/admin-lte/2.3.6/AdminLTE.min.css',
         'resources/assets/css/admin-lte/2.3.6/skins/_all-skins.min.css',
-        'resources/assets/css/ionicons-2.0.1/css/ionicons.min.css'        
+        'resources/assets/css/ionicons-2.0.1/css/ionicons.min.css',
     ], 'public/css/all.min.css');
+
+mix.copy('resources/assets/css/font-awesome-4.7.0/fonts/', 'public/fonts');
+mix.copy('resources/assets/js/jquery/3.1.1/jquery-3.1.1.min.js', 'public/js');
+mix.copy('resources/assets/js/icheck/icheck.min.js', 'public/js');
+mix.copy('resources/assets/js/icheck/skins/flat', 'public/css/icheck/skins/flat');
+mix.copy('resources/assets/js/icheck/skins/futurico', 'public/css/icheck/skins/futurico');
+mix.copy('resources/assets/js/icheck/skins/line', 'public/css/icheck/skins/line');
+mix.copy('resources/assets/js/icheck/skins/minimal', 'public/css/icheck/skins/minimal');
+mix.copy('resources/assets/js/icheck/skins/polaris', 'public/css/icheck/skins/polaris');
+mix.copy('resources/assets/js/icheck/skins/square', 'public/css/icheck/skins/square');
+mix.copy('resources/assets/js/icheck/skins/all.css', 'public/css/icheck/skins/all.css');
 
 
 mix.js([
-        'resources/assets/js/jquery/3.0.0/jquery.min.js',
         'resources/assets/css/bootstrap-3.3.7-dist/js/bootstrap.min.js',
         'resources/assets/js/admin-lte/2.3.6/app.min.js',
     ], 'public/js/all.min.js');
 
-mix.copy('resources/assets/css/font-awesome-4.7.0/fonts/', 'public/fonts');
+
+
+
