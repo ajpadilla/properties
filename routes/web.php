@@ -12,8 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.main');
+    return view('auth.login');
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], 
+	function (){
+	Route::get('/dashboard', function () {
+	    	return view('layouts.dashboard');
+	});
+}); 
 
 
 Auth::routes();
