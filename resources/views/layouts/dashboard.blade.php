@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <title>Properties</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <base href="/" />
+
     <!-- Styles -->
     {!! Html::style('css/all.min.css') !!}
+
+    <link rel="stylesheet" href="/angular/styles.css">
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="{{ asset('/angular/node_modules/core-js/client/shim.min.js') }}"></script>
+
+    <script src="{{ asset('/angular/node_modules/zone.js/dist/zone.js') }}"></script>
+    <script src="{{ asset('/angular/node_modules/systemjs/dist/system.src.js') }}"></script>
+
+    <script src="{{ asset('/angular/systemjs.config.js') }}"></script>
+
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
     @stack('vue-styles')
     @stack('styles')
 </head>
@@ -31,6 +48,7 @@
             <!-- Main content -->
             <section class="content">
 
+              <my-app>Loading AppComponent content here ...</my-app>
 
             </section>
             <!-- /.content -->
