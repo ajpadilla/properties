@@ -40,6 +40,16 @@ mix.js([
         'resources/assets/js/admin-lte/2.3.6/app.min.js',
     ], 'public/js/all.min.js');
 
+mix.copy('node_modules/@angular', 'public/@angular');
+mix.copy('node_modules/angular-in-memory-web-api', 'public/angular-in-memory-web-api');
+mix.copy('node_modules/systemjs', 'public/systemjs');
+mix.copy('node_modules/core-js', 'public/core-js');
+mix.copy('node_modules/reflect-metadata', 'public/reflect-metadata');
+mix.copy('node_modules/rxjs', 'public/rxjs');
+mix.copy('node_modules/zone.js', 'public/zone.js');
+
+
+
 
 
 
