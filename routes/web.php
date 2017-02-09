@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
+});
+
+Route::get('angular', function () {
+    return view('welcome');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], 
