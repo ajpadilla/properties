@@ -50,6 +50,8 @@
 
               <my-app>Loading AppComponent content here ...</my-app>
 
+              @yield('content')
+
             </section>
             <!-- /.content -->
         </div>
