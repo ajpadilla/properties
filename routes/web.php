@@ -19,14 +19,21 @@ Route::get('angular', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], 
-	function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
+	
 	Route::get('/dashboard', function () {
-	    	return view('layouts.dashboard');
+		return view('layouts.dashboard');
 	});
+
+	Route::get('types-properties', [
+		'as' => 'types.properties',
+		'uses' => function() {
+			return view('typeProperties.index');
+		}
+	]);	
 }); 
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
