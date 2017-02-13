@@ -30,7 +30,6 @@ class CreateSuppliersTable extends Migration
             $table->text('address_2');
             $table->string('home_phone', 30);
             $table->string('auxiliary_phone', 30)->nullable();
-            $table->string('home_phone', 30);
             $table->string('cell_phone', 30)->nullable();
             $table->string('auxiliary_cell', 30)->nullable();
             $table->string('home_email');
