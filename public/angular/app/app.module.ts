@@ -5,19 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
 import { TypePropertyComponent } from './type-property.component';
 
-import {APP_BASE_HREF} from '@angular/common';
+import { TypePropertyService } from './type-property.service';
 
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   imports:      [ 
   	BrowserModule,  
-  	AppRoutingModule
+  	AppRoutingModule,
   ],
   declarations: [ 
   	AppComponent,
   	TypePropertyComponent
   ],
   providers: [
+    TypePropertyService,
     {provide: APP_BASE_HREF, useValue : '/' }
   ],
   bootstrap:    [ AppComponent ]
