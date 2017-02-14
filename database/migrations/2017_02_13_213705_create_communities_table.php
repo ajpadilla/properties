@@ -23,6 +23,7 @@ class CreateCommunitiesTable extends Migration
               ->onDelete('cascade');
             $table->integer('nit');
             $table->string('name', 30);
+            $table->text('address');
             $table->string('home_phone', 30);
             $table->string('auxiliary_phone', 30)->nullable();
             $table->string('cell_phone', 30)->nullable();
