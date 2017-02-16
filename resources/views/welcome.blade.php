@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Angular QuickStart</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="angular/styles.css">
+<head>
+  <title>Angular QuickStart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/vue-styles.css">
+</script>
+</head>
 
-    <!-- Polyfill(s) for older browsers -->
-    <script src="{{ asset('angular/node_modules/core-js/client/shim.min.js') }}"></script>
-
-    <script src="{{ asset('angular/node_modules/zone.js/dist/zone.js') }}"></script>
-    <script src="{{ asset('angular/node_modules/systemjs/dist/system.src.js') }}"></script>
-
-    <script src="{{ asset('angular/systemjs.config.js') }}"></script>
-
-    <script>
-      System.import('app').catch(function(err){ console.error(err); });
-    </script>
-  </head>
-
-  <body>
-    <my-app>Loading AppComponent content here ...</my-app>
-  </body>
+<body>
+ <div id="app">
+   <div>
+    <filter-bar></filter-bar>
+    <vuetable ref="vuetable"
+      api-url="http://vuetable.ratiw.net/api/users"
+      :fields="fields"
+      pagination-path=""
+      :css="css.table"
+      :sort-order="sortOrder"
+      :multi-sort="true"
+      detail-row-component="my-detail-row"
+      :append-params="moreParams"
+      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:pagination-data="onPaginationData"
+    ></vuetable> 
+    <div class="vuetable-pagination">
+      <vuetable-pagination-info ref="paginationInfo"
+        info-class="pagination-info"
+      ></vuetable-pagination-info>
+      <vuetable-pagination ref="pagination"
+        :css="css.pagination"
+        :icons="css.icons"
+        @vuetable-pagination:change-page="onChangePage"
+      ></vuetable-pagination>
+    </div>
+  </div>
+ </div>
+</body>
 </html>

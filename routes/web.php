@@ -15,7 +15,7 @@ Route::get('/', function () {
 	return view('auth.login');
 });
 
-Route::get('angular', function () {
+Route::get('vue-table', function () {
     return view('welcome');
 });
 

@@ -24,6 +24,7 @@ $ = JQuery = require('jquery');
     ], 'public/css/all.min.css');
 
 mix.copy('resources/assets/css/font-awesome-4.7.0/fonts/', 'public/fonts');
+mix.copy('resources/assets/css/bootstrap-3.3.7-dist/fonts/', 'public/fonts');
 mix.copy('resources/assets/js/jquery/3.1.1/jquery-3.1.1.min.js', 'public/js');
 mix.copy('resources/assets/js/icheck/icheck.min.js', 'public/js');
 mix.copy('resources/assets/js/icheck/skins/flat', 'public/css/icheck/skins/flat');
@@ -38,6 +39,8 @@ mix.js([
         'resources/assets/css/bootstrap-3.3.7-dist/js/bootstrap.min.js',
         'resources/assets/js/admin-lte/2.3.6/app.min.js',
     ], 'public/js/all.min.js');
+
+mix.copy('resources/assets/css/vue-styles.css', 'public/css/vue-styles.css');
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
 

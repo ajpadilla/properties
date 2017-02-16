@@ -6,6 +6,8 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Styles -->
     {!! Html::style('css/all.min.css') !!}
+    {!! Html::style('css/vue-styles.css') !!}
+
 
     @stack('vue-styles')
     @stack('styles')
@@ -31,6 +33,33 @@
 
             <!-- Main content -->
             <section class="content">
+
+            <div>
+    <filter-bar></filter-bar>
+    <vuetable ref="vuetable"
+      api-url="http://vuetable.ratiw.net/api/users"
+      :fields="fields"
+      pagination-path=""
+      :css="css.table"
+      :sort-order="sortOrder"
+      :multi-sort="true"
+      detail-row-component="my-detail-row"
+      :append-params="moreParams"
+      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:pagination-data="onPaginationData"
+    ></vuetable> 
+    <div class="vuetable-pagination">
+      <vuetable-pagination-info ref="paginationInfo"
+        info-class="pagination-info"
+      ></vuetable-pagination-info>
+      <vuetable-pagination ref="pagination"
+        :css="css.pagination"
+        :icons="css.icons"
+        @vuetable-pagination:change-page="onChangePage"
+      ></vuetable-pagination>
+    </div>
+  </div>
+
 
               @yield('content')
 
