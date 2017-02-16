@@ -34,19 +34,13 @@ mix.copy('resources/assets/js/icheck/skins/polaris', 'public/css/icheck/skins/po
 mix.copy('resources/assets/js/icheck/skins/square', 'public/css/icheck/skins/square');
 mix.copy('resources/assets/js/icheck/skins/all.css', 'public/css/icheck/skins/all.css');
 
-
 mix.js([
         'resources/assets/css/bootstrap-3.3.7-dist/js/bootstrap.min.js',
         'resources/assets/js/admin-lte/2.3.6/app.min.js',
     ], 'public/js/all.min.js');
 
-mix.copy('node_modules/@angular', 'public/@angular');
-mix.copy('node_modules/angular-in-memory-web-api', 'public/angular-in-memory-web-api');
-mix.copy('node_modules/systemjs', 'public/systemjs');
-mix.copy('node_modules/core-js', 'public/core-js');
-mix.copy('node_modules/reflect-metadata', 'public/reflect-metadata');
-mix.copy('node_modules/rxjs', 'public/rxjs');
-mix.copy('node_modules/zone.js', 'public/zone.js');
+mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
+
 
 
 
