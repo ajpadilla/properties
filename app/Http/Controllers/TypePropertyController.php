@@ -9,6 +9,6 @@ class TypePropertyController extends Controller
 {
     public function index(Request $request)
     {
-    	return response()->json(TypeProperty::all());
+    	return response()->json(TypeProperty::paginate(2));
     }
 }
