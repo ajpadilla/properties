@@ -42,6 +42,8 @@ mix.js([
 
 mix.copy('resources/assets/css/vue-styles.css', 'public/css/vue-styles.css');
 
+mix.copy('resources/assets/js/models/typeProperty/config.js', 'public/js/models/typeProperty/config.js');
+
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
 
 
