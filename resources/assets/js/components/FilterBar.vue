@@ -29,8 +29,8 @@
     }
   }
 </script>
-<style>
+<!--<style>
 .filter-bar {
   padding: 10px;
 }
-</style>
+</style>-->
