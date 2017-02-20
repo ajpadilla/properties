@@ -55,6 +55,7 @@ Vue.component('modal', {
 			          </div>
 
 			          <div class="modal-footer">
+			          <button type="button" class="btn btn-default" @click='$emit("close")'>Close</button>
 			            <slot name="footer">
 			              default footer
 			       			default footer
@@ -70,7 +71,7 @@ Vue.component('modal', {
 	},
 	events: {
       
-    }
+    },
 })
 
 
