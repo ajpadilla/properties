@@ -23403,6 +23403,8 @@ window.Vue = Vue;
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_events___default.a);
 
+var eventBus = new Vue();
+
 Vue.component('custom-actions', {
 		props: {
 				rowData: {
@@ -23417,8 +23419,16 @@ Vue.component('custom-actions', {
 		methods: {
 				itemAction: function itemAction(action, data, index) {
 						console.log('custom-actions: ' + action, data.name, index);
+						this.$events.fire('vuetable-action', action, data);
 				}
 		}
+});
+
+Vue.component('modal', {
+		template: '<transition name="modal">\n\t\t\t    <div class="modal-mask">\n\t\t\t      <div class="modal-wrapper">\n\t\t\t        <div class="modal-container">\n\n\t\t\t          <div class="modal-header">\n\t\t\t            <slot name="header">\n\t\t\t              default header\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-body">\n\t\t\t            <slot name="body">\n\t\t\t              default body\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-footer">\n\t\t\t            <slot name="footer">\n\t\t\t              default footer\n\t\t\t       \t\t\tdefault footer\n\t\t\t              </button>\n\t\t\t            </slot>\n\t\t\t          </div>\n\t\t\t        </div>\n\t\t\t      </div>\n\t\t\t    </div>\n\t\t\t  </transition>',
+		created: function created() {},
+
+		events: {}
 });
 
 Vue.component('filter-bar', {
@@ -23432,6 +23442,7 @@ Vue.component('filter-bar', {
 		methods: {
 				doFilter: function doFilter() {
 						this.$events.fire('filter-set', this.filterText);
+						console.log('desde el component filter:' + this.filterText);
 				},
 				resetFilter: function resetFilter() {
 						this.filterText = '';
@@ -23460,41 +23471,182 @@ Vue.component('my-detail-row', {
 
 });
 
-Vue.component('my-vuetable', {
-		props: ['url', 'columns'],
+/*Vue.component('my-vuetable', {
+	props: ['url', 'columns'],
 
+	components: 
+	{
+    	Vuetable,
+    	VuetablePagination,
+    	VuetablePaginationInfo,
+  	},
+
+  	template: `<div>
+			    <filter-bar></filter-bar>
+			    <vuetable ref="vuetable"
+			      :api-url="url"
+			      :fields="columns"
+			      pagination-path=""
+			      :css="css.table"
+			      :sort-order="sortOrder"
+			      :multi-sort="true"
+			      detail-row-component="my-detail-row"
+			      :append-params="moreParams"
+			      @vuetable:cell-clicked="onCellClicked"
+			      @vuetable:pagination-data="onPaginationData"
+			    >
+
+			    	<template slot="actions" scope="props"> 
+      <div class="custom-actions">
+        <button class="ui basic button"
+          @click="onAction('view-item', props.rowData, props.rowIndex)">
+          <i class="zoom icon"></i>
+        </button>
+        <button class="ui basic button"
+          @click="onAction('edit-item', props.rowData, props.rowIndex)">
+          <i class="edit icon"></i>
+        </button>
+        <button class="ui basic button"
+          @click="onAction('delete-item', props.rowData, props.rowIndex)">
+          <i class="delete icon"></i>
+        </button>
+      </div>
+    </template>
+
+			    </vuetable> 
+			    <div class="vuetable-pagination">
+			      <vuetable-pagination-info ref="paginationInfo"
+			        info-class="pagination-info"
+			      ></vuetable-pagination-info>
+			      <vuetable-pagination ref="pagination"
+			        :css="css.pagination"
+			        :icons="css.icons"
+			        @vuetable-pagination:change-page="onChangePage"
+			      ></vuetable-pagination>
+			    </div>
+  			</div>`,
+  	data(){
+    	return {
+		  	css: {
+		        table: {
+		          tableClass: 'table table-bordered table-striped table-hover',
+		          ascendingIcon: 'glyphicon glyphicon-chevron-up',
+		          descendingIcon: 'glyphicon glyphicon-chevron-down'
+		        },
+		        pagination: {
+		          wrapperClass: 'pagination',
+		          activeClass: 'active',
+		          disabledClass: 'disabled',
+		          pageClass: 'page',
+		          linkClass: 'link',
+		        },
+		        icons: {
+		          first: 'glyphicon glyphicon-step-backward',
+		          prev: 'glyphicon glyphicon-chevron-left',
+		          next: 'glyphicon glyphicon-chevron-right',
+		          last: 'glyphicon glyphicon-step-forward',
+		        },
+		    },
+	 		sortOrder: [
+	    		{ field: 'email', sortField: 'email', direction: 'asc'}
+	      	],
+	 		moreParams: {}
+  		}
+  	},
+	methods: {
+	    allcap (value) {
+	      return value.toUpperCase()
+	    },
+	    genderLabel (value) {
+	      return value === 'M'
+	        ? '<span class="label label-success"><i class="glyphicon glyphicon-star"></i> Male</span>'
+	        : '<span class="label label-danger"><i class="glyphicon glyphicon-heart"></i> Female</span>'
+	    },
+	    formatNumber (value) {
+	      return accounting.formatNumber(value, 2)
+	    },
+	    formatDate (value, fmt = 'D MMM YYYY') {
+	      return (value == null)
+	        ? ''
+	        : moment(value, 'YYYY-MM-DD').format(fmt)
+	    },
+	    onPaginationData (paginationData) {
+	      this.$refs.pagination.setPaginationData(paginationData)
+	      this.$refs.paginationInfo.setPaginationData(paginationData)
+	    },
+	    onChangePage (page) {
+	      this.$refs.vuetable.changePage(page)
+	    },
+	    onCellClicked (data, field, event) {
+	      console.log('cellClicked: ', field.name)
+	      this.$refs.vuetable.toggleDetailRow(data.id)
+	    },
+	    onAction (action, data, index) {
+      		console.log('slot) action: ' + action, data.name, index)
+    	}
+  	},
+
+	events: {
+	    'filter-set' (filterText) {
+	      this.moreParams = {
+	        filter: filterText
+	      }
+	      Vue.nextTick( () => this.$refs.vuetable.refresh() )
+	    },
+	    'filter-reset' () {
+	      this.moreParams = {}
+	      Vue.nextTick( () => this.$refs.vuetable.refresh() )
+	    },
+	   'update' (param) {
+	      	console.log('vuetable:' +  param);
+	      	this.$parent.showModal = true;
+	   },
+  	}
+
+});*/
+
+window.vm = new Vue({
+
+		el: '#app',
+		created: function created() {
+				console.log('Instancia de Vue 2 Lista', this.row, this.columns);
+		},
 		components: {
 				Vuetable: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable___default.a,
 				VuetablePagination: __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination___default.a,
 				VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo___default.a
 		},
-
-		template: '<div>\n\t\t\t    <filter-bar></filter-bar>\n\t\t\t    <vuetable ref="vuetable"\n\t\t\t      :api-url="url"\n\t\t\t      :fields="columns"\n\t\t\t      pagination-path=""\n\t\t\t      :css="css.table"\n\t\t\t      :sort-order="sortOrder"\n\t\t\t      :multi-sort="true"\n\t\t\t      detail-row-component="my-detail-row"\n\t\t\t      :append-params="moreParams"\n\t\t\t      @vuetable:cell-clicked="onCellClicked"\n\t\t\t      @vuetable:pagination-data="onPaginationData"\n\t\t\t    ></vuetable> \n\t\t\t    <div class="vuetable-pagination">\n\t\t\t      <vuetable-pagination-info ref="paginationInfo"\n\t\t\t        info-class="pagination-info"\n\t\t\t      ></vuetable-pagination-info>\n\t\t\t      <vuetable-pagination ref="pagination"\n\t\t\t        :css="css.pagination"\n\t\t\t        :icons="css.icons"\n\t\t\t        @vuetable-pagination:change-page="onChangePage"\n\t\t\t      ></vuetable-pagination>\n\t\t\t    </div>\n  \t\t\t</div>',
-		data: function data() {
-				return {
-						css: {
-								table: {
-										tableClass: 'table table-bordered table-striped table-hover',
-										ascendingIcon: 'glyphicon glyphicon-chevron-up',
-										descendingIcon: 'glyphicon glyphicon-chevron-down'
-								},
-								pagination: {
-										wrapperClass: 'pagination',
-										activeClass: 'active',
-										disabledClass: 'disabled',
-										pageClass: 'page',
-										linkClass: 'link'
-								},
-								icons: {
-										first: 'glyphicon glyphicon-step-backward',
-										prev: 'glyphicon glyphicon-chevron-left',
-										next: 'glyphicon glyphicon-chevron-right',
-										last: 'glyphicon glyphicon-step-forward'
-								}
+		data: {
+				row: objectRow,
+				columns: tableColumns,
+				lastOpenModal: [],
+				method: '',
+				formModal: false,
+				showModal: false,
+				deleteModal: false,
+				algo: token,
+				css: {
+						table: {
+								tableClass: 'table table-bordered table-striped table-hover',
+								ascendingIcon: 'glyphicon glyphicon-chevron-up',
+								descendingIcon: 'glyphicon glyphicon-chevron-down'
 						},
-						sortOrder: [{ field: 'email', sortField: 'email', direction: 'asc' }],
-						moreParams: {}
-				};
+						pagination: {
+								wrapperClass: 'pagination',
+								activeClass: 'active',
+								disabledClass: 'disabled',
+								pageClass: 'page',
+								linkClass: 'link'
+						},
+						icons: {
+								first: 'glyphicon glyphicon-step-backward',
+								prev: 'glyphicon glyphicon-chevron-left',
+								next: 'glyphicon glyphicon-chevron-right',
+								last: 'glyphicon glyphicon-step-forward'
+						}
+				},
+				sortOrder: [{ field: 'email', sortField: 'email', direction: 'asc' }],
+				moreParams: {}
 		},
 
 		methods: {
@@ -23522,12 +23674,48 @@ Vue.component('my-vuetable', {
 				onCellClicked: function onCellClicked(data, field, event) {
 						console.log('cellClicked: ', field.name);
 						this.$refs.vuetable.toggleDetailRow(data.id);
+				},
+				onAction: function onAction(action, data, index) {
+						console.log('slot) action: ' + action, data.name, index);
+				},
+				modal: function modal(type) {
+						if (type == 'PATCH' || type == 'POST') {
+								this.lastOpenModal.push('formModal');
+								this.method = type;
+								this.formModal = true;
+						} else if (type == 'SHOW') {
+								this.lastOpenModal.push('showModal');
+								this.method = type;
+								this.showModal = true;
+						} else if (type == 'DELETE') {
+								this.lastOpenModal.push('deleteModal');
+								this.method = type;
+								this.deleteModal = true;
+						} else if (type == 'INFO') {
+								this.lastOpenModal.push('infoModal');
+								this.infoModal = true;
+						} else {
+								this.lastOpenModal.push(type);
+								this.localModals[type] = true;
+						}
+				},
+
+				closeModal: function closeModal(modalName) {
+						if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1]) this.lastOpenModal.pop();
+
+						/*if (this.localModals[modalName] != undefined)
+      	this.localModals[modalName] = false;
+      else*/
+						this.$set(this, modalName, false);
+						//this.cleanData();  
 				}
 		},
 
 		events: {
 				'filter-set': function filterSet(filterText) {
 						var _this = this;
+
+						console.log('Desde el padre:' + filterText);
 
 						this.moreParams = {
 								filter: filterText
@@ -23543,20 +23731,17 @@ Vue.component('my-vuetable', {
 						Vue.nextTick(function () {
 								return _this2.$refs.vuetable.refresh();
 						});
+				},
+				'vuetable-action': function vuetableAction(action, data) {
+						console.log('action:' + action, data);
+						if (action == 'view-item') {
+								this.modal('SHOW');
+						} else if (action == 'edit-item') {
+								this.modal('PATCH');
+						} else if (action == 'delete-item') {
+								this.modal('DELETE');
+						}
 				}
-		}
-
-});
-
-var vm = new Vue({
-
-		el: '#app',
-		created: function created() {
-				console.log('Instancia de Vue 2 Lista', this.row, this.columns);
-		},
-		data: {
-				row: objectRow,
-				columns: tableColumns
 		}
 
 });
