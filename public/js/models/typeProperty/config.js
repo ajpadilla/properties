@@ -36,6 +36,12 @@ var tableColumns = [
         title: 'Actions',
         titleClass: 'text-center',
         dataClass: 'text-center'
-    }       
+    },
+       {
+          name: '__slot:actions',
+          title: 'Actions',
+          titleClass: 'center aligned',
+          dataClass: 'center aligned'
+        }       
 ];
 
