@@ -2,8 +2,18 @@
 
 @section('content')
     Blade Type Property
-    <my-vuetable url="{{ route('api.typeProperties.index') }}" :columns="columns">
-    </my-vuetable>
+    
+    {{-- Include Table --}}
+    @include('typeProperties.table');
+
+    {{-- Modals --}}
+    @include('typeProperties.form');
+    @include('typeProperties.show');
+    @include('typeProperties.delete');
+
+
+    <pre>@{{ $data }}</pre>
+
 @endsection
 
 {{--@section('title-content', 'Listing event types')--}}
@@ -22,6 +32,7 @@
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
-        //var vm = window.vm;
+        var vm = window.vm;
+        console.log(JSON.stringify(vm.algo));
     </script>
 @endpush
