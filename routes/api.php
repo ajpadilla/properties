@@ -26,5 +26,10 @@ Route::group(['prefix' => 'typeProperties'], function()
 	Route::get('/',[
 		'as' => 'api.typeProperties.index',
 		'uses' => 'TypePropertyController@index'
-	]);		
+	]);	
+
+	Route::post('store', [
+			'as' => 'api.typeProperties.store',
+			'uses' => 'TypePropertyController@store'
+	]);	
 });
