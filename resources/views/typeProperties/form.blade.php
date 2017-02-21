@@ -1,10 +1,9 @@
 @extends('layouts.modals.form')
 
 @section('modal-form-title')
-	Form (Create-Edit) Title
+	Form (Create-Edit) Type Property
 @stop
 
 @section('modal-form-content')
-	Form (Create-Edit) content
-	{{--@include('admin.schools.fields')--}}
+	@include('typeProperties.fields')
 @stop
