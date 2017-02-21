@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
+<div id="app">
     <section class="content-header">
         <h1 class="pull-left">List Type Property</h1>
         <h1 class="pull-right">
-         <a class="btn btn-primary pull-right" href="#" style="margin-top: -10px;margin-bottom: 5px" @click.prevent="modal('POST')">Create</a>
-     </h1>
+           <a class="btn btn-primary pull-right" href="#" style="margin-top: -10px;margin-bottom: 5px" @click.prevent="modal('POST')">Create</a>
+       </h1>
     </section>
-    <div class="content" style="padding-top: 30px;">
+   <div class="content" style="padding-top: 30px;">
         <div class="box box-primary">
             <div class="box-body">
                 {{-- Include Table --}}
@@ -20,11 +20,9 @@
     {{-- Modals --}}
     @include('typeProperties.form')
     @include('typeProperties.show')
-    @include('typeProperties.delete')
-
-
-<pre>@{{ $data }}</pre>
-
+    @include('typeProperties.delete') 
+    <pre>@{{ $data }}</pre>
+</div>
 @endsection
 
 {{--@section('title-content', 'Listing event types')--}}
@@ -34,12 +32,12 @@
     <script type="text/javascript">
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
-        {{--var apiUrl = {
-            store: "{{ route('api.eventTypes.store') }}/",
-            show: "{{ route('api.eventTypes.show') }}/",
+        var apiUrl = {
+            store: "{{ route('api.typeProperties.store') }}/",
+            {{--show: "{{ route('api.eventTypes.show') }}/",
             update: "{{ route('api.eventTypes.update') }}/",
-            delete: "{{ route('api.eventTypes.destroy') }}/"
-        };--}}
+            delete: "{{ route('api.eventTypes.destroy') }}/"--}}
+        };
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
