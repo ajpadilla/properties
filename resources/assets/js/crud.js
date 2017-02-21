@@ -1,6 +1,12 @@
 global.Vue = require('vue')
 window.Vue = Vue;
 
+window.axios = require('axios');
+
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest'
+};
+
 import accounting from 'accounting'
 import moment from 'moment'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
@@ -300,7 +306,10 @@ Vue.component('my-detail-row', {
         formModal: false,
         showModal: false,
         deleteModal: false,
-        algo: token,
+        token: token,
+        flashMessage: null,
+        flashType: null,
+        url: apiUrl,
 		css: {
 			table: {
 		          tableClass: 'table table-bordered table-striped table-hover',
@@ -322,7 +331,7 @@ Vue.component('my-detail-row', {
 		        },
 		},
 	 	sortOrder: [
-	    	{ field: 'email', sortField: 'email', direction: 'asc'}
+	    	{ field: fieldInitOrder, sortField: 'email', direction: 'asc'}
 	    ],
 	 	moreParams: {},
 	},
@@ -379,7 +388,7 @@ Vue.component('my-detail-row', {
     			this.localModals[type] = true;                
     		}
     	},
-    	closeModal: function(modalName){
+    	closeModal (modalName){
     		if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1])
     			this.lastOpenModal.pop();
 
@@ -389,6 +398,52 @@ Vue.component('my-detail-row', {
     		this.$set(this, modalName, false);
     		//this.cleanData();  
         },
+        success (){
+
+        },
+        submit (model = null, type = null, related = null)
+        {
+        	/*var formData = new FormData();
+            var keys = '';
+            var data = '';
+            var actionUrl = "";
+
+        	if (!model || model.target) 
+        	{
+
+        		keys = Object.keys(this.row);
+        		data = this.row;
+        		keys.forEach(function (index) {
+        			formData.append(index, data[index]);
+        		});
+
+        		if (this.method == 'PATCH' || this.method == 'POST') {
+        			if (this.method == 'PATCH') {
+        				actionUrl = this.url.update + this.row.id;
+        				this.$http.patch(actionUrl, formData)
+        				.then(this.success, this.failed);
+        			}else if(this.method == 'POST'){
+        				actionUrl = this.url.store;
+        				axios.post(actionUrl, formData)
+						.then(function (response) {
+							console.log(response);
+						})
+						.catch(function (error) {
+							console.log(error);
+						});
+        				this.$http.post(actionUrl, formData)
+        				.then(this.success, this.failed);
+        			}
+        		}else if(this.method == 'DELETE'){
+        			actionUrl = this.url.delete + this.row.id;
+        			this.$http.delete(actionUrl, formData)
+        			.then(this.success, this.failed);
+        		}        	
+        	}
+        	Vue.nextTick( () => this.$refs.vuetable.refresh() )*/
+
+        	console.log(this.row.name);
+        }
   	},
 
 	events: {
