@@ -2,11 +2,14 @@
 	<div slot="header">
 		  <b>@yield('modal-form-title')</b>
 	</div>	
-	<div slot="body">
-		  <b>@yield('modal-form-content')</b>
-	</div>	
+	<template slot="body">
+		@include('layouts.flash')
+		<b>@yield('modal-form-content')</b>
+	</template>	
 	<template slot="footer">
 		{{--<button type="button" class="btn btn-default" @click='closeModal("formModal")'>Close</button>--}}
-		<button type="button" class="btn btn-success" @click="" v-if="">Save</button>
+		<button type="button" class="btn btn-success" @click='submit' v-if="">
+		Save
+		</button>
 	</template>	
 </modal>
