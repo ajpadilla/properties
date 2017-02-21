@@ -14,7 +14,7 @@
     @stack('styles')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper" id="app">
+    <div class="wrapper">
         @include('layouts.header')
         @include('layouts.sidebar')
 
