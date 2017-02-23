@@ -34,14 +34,14 @@
         var fieldInitOrder = 'id';
         var apiUrl = {
             store: "{{ route('api.typeProperties.store') }}/",
-            {{--show: "{{ route('api.eventTypes.show') }}/",
-            update: "{{ route('api.eventTypes.update') }}/",
-            delete: "{{ route('api.eventTypes.destroy') }}/"--}}
+            update: "{{ route('api.typeProperties.update') }}/",
+            show: "{{ route('api.typeProperties.show') }}/",
+            delete: "{{ route('api.typeProperties.delete') }}/"
         };
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
         var vm = window.vm;
-        console.log(JSON.stringify(vm.token));
+        //console.log(JSON.stringify(vm.row));
     </script>
 @endpush
