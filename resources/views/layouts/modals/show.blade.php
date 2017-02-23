@@ -1,9 +1,9 @@
 <modal v-if="showModal" @close='closeModal("showModal")'>
 	<div slot="header">
 		<b>@yield('modal-show-form-title')</b>
-		@include('layouts.flash')
 	</div>	
 	<div slot="body">
+		@include('layouts.flash')
 		<b>@yield('modal-show-form-content')</b>
 		<div class="row">
 			<div class="col-sm-offset-2 col-sm-8">

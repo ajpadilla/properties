@@ -3,7 +3,7 @@
 		  <b>@yield('modal-delete-form-title')</b>
 	</div>	
 	<div slot="body">
-		  <b>@yield('modal-delete-form-title')</b>
+		  <b>@yield('modal-delete-form-content')</b>
 		  @include('layouts.flash')
 	</div>	
 	<template slot="footer">
