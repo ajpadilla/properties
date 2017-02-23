@@ -48,6 +48,7 @@ class TypePropertyController extends Controller
             $typeProperty->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeProperty);
+            $this->addToResponseArray('message', 'Type of property successfully update');
             return $this->getResponseArrayJson();
         }
         return $this->getResponseArrayJson();
@@ -58,7 +59,7 @@ class TypePropertyController extends Controller
         if ($request->ajax()) {
             $typeProperty = TypeProperty::find($id);
             $this->setSuccess($typeProperty->delete());
-            $this->addToResponseArray('message', 'School delete');
+            $this->addToResponseArray('message', 'Type of property delete');
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
