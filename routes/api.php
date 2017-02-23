@@ -28,8 +28,23 @@ Route::group(['prefix' => 'typeProperties'], function()
 		'uses' => 'TypePropertyController@index'
 	]);	
 
+	Route::get('show/{id?}', [
+			'as' => 'api.typeProperties.show',
+			'uses' => 'TypePropertyController@show'
+	]);
+
 	Route::post('store', [
 			'as' => 'api.typeProperties.store',
 			'uses' => 'TypePropertyController@store'
-	]);	
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typeProperties.update',
+			'uses' => 'TypePropertyController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typeProperties.delete',
+		'uses' => 'TypePropertyController@destroy'
+	]);		
 });
