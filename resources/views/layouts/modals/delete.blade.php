@@ -7,6 +7,6 @@
 	</div>	
 	<template slot="footer">
 		{{--<button type="button" class="btn btn-default" @click='closeModal("deleteModal")'>Close</button>--}}
-		<button type="button" class="btn btn-success" @click="" v-if="">Delete</button>
+		<button type="button" class="btn btn-success" @click="submit" v-if="">Delete</button>
 	</template>	
 </modal>
