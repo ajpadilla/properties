@@ -4,6 +4,7 @@
 	</div>	
 	<div slot="body">
 		  <b>@yield('modal-delete-form-title')</b>
+		  @include('layouts.flash')
 	</div>	
 	<template slot="footer">
 		{{--<button type="button" class="btn btn-default" @click='closeModal("deleteModal")'>Close</button>--}}
