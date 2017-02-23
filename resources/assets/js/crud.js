@@ -280,12 +280,10 @@ Vue.component('my-detail-row', {
         getData () {
         	axios.get(this.url.show + this.row.id)
         	.then(this.success)
-        	.catch(function (error) {
-        		console.log(error);
-        	});
+	    	.catch(this.failed);
         },
         success (response){
-        	if (response.data.success) {
+        	if (response.data.success && response.data.data) {
         		this.row = response.data.data;
         	}
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
@@ -362,9 +360,7 @@ Vue.component('my-detail-row', {
 	    	var url = actionUrl + data.id;
 	    	axios.patch(url, data)
 	    	.then(this.success)
-	    	.catch(function (error) {
-	    		console.log(error);
-	    	});
+	    	.catch(this.failed);
 	    },
 
 	    'DELETE' (actionUrl, data){
@@ -372,9 +368,7 @@ Vue.component('my-detail-row', {
 	    	var url = actionUrl + data.id;
 	    	axios.delete(url, data)
 	    	.then(this.success)
-	    	.catch(function (error) {
-	    		console.log(error);
-	    	});
+	    	.catch(this.failed);
 	    }
 
   	}
