@@ -24456,14 +24456,12 @@ window.vm = new Vue({
 						//this.cleanData();  
 				},
 				getData: function getData() {
-						axios.get(this.url.show + this.row.id).then(this.success).catch(function (error) {
-								console.log(error);
-						});
+						axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
 				},
 				success: function success(response) {
 						var _this = this;
 
-						if (response.data.success) {
+						if (response.data.success && response.data.data) {
 								this.row = response.data.data;
 						}
 						Vue.nextTick(function () {
@@ -24543,16 +24541,12 @@ window.vm = new Vue({
 				'PATCH': function PATCH(actionUrl, data) {
 						console.log('Actualizando datos al servidor', actionUrl + data.id, JSON.stringify(data));
 						var url = actionUrl + data.id;
-						axios.patch(url, data).then(this.success).catch(function (error) {
-								console.log(error);
-						});
+						axios.patch(url, data).then(this.success).catch(this.failed);
 				},
 				'DELETE': function DELETE(actionUrl, data) {
 						console.log('Eliminando datos del servidor', actionUrl + data.id, JSON.stringify(data));
 						var url = actionUrl + data.id;
-						axios.delete(url, data).then(this.success).catch(function (error) {
-								console.log(error);
-						});
+						axios.delete(url, data).then(this.success).catch(this.failed);
 				}
 		}
 
