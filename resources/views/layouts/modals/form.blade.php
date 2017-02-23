@@ -1,9 +1,9 @@
 <modal v-if="formModal" @close='closeModal("formModal")'>
 	<div slot="header">
 		  <b>@yield('modal-form-title')</b>
+			@include('layouts.flash')
 	</div>	
 	<template slot="body">
-		@include('layouts.flash')
 		<b>@yield('modal-form-content')</b>
 	</template>	
 	<template slot="footer">
