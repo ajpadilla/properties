@@ -83,19 +83,35 @@ Vue.component('modal', {
 
 
 Vue.component('filter-bar', {
-	template: `<div class="filter-bar">
-    				<form class="form-inline">
-        				<div class="form-group">
-          					<label>Search for:</label>
-         					<input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">
-          					<button class="btn btn-primary" @click.prevent="doFilter">Go</button>
-         				 	<button class="btn" @click.prevent="resetFilter">Reset</button>
-        				</div>
-      				</form>
-    		</div>`,
+	template: `
+		<div class="row">
+	    <div class="col-md-5">
+	        <div class="form-inline form-group">
+	            <label>Buscar</label>
+	            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">
+          		<button class="btn btn-primary" @click.prevent="doFilter">Go</button>
+          		<button class="btn" @click.prevent="resetFilter">Reset</button>
+	        </div>
+	    </div>
+	    <div class="col-md-7">
+	        <div class="dropdown form-inline pull-right">
+	            <label>Items por página</label>
+	            <select class="form-control" v-model="perPage">
+	            	<option value=5>5</option>
+	                <option value=10>10</option>
+	                <option value=15>15</option>
+	                <option value=20>20</option>
+	                <option value=25>25</option>
+	            </select>
+	        </div>
+	    </div>
+	</div>
+
+	`,
     data () {
       return {
-        filterText: ''
+        filterText: '',
+        perPage: 0
       }
     },
     methods: {
@@ -107,7 +123,12 @@ Vue.component('filter-bar', {
         this.filterText = ''
         this.$events.fire('filter-reset')
       }
-    }
+    },
+    watch: {
+        'perPage': function(value) {
+            this.$events.fire('per-page', value);
+        },
+    },
 
 });
 
@@ -202,7 +223,7 @@ Vue.component('my-detail-row', {
 		        },
 		},
 	 	sortOrder: [
-	    	{ field: fieldInitOrder, sortField: 'email', direction: 'asc'}
+	    	{ field: fieldInitOrder, sortField: fieldInitOrder, direction: 'asc'}
 	    ],
 	 	moreParams: {},
 	},
@@ -325,15 +346,24 @@ Vue.component('my-detail-row', {
 	    'filter-set' (filterText) {
         	console.log('Desde el padre:'+ filterText);
 
-	      this.moreParams = {
-	        filter: filterText
-	      }
-	      Vue.nextTick( () => this.$refs.vuetable.refresh() )
+	     	this.moreParams = {
+	        	filter: filterText
+	      	}
+	      	Vue.nextTick( () => this.$refs.vuetable.refresh() )
 	    },
 	    'filter-reset' () {
-	      this.moreParams = {}
-	      Vue.nextTick( () => this.$refs.vuetable.refresh() )
+	     	this.moreParams = {}
+	     	Vue.nextTick( () => this.$refs.vuetable.refresh() )
 	    },
+
+	    'per-page' (value){
+	    	console.log('per-page activado:' + value);
+	    	this.moreParams = {
+	        	per_page: value
+	      	}
+	      	Vue.nextTick( () => this.$refs.vuetable.refresh() )
+	    }, 
+
 	    'vuetable-action' (action, data) {
 	    	console.log('action:' + action, data);
 	    	//this.row = data;
