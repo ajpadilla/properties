@@ -24297,10 +24297,11 @@ Vue.component('modal', {
 });
 
 Vue.component('filter-bar', {
-		template: '<div class="filter-bar">\n    \t\t\t\t<form class="form-inline">\n        \t\t\t\t<div class="form-group">\n          \t\t\t\t\t<label>Search for:</label>\n         \t\t\t\t\t<input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">\n          \t\t\t\t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n         \t\t\t\t \t<button class="btn" @click.prevent="resetFilter">Reset</button>\n        \t\t\t\t</div>\n      \t\t\t\t</form>\n    \t\t</div>',
+		template: '\n\t\t<div class="row">\n\t    <div class="col-md-5">\n\t        <div class="form-inline form-group">\n\t            <label>Buscar</label>\n\t            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">\n          \t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n          \t\t<button class="btn" @click.prevent="resetFilter">Reset</button>\n\t        </div>\n\t    </div>\n\t    <div class="col-md-7">\n\t        <div class="dropdown form-inline pull-right">\n\t            <label>Items por p\xE1gina</label>\n\t            <select class="form-control" v-model="perPage">\n\t            \t<option value=5>5</option>\n\t                <option value=10>10</option>\n\t                <option value=15>15</option>\n\t                <option value=20>20</option>\n\t                <option value=25>25</option>\n\t            </select>\n\t        </div>\n\t    </div>\n\t</div>\n\n\t',
 		data: function data() {
 				return {
-						filterText: ''
+						filterText: '',
+						perPage: 0
 				};
 		},
 
@@ -24312,6 +24313,11 @@ Vue.component('filter-bar', {
 				resetFilter: function resetFilter() {
 						this.filterText = '';
 						this.$events.fire('filter-reset');
+				}
+		},
+		watch: {
+				'perPage': function perPage(value) {
+						this.$events.fire('per-page', value);
 				}
 		}
 
@@ -24384,7 +24390,7 @@ window.vm = new Vue({
 								last: 'glyphicon glyphicon-step-forward'
 						}
 				},
-				sortOrder: [{ field: fieldInitOrder, sortField: 'email', direction: 'asc' }],
+				sortOrder: [{ field: fieldInitOrder, sortField: fieldInitOrder, direction: 'asc' }],
 				moreParams: {}
 		},
 
@@ -24519,6 +24525,17 @@ window.vm = new Vue({
 						this.moreParams = {};
 						Vue.nextTick(function () {
 								return _this3.$refs.vuetable.refresh();
+						});
+				},
+				'per-page': function perPage(value) {
+						var _this4 = this;
+
+						console.log('per-page activado:' + value);
+						this.moreParams = {
+								per_page: value
+						};
+						Vue.nextTick(function () {
+								return _this4.$refs.vuetable.refresh();
 						});
 				},
 				'vuetable-action': function vuetableAction(action, data) {
