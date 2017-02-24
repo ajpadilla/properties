@@ -12,7 +12,26 @@ class TypePropertyController extends Controller
 
     public function index(Request $request)
     {
-    	return response()->json(TypeProperty::paginate(10));
+    	if ($request->has('sort')) {
+            list($sortCol, $sortDir) = explode('|', $request->sort);
+            if (\Schema::hasColumn('type_properties', $sortCol)) {
+                $query = TypeProperty::orderBy($sortCol, $sortDir);
+            }else{
+                $query = TypeProperty::sortBy($sortCol, $sortDir);
+            }
+        }else{
+            $query = TypeProperty::orderBy('created_at', 'asc');
+        }
+
+        if($request->exists('filter')){
+            $query->search("{$request->filter}");
+        }
+
+        $perPage = $request->has('per_page') ? (int) $request->per_page : null;
+        $result = $query->paginate($perPage);
+
+        return response()->json($result);
+
     }
 
     public function store(CreateTypePropertyRequest $request)
