@@ -24290,10 +24290,20 @@ Vue.component('custom-actions', {
 });
 
 Vue.component('modal', {
-		template: '<transition name="modal">\n\t\t\t    <div class="modal-mask">\n\t\t\t      <div class="modal-wrapper">\n\t\t\t        <div class="modal-container">\n\n\t\t\t          <div class="modal-header">\n\t\t\t            <slot name="header">\n\t\t\t              default header\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-body">\n\t\t\t            <slot name="body">\n\t\t\t              default body\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-footer">\n\t\t\t          <button type="button" class="btn btn-default" @click=\'$emit("close")\'>Close</button>\n\t\t\t            <slot name="footer">\n\t\t\t              default footer\n\t\t\t       \t\t\tdefault footer\n\t\t\t              </button>\n\t\t\t            </slot>\n\t\t\t          </div>\n\t\t\t        </div>\n\t\t\t      </div>\n\t\t\t    </div>\n\t\t\t  </transition>',
+		props: {
+				width: {
+						default: null
+				}
+		},
+		template: '<transition name="modal">\n\t\t\t    <div class="modal-mask">\n\t\t\t      <div class="modal-wrapper">\n\t\t\t        <div class="modal-container" :style="{width: optionalWidth}">\n\n\t\t\t          <div class="modal-header">\n\t\t\t            <slot name="header">\n\t\t\t              default header\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-body">\n\t\t\t            <slot name="body">\n\t\t\t              default body\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-footer">\n\t\t\t          <button type="button" class="btn btn-default" @click=\'$emit("close")\'>Close</button>\n\t\t\t            <slot name="footer">\n\t\t\t              default footer\n\t\t\t       \t\t\tdefault footer\n\t\t\t              </button>\n\t\t\t            </slot>\n\t\t\t          </div>\n\t\t\t        </div>\n\t\t\t      </div>\n\t\t\t    </div>\n\t\t\t  </transition>',
 		created: function created() {},
 
-		events: {}
+		events: {},
+		computed: {
+				optionalWidth: function optionalWidth() {
+						return this.width + 'px';
+				}
+		}
 });
 
 Vue.component('filter-bar', {

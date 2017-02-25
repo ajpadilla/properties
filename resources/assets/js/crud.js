@@ -44,10 +44,15 @@ Vue.component('custom-actions', {
 });
 
 Vue.component('modal', {
+	props: {
+		width: {
+      		default: null
+    	},
+	},
 	template: `<transition name="modal">
 			    <div class="modal-mask">
 			      <div class="modal-wrapper">
-			        <div class="modal-container">
+			        <div class="modal-container" :style="{width: optionalWidth}">
 
 			          <div class="modal-header">
 			            <slot name="header">
@@ -79,6 +84,11 @@ Vue.component('modal', {
 	events: {
       
     },
+    computed: {
+	    optionalWidth () {
+	        return this.width + 'px';
+	    }
+  	},
 })
 
 
