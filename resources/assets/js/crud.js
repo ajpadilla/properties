@@ -196,6 +196,7 @@ Vue.component('my-detail-row', {
         formModal: false,
         showModal: false,
         deleteModal: false,
+        infoModal: false,
         token: token,
         flashMessage: null,
         flashType: null,
@@ -262,6 +263,8 @@ Vue.component('my-detail-row', {
     	},
     	modal (type) {
     		if (type == 'POST') {
+    			this.cleanData();  
+    			this.row.name = "";
     			this.lastOpenModal.push('formModal');
     			this.method = type;
     			this.formModal = true;
@@ -296,20 +299,36 @@ Vue.component('my-detail-row', {
     			this.localModals[modalName] = false;
     		else*/
     		this.$set(this, modalName, false);
-    		this.cleanData();  
+    		//this.cleanData();  
         },
         getData () {
         	axios.get(this.url.show + this.row.id)
         	.then(this.success)
 	    	.catch(this.failed);
         },
+        cleanData: function() {
+            this.row = objectRow;
+            this.flashMessage = '';
+            this.flashType = '';
+        }, 
         success (response){
         	if (response.data.success && response.data.data) {
         		this.row = response.data.data;
-        		 this.flashMessage = response.data.message;
-            	this.flashType = 'success'; 
         	}
+        	this.flashMessage = response.data.message;
+	        this.flashType = 'success'; 
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
+        },
+        successSent (response){
+        	var lastOpenModal = this.lastOpenModal.pop();
+        	if (response.data.success && response.data.data) {
+        		this.row = response.data.data;
+        	}
+        	this.flashMessage = response.data.message;
+	        this.flashType = 'success'; 
+        	Vue.nextTick( () => this.$refs.vuetable.refresh() )
+            this.closeModal(lastOpenModal);
+            this.modal('INFO');
         },
         failed: function(error) {
             this.flashMessage = 'Some errors in sended data, please check!.';
@@ -327,11 +346,6 @@ Vue.component('my-detail-row', {
                 }
             }
         },
-        cleanData: function() {
-            this.row = objectRow;
-            this.flashMessage = '';
-            this.flashType = '';
-        },   
         submit (model = null, type = null, related = null, event)
         {
 
@@ -369,6 +383,7 @@ Vue.component('my-detail-row', {
 	    }, 
 
 	    'vuetable-action' (action, data) {
+	    	this.cleanData();
 	    	console.log('action:' + action, data);
 	    	//this.row = data;
 	    	this.row.id = data.id;
@@ -385,7 +400,7 @@ Vue.component('my-detail-row', {
 	    'POST' (actionUrl, data){
 	    	console.log('Enviando datos al servidor', actionUrl, JSON.stringify(data));
 	    	axios.post(actionUrl, data)
-	    	.then(this.success)
+	    	.then(this.successSent)
 	    	.catch(this.failed);
 	    },
 
@@ -393,7 +408,7 @@ Vue.component('my-detail-row', {
 	    	console.log('Actualizando datos al servidor', (actionUrl + data.id), JSON.stringify(data));
 	    	var url = actionUrl + data.id;
 	    	axios.patch(url, data)
-	    	.then(this.success)
+	    	.then(this.successSent)
 	    	.catch(this.failed);
 	    },
 
@@ -401,7 +416,7 @@ Vue.component('my-detail-row', {
 	    	console.log('Eliminando datos del servidor', (actionUrl + data.id), JSON.stringify(data));
 	    	var url = actionUrl + data.id;
 	    	axios.delete(url, data)
-	    	.then(this.success)
+	    	.then(this.successSent)
 	    	.catch(this.failed);
 	    }
 

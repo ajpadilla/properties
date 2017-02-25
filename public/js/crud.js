@@ -24364,6 +24364,7 @@ window.vm = new Vue({
 				formModal: false,
 				showModal: false,
 				deleteModal: false,
+				infoModal: false,
 				token: token,
 				flashMessage: null,
 				flashType: null,
@@ -24426,6 +24427,8 @@ window.vm = new Vue({
 				},
 				modal: function modal(type) {
 						if (type == 'POST') {
+								this.cleanData();
+								this.row.name = "";
 								this.lastOpenModal.push('formModal');
 								this.method = type;
 								this.formModal = true;
@@ -24464,17 +24467,38 @@ window.vm = new Vue({
 				getData: function getData() {
 						axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
 				},
+
+				cleanData: function cleanData() {
+						this.row = objectRow;
+						this.flashMessage = '';
+						this.flashType = '';
+				},
 				success: function success(response) {
 						var _this = this;
 
 						if (response.data.success && response.data.data) {
 								this.row = response.data.data;
 						}
+						this.flashMessage = response.data.message;
+						this.flashType = 'success';
 						Vue.nextTick(function () {
 								return _this.$refs.vuetable.refresh();
 						});
+				},
+				successSent: function successSent(response) {
+						var _this2 = this;
+
+						var lastOpenModal = this.lastOpenModal.pop();
+						if (response.data.success && response.data.data) {
+								this.row = response.data.data;
+						}
 						this.flashMessage = response.data.message;
 						this.flashType = 'success';
+						Vue.nextTick(function () {
+								return _this2.$refs.vuetable.refresh();
+						});
+						this.closeModal(lastOpenModal);
+						this.modal('INFO');
 				},
 
 				failed: function failed(error) {
@@ -24508,7 +24532,7 @@ window.vm = new Vue({
 
 		events: {
 				'filter-set': function filterSet(filterText) {
-						var _this2 = this;
+						var _this3 = this;
 
 						console.log('Desde el padre:' + filterText);
 
@@ -24516,29 +24540,30 @@ window.vm = new Vue({
 								filter: filterText
 						};
 						Vue.nextTick(function () {
-								return _this2.$refs.vuetable.refresh();
-						});
-				},
-				'filter-reset': function filterReset() {
-						var _this3 = this;
-
-						this.moreParams = {};
-						Vue.nextTick(function () {
 								return _this3.$refs.vuetable.refresh();
 						});
 				},
-				'per-page': function perPage(value) {
+				'filter-reset': function filterReset() {
 						var _this4 = this;
+
+						this.moreParams = {};
+						Vue.nextTick(function () {
+								return _this4.$refs.vuetable.refresh();
+						});
+				},
+				'per-page': function perPage(value) {
+						var _this5 = this;
 
 						console.log('per-page activado:' + value);
 						this.moreParams = {
 								per_page: value
 						};
 						Vue.nextTick(function () {
-								return _this4.$refs.vuetable.refresh();
+								return _this5.$refs.vuetable.refresh();
 						});
 				},
 				'vuetable-action': function vuetableAction(action, data) {
+						this.cleanData();
 						console.log('action:' + action, data);
 						//this.row = data;
 						this.row.id = data.id;
@@ -24553,17 +24578,17 @@ window.vm = new Vue({
 				},
 				'POST': function POST(actionUrl, data) {
 						console.log('Enviando datos al servidor', actionUrl, JSON.stringify(data));
-						axios.post(actionUrl, data).then(this.success).catch(this.failed);
+						axios.post(actionUrl, data).then(this.successSent).catch(this.failed);
 				},
 				'PATCH': function PATCH(actionUrl, data) {
 						console.log('Actualizando datos al servidor', actionUrl + data.id, JSON.stringify(data));
 						var url = actionUrl + data.id;
-						axios.patch(url, data).then(this.success).catch(this.failed);
+						axios.patch(url, data).then(this.successSent).catch(this.failed);
 				},
 				'DELETE': function DELETE(actionUrl, data) {
 						console.log('Eliminando datos del servidor', actionUrl + data.id, JSON.stringify(data));
 						var url = actionUrl + data.id;
-						axios.delete(url, data).then(this.success).catch(this.failed);
+						axios.delete(url, data).then(this.successSent).catch(this.failed);
 				}
 		}
 
