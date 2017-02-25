@@ -296,7 +296,7 @@ Vue.component('my-detail-row', {
     			this.localModals[modalName] = false;
     		else*/
     		this.$set(this, modalName, false);
-    		//this.cleanData();  
+    		this.cleanData();  
         },
         getData () {
         	axios.get(this.url.show + this.row.id)
@@ -306,11 +306,10 @@ Vue.component('my-detail-row', {
         success (response){
         	if (response.data.success && response.data.data) {
         		this.row = response.data.data;
+        		 this.flashMessage = response.data.message;
+            	this.flashType = 'success'; 
         	}
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
-            this.flashMessage = response.data.message;
-            this.flashType = 'success'; 
-
         },
         failed: function(error) {
             this.flashMessage = 'Some errors in sended data, please check!.';
@@ -328,6 +327,11 @@ Vue.component('my-detail-row', {
                 }
             }
         },
+        cleanData: function() {
+            this.row = objectRow;
+            this.flashMessage = '';
+            this.flashType = '';
+        },   
         submit (model = null, type = null, related = null, event)
         {
 
