@@ -1,4 +1,4 @@
-<modal v-if="infoModal" @close='closeModal("infoModal")'>
+<modal v-if="infoModal" @close='closeModal("infoModal")' width="600">
 	<div slot="header">
 	</div>	
 	<template slot="body">

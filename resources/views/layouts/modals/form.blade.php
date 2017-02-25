@@ -1,4 +1,4 @@
-<modal v-if="formModal" @close='closeModal("formModal")'>
+<modal v-if="formModal" @close='closeModal("formModal")' width="800">
 	<div slot="header">
 		<b>@yield('modal-form-title')</b>
 	</div>	

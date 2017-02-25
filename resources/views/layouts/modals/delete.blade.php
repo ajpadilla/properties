@@ -1,4 +1,4 @@
-<modal v-if="deleteModal" @close='closeModal("deleteModal")'>
+<modal v-if="deleteModal" @close='closeModal("deleteModal")' width="400">
 	<div slot="header">
 		  <b>@yield('modal-delete-form-title')</b>
 	</div>	
