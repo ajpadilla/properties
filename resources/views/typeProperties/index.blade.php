@@ -21,6 +21,7 @@
     @include('typeProperties.form')
     @include('typeProperties.show')
     @include('typeProperties.delete') 
+    @include('layouts.modals.info')
     <pre>@{{ $data }}</pre>
 </div>
 @endsection
