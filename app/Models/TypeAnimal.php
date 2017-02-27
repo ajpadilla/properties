@@ -10,7 +10,7 @@ class TypeAnimal extends Model
 {
  	use SearchTrait, SortTrait;
 
-	public $table = 'type_properties';
+	public $table = 'types_animals';
 
 	/**
      * The attributes that are mass assignable.
@@ -19,6 +19,12 @@ class TypeAnimal extends Model
      */
     protected $fillable = ['name'];
 
+    
+    /**
+     * Attributes that are for searchers of the model.
+     *
+     * @var array
+     */
     protected $searchableColumns = [
     	'name'
     ];
