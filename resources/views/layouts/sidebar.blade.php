@@ -53,6 +53,11 @@
                 <i class="fa fa-circle-o"></i> Tipos de animales
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/disabilities') }}">
+                <i class="fa fa-circle-o"></i> Discapacidades
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
