@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /**
- * ------------------- API Route for Schools ---------------
+ * ------------------- API Route for typeProperties ---------------
  */
 
 Route::group(['prefix' => 'typeProperties'], function()
@@ -50,7 +50,7 @@ Route::group(['prefix' => 'typeProperties'], function()
 });
 
 /**
- * ------------------- API Route for Schools ---------------
+ * ------------------- API Route for typeAnimals ---------------
  */
 
 Route::group(['prefix' => 'typeAnimals'], function()
@@ -78,5 +78,37 @@ Route::group(['prefix' => 'typeAnimals'], function()
 	Route::delete('delete/{id?}', [
 		'as' => 'api.typeAnimals.delete',
 		'uses' => 'TypeAnimalController@destroy'
+	]);
+});
+
+/**
+ * ------------------- API Route for disabilities ---------------
+ */
+
+Route::group(['prefix' => 'disabilities'], function()
+{
+	Route::get('/',[
+		'as' => 'api.disabilities.index',
+		'uses' => 'DisabilityController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.disabilities.show',
+			'uses' => 'DisabilityController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.disabilities.store',
+			'uses' => 'DisabilityController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.disabilities.update',
+			'uses' => 'DisabilityController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.disabilities.delete',
+		'uses' => 'DisabilityController@destroy'
 	]);
 });
