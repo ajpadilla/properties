@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\TypeAnimal;
 
-
 class TypeAnimalTableSeeder extends Seeder
 {
     /**
