@@ -210,6 +210,8 @@ Vue.component('my-detail-row', {
         token: token,
         flashMessage: null,
         flashType: null,
+        flashSuccessfulMessage: null,
+        flashSuccessfulType: null,
         url: apiUrl,
         actionUrl: null,
         errorMessages:[],
@@ -309,7 +311,7 @@ Vue.component('my-detail-row', {
     			this.localModals[modalName] = false;
     		else*/
     		this.$set(this, modalName, false);
-    		//this.cleanData();  
+    		this.cleanData();  
         },
         getData () {
         	axios.get(this.url.show + this.row.id)
@@ -320,6 +322,7 @@ Vue.component('my-detail-row', {
             this.row = objectRow;
             this.flashMessage = '';
             this.flashType = '';
+            this.errorMessages = [];
         }, 
         success (response){
         	if (response.data.success && response.data.data) {
@@ -334,8 +337,8 @@ Vue.component('my-detail-row', {
         	if (response.data.success && response.data.data) {
         		this.row = response.data.data;
         	}
-        	this.flashMessage = response.data.message;
-	        this.flashType = 'success'; 
+        	this.flashSuccessfulMessage = response.data.message;
+	        this.flashSuccessfulType = 'success'; 
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
             this.closeModal(lastOpenModal);
             this.modal('INFO');

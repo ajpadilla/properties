@@ -24378,6 +24378,8 @@ window.vm = new Vue({
 				token: token,
 				flashMessage: null,
 				flashType: null,
+				flashSuccessfulMessage: null,
+				flashSuccessfulType: null,
 				url: apiUrl,
 				actionUrl: null,
 				errorMessages: [],
@@ -24472,7 +24474,7 @@ window.vm = new Vue({
       	this.localModals[modalName] = false;
       else*/
 						this.$set(this, modalName, false);
-						//this.cleanData();  
+						this.cleanData();
 				},
 				getData: function getData() {
 						axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
@@ -24482,6 +24484,7 @@ window.vm = new Vue({
 						this.row = objectRow;
 						this.flashMessage = '';
 						this.flashType = '';
+						this.errorMessages = [];
 				},
 				success: function success(response) {
 						var _this = this;
@@ -24502,8 +24505,8 @@ window.vm = new Vue({
 						if (response.data.success && response.data.data) {
 								this.row = response.data.data;
 						}
-						this.flashMessage = response.data.message;
-						this.flashType = 'success';
+						this.flashSuccessfulMessage = response.data.message;
+						this.flashSuccessfulType = 'success';
 						Vue.nextTick(function () {
 								return _this2.$refs.vuetable.refresh();
 						});
