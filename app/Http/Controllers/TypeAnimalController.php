@@ -13,7 +13,7 @@ class TypeAnimalController extends Controller
 	{
 		if ($request->has('sort')) {
 			list($sortCol, $sortDir) = explode('|', $request->sort);
-			if (\Schema::hasColumn('type_properties', $sortCol)) {
+			if (\Schema::hasColumn('types_animals', $sortCol)) {
 				$query = TypeAnimal::orderBy($sortCol, $sortDir);
 			}else{
 				$query = TypeAnimal::sortBy($sortCol, $sortDir);
@@ -31,7 +31,7 @@ class TypeAnimalController extends Controller
 
 		return response()->json($result);
 	}
-  public function store(CreateTypeAnimalRequest $request)
+    public function store(CreateTypeAnimalRequest $request)
     {
     	if ($request->ajax()) {
    			$input = $request->all();
