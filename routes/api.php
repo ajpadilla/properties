@@ -112,3 +112,36 @@ Route::group(['prefix' => 'disabilities'], function()
 		'uses' => 'DisabilityController@destroy'
 	]);
 });
+
+
+/**
+ * ------------------- API Route for typeIdentifications ---------------
+ */
+
+Route::group(['prefix' => 'typeIdentifications'], function()
+{
+	Route::get('/',[
+		'as' => 'api.typeIdentifications.index',
+		'uses' => 'TypeIdentificationController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.typeIdentifications.show',
+			'uses' => 'TypeIdentificationController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.typeIdentifications.store',
+			'uses' => 'TypeIdentificationController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typeIdentifications.update',
+			'uses' => 'TypeIdentificationController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typeIdentifications.delete',
+		'uses' => 'TypeIdentificationController@destroy'
+	]);
+});
