@@ -65,6 +65,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for typeIdentifications ---------------
+	 */
+	Route::group(['prefix' => 'typeIdentifications'], function(){
+
+		Route::get('', [
+			'as' => 'type.identifications',
+			'uses' => function() {
+				return view('typeIdentifications.index');
+			}
+		]);	
+	});
+
 	
 
 	
