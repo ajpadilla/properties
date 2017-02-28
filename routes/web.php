@@ -25,12 +25,37 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		return view('layouts.dashboard');
 	});
 
-	Route::get('types-properties', [
-		'as' => 'types.properties',
-		'uses' => function() {
-			return view('typeProperties.index');
-		}
-	]);	
+	/**
+	 * ------------------- Route index for typeProperty ---------------
+	 */
+
+	Route::group(['prefix' => 'typeProperties'], function(){
+
+		Route::get('', [
+			'as' => 'types.properties',
+			'uses' => function() {
+				return view('typeProperties.index');
+			}
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for typeAnimals ---------------
+	 */
+	Route::group(['prefix' => 'typeAnimals'], function(){
+
+		Route::get('', [
+			'as' => 'types.animals',
+			'uses' => function() {
+				return view('typeAnimals.index');
+			}
+		]);	
+	});
+
+	
+
+	
+
 }); 
 
 
