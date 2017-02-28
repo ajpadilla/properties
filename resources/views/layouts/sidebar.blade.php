@@ -58,6 +58,11 @@
                 <i class="fa fa-circle-o"></i> Discapacidades
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/typeIdentifications') }}">
+                <i class="fa fa-circle-o"></i> Tipos de identificaciones
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
