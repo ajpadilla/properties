@@ -104,6 +104,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for educationalLevels ---------------
+	 */
+	Route::group(['prefix' => 'currencies'], function(){
+
+		Route::get('', [
+			'as' => 'currencies',
+			'uses' => function() {
+				return view('currencies.index');
+			}
+		]);	
+	});
+
+
 
 
 }); 
