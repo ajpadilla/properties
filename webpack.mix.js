@@ -45,6 +45,7 @@ mix.copy('resources/assets/js/models/typeProperty/config.js', 'public/js/models/
 mix.copy('resources/assets/js/models/typeAnimal/config.js', 'public/js/models/typeAnimal/config.js');
 mix.copy('resources/assets/js/models/disability/config.js', 'public/js/models/disability/config.js');
 mix.copy('resources/assets/js/models/typeIdentification/config.js', 'public/js/models/typeIdentification/config.js');
+mix.copy('resources/assets/js/models/typeCommunity/config.js', 'public/js/models/typeCommunity/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
