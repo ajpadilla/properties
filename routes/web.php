@@ -78,9 +78,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
-	
+	/**
+	 * ------------------- Route index for typeCommunities ---------------
+	 */
+	Route::group(['prefix' => 'typeCommunities'], function(){
 
-	
+		Route::get('', [
+			'as' => 'type.typeCommunities',
+			'uses' => function() {
+				return view('typeCommunities.index');
+			}
+		]);	
+	});
+
 
 }); 
 
