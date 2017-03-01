@@ -63,6 +63,11 @@
                 <i class="fa fa-circle-o"></i> Tipos de identificaciones
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/typeCommunities') }}">
+                <i class="fa fa-circle-o"></i> Tipos de comunidades
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
