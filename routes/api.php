@@ -208,5 +208,38 @@ Route::group(['prefix' => 'educationalLevels'], function()
 	Route::delete('delete/{id?}', [
 		'as' => 'api.educationalLevels.delete',
 		'uses' => 'EducationalLevelController@destroy'
+	]);	
+});
+
+
+/**
+ * ------------------- API Route for educationalLevels ---------------
+ */
+
+Route::group(['prefix' => 'currencies'], function()
+{
+	Route::get('/',[
+		'as' => 'api.currencies.index',
+		'uses' => 'CurrencyController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.currencies.show',
+			'uses' => 'CurrencyController@show'
 	]);
+
+	Route::post('store', [
+			'as' => 'api.currencies.store',
+			'uses' => 'CurrencyController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.currencies.update',
+			'uses' => 'CurrencyController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.currencies.delete',
+		'uses' => 'CurrencyController@destroy'
+	]);	
 });
