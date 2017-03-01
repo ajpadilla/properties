@@ -147,7 +147,7 @@ Route::group(['prefix' => 'typeIdentifications'], function()
 });
 
 /**
- * ------------------- API Route for typeIdentifications ---------------
+ * ------------------- API Route for typeCommunities ---------------
  */
 
 Route::group(['prefix' => 'typeCommunities'], function()
