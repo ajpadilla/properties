@@ -68,6 +68,11 @@
                 <i class="fa fa-circle-o"></i> Tipos de comunidades
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/educationalLevels') }}">
+                <i class="fa fa-circle-o"></i> Nivel de educación
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
