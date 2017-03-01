@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeIdentificationTableSeeder::class);
         $this->call(TypeCommunityTableSeeder::class);
         $this->call(EducationalLevelTableSeeder::class);
+        $this->call(CurrencyTableSeeder::class);
     }
 }
