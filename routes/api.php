@@ -177,3 +177,36 @@ Route::group(['prefix' => 'typeCommunities'], function()
 		'uses' => 'TypeCommunityController@destroy'
 	]);
 });
+
+
+/**
+ * ------------------- API Route for educationalLevels ---------------
+ */
+
+Route::group(['prefix' => 'educationalLevels'], function()
+{
+	Route::get('/',[
+		'as' => 'api.educationalLevels.index',
+		'uses' => 'EducationalLevelController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.educationalLevels.show',
+			'uses' => 'EducationalLevelController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.educationalLevels.store',
+			'uses' => 'EducationalLevelController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.educationalLevels.update',
+			'uses' => 'EducationalLevelController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.educationalLevels.delete',
+		'uses' => 'EducationalLevelController@destroy'
+	]);
+});
