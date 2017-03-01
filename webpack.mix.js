@@ -47,6 +47,7 @@ mix.copy('resources/assets/js/models/disability/config.js', 'public/js/models/di
 mix.copy('resources/assets/js/models/typeIdentification/config.js', 'public/js/models/typeIdentification/config.js');
 mix.copy('resources/assets/js/models/typeCommunity/config.js', 'public/js/models/typeCommunity/config.js');
 mix.copy('resources/assets/js/models/educationalLevel/config.js', 'public/js/models/educationalLevel/config.js');
+mix.copy('resources/assets/js/models/currency/config.js', 'public/js/models/currency/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
