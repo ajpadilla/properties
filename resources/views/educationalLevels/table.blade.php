@@ -1,6 +1,6 @@
   <filter-bar></filter-bar>
   <vuetable ref="vuetable"
-  api-url="{{ route('api.typeCommunities.index') }}"
+  api-url="{{ route('api.educationalLevels.index') }}"
   :fields="columns"
   pagination-path=""
   :css="css.table"
