@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeAnimalTableSeeder::class);
         $this->call(DisabilityTableSeeder::class);
         $this->call(TypeIdentificationTableSeeder::class);
-        
+        $this->call(TypeCommunityTableSeeder::class);
     }
 }
