@@ -73,6 +73,11 @@
                 <i class="fa fa-circle-o"></i> Nivel de educación
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/currencies') }}">
+                <i class="fa fa-circle-o"></i> Monedas
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
