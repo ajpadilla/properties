@@ -84,12 +84,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 	Route::group(['prefix' => 'typeCommunities'], function(){
 
 		Route::get('', [
-			'as' => 'type.typeCommunities',
+			'as' => 'type.communities',
 			'uses' => function() {
 				return view('typeCommunities.index');
 			}
 		]);	
 	});
+
+	/**
+	 * ------------------- Route index for educationalLevels ---------------
+	 */
+	Route::group(['prefix' => 'educationalLevels'], function(){
+
+		Route::get('', [
+			'as' => 'educational.levels',
+			'uses' => function() {
+				return view('educationalLevels.index');
+			}
+		]);	
+	});
+
 
 
 }); 
