@@ -145,3 +145,35 @@ Route::group(['prefix' => 'typeIdentifications'], function()
 		'uses' => 'TypeIdentificationController@destroy'
 	]);
 });
+
+/**
+ * ------------------- API Route for typeIdentifications ---------------
+ */
+
+Route::group(['prefix' => 'typeCommunities'], function()
+{
+	Route::get('/',[
+		'as' => 'api.typeCommunities.index',
+		'uses' => 'TypeCommunityController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.typeCommunities.show',
+			'uses' => 'TypeCommunityController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.typeCommunities.store',
+			'uses' => 'TypeCommunityController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typeCommunities.update',
+			'uses' => 'TypeCommunityController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typeCommunities.delete',
+		'uses' => 'TypeCommunityController@destroy'
+	]);
+});
