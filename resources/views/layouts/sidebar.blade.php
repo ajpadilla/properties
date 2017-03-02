@@ -78,6 +78,11 @@
                 <i class="fa fa-circle-o"></i> Monedas
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/typePqr') }}">
+                <i class="fa fa-circle-o"></i> Reclamos y sugerencias
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
