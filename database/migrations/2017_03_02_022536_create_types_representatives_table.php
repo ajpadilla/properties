@@ -15,6 +15,7 @@ class CreateTypesRepresentativesTable extends Migration
     {
         Schema::create('types_representatives', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 30);
             $table->timestamps();
         });
     }
