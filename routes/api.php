@@ -307,3 +307,36 @@ Route::group(['prefix' => 'typeRepresentatives'], function()
 		'uses' => 'TypeRepresentativeController@destroy'
 	]);	
 });
+
+/**
+ * ------------------- API Route for TypeInfractions ---------------
+ */
+
+Route::group(['prefix' => 'typeInfractions'], function()
+{
+	Route::get('/',[
+		'as' => 'api.typeInfractions.index',
+		'uses' => 'TypeInfractionController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.typeInfractions.show',
+			'uses' => 'TypeInfractionController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.typeInfractions.store',
+			'uses' => 'TypeInfractionController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typeInfractions.update',
+			'uses' => 'TypeInfractionController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typeInfractions.delete',
+		'uses' => 'TypeInfractionController@destroy'
+	]);	
+});
+
