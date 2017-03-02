@@ -49,6 +49,7 @@ mix.copy('resources/assets/js/models/typeCommunity/config.js', 'public/js/models
 mix.copy('resources/assets/js/models/educationalLevel/config.js', 'public/js/models/educationalLevel/config.js');
 mix.copy('resources/assets/js/models/currency/config.js', 'public/js/models/currency/config.js');
 mix.copy('resources/assets/js/models/typePqr/config.js', 'public/js/models/typePqr/config.js');
+mix.copy('resources/assets/js/models/typeRepresentative/config.js', 'public/js/models/typeRepresentative/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
