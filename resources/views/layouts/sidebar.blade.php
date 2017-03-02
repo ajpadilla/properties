@@ -88,6 +88,11 @@
                 <i class="fa fa-circle-o"></i> Tipos de representantes
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/typeInfractions') }}">
+                <i class="fa fa-circle-o"></i> Tipos de infracciones
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
