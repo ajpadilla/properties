@@ -213,7 +213,7 @@ Route::group(['prefix' => 'educationalLevels'], function()
 
 
 /**
- * ------------------- API Route for educationalLevels ---------------
+ * ------------------- API Route for currencies ---------------
  */
 
 Route::group(['prefix' => 'currencies'], function()
@@ -241,5 +241,37 @@ Route::group(['prefix' => 'currencies'], function()
 	Route::delete('delete/{id?}', [
 		'as' => 'api.currencies.delete',
 		'uses' => 'CurrencyController@destroy'
+	]);	
+});
+
+/**
+ * ------------------- API Route for typePqr ---------------
+ */
+
+Route::group(['prefix' => 'typePqr'], function()
+{
+	Route::get('/',[
+		'as' => 'api.typePqr.index',
+		'uses' => 'TypePqrController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.typePqr.show',
+			'uses' => 'TypePqrController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.typePqr.store',
+			'uses' => 'TypePqrController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typePqr.update',
+			'uses' => 'TypePqrController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typePqr.delete',
+		'uses' => 'TypePqrController@destroy'
 	]);	
 });
