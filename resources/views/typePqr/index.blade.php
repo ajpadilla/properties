@@ -29,7 +29,7 @@
 {{--@section('title-content', 'Listing event types')--}}
 
 @push('vue-scripts')
-    {!! Html::script('js/models/typeProperty/config.js') !!}
+    {!! Html::script('js/models/typePqr/config.js') !!}
     <script type="text/javascript">
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
