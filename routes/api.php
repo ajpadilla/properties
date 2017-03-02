@@ -275,3 +275,35 @@ Route::group(['prefix' => 'typePqr'], function()
 		'uses' => 'TypePqrController@destroy'
 	]);	
 });
+
+/**
+ * ------------------- API Route for TypeRepresentatives ---------------
+ */
+
+Route::group(['prefix' => 'typeRepresentatives'], function()
+{
+	Route::get('/',[
+		'as' => 'api.typeRepresentatives.index',
+		'uses' => 'TypeRepresentativeController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.typeRepresentatives.show',
+			'uses' => 'TypeRepresentativeController@show'
+	]);
+
+	Route::post('store', [
+			'as' => 'api.typeRepresentatives.store',
+			'uses' => 'TypeRepresentativeController@store'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.typeRepresentatives.update',
+			'uses' => 'TypeRepresentativeController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.typeRepresentatives.delete',
+		'uses' => 'TypeRepresentativeController@destroy'
+	]);	
+});
