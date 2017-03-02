@@ -3,7 +3,7 @@
 @section('content')
 <div id="app">
     <section class="content-header">
-        <h1 class="pull-left">List Type Property</h1>
+        <h1 class="pull-left">Lista para tipos de reclamos, quejas y sugerencias</h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" href="#" style="margin-top: -10px;margin-bottom: 5px" @click.prevent="modal('POST')">Create</a>
        </h1>
@@ -12,15 +12,15 @@
         <div class="box box-primary">
             <div class="box-body">
                 {{-- Include Table --}}
-                @include('typeProperties.table')
+                @include('typePqr.table')
             </div>
         </div>
     </div>
 
     {{-- Modals --}}
-    @include('typeProperties.form')
-    @include('typeProperties.show')
-    @include('typeProperties.delete') 
+    @include('typePqr.form')
+    @include('typePqr.show')
+    @include('typePqr.delete') 
     @include('layouts.modals.info')
     <pre>@{{ $data }}</pre>
 </div>
@@ -34,10 +34,10 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            store: "{{ route('api.typeProperties.store') }}/",
-            update: "{{ route('api.typeProperties.update') }}/",
-            show: "{{ route('api.typeProperties.show') }}/",
-            delete: "{{ route('api.typeProperties.delete') }}/"
+            store: "{{ route('api.typePqr.store') }}/",
+            update: "{{ route('api.typePqr.update') }}/",
+            show: "{{ route('api.typePqr.show') }}/",
+            delete: "{{ route('api.typePqr.delete') }}/"
         };
     </script>
     {!! Html::script('js/crud.js') !!}

@@ -1,6 +1,6 @@
   <filter-bar></filter-bar>
   <vuetable ref="vuetable"
-  api-url="{{ route('api.typeProperties.index') }}"
+  api-url="{{ route('api.typePqr.index') }}"
   :fields="columns"
   pagination-path=""
   :css="css.table"
