@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EducationalLevelTableSeeder::class);
         $this->call(CurrencyTableSeeder::class);
         $this->call(TypePqrTableSeeder::class);
+        $this->call(TypeRepresentativeTableSeeder::class);
     }
 }
