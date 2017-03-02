@@ -11,23 +11,6 @@
   @vuetable:cell-clicked="onCellClicked"
   @vuetable:pagination-data="onPaginationData"
   >
-
-  <template slot="actions" scope="props"> 
-    <div class="custom-actions">
-      <button class="ui basic button"
-      @click="onAction('view-item', props.rowData, props.rowIndex)">
-      <i class="zoom icon"></i>
-    </button>
-    <button class="ui basic button"
-    @click="onAction('edit-item', props.rowData, props.rowIndex)">
-    <i class="edit icon"></i>
-  </button>
-  <button class="ui basic button"
-  @click="onAction('delete-item', props.rowData, props.rowIndex)">
-  <i class="delete icon"></i>
-</button>
-</div>
-</template>
 </vuetable> 
 
 <div class="vuetable-pagination">
