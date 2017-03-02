@@ -83,6 +83,11 @@
                 <i class="fa fa-circle-o"></i> Reclamos y sugerencias
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/typeRepresentatives') }}">
+                <i class="fa fa-circle-o"></i> Tipos de representantes
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
