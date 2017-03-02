@@ -105,7 +105,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 	});
 
 	/**
-	 * ------------------- Route index for educationalLevels ---------------
+	 * ------------------- Route index for currencies ---------------
 	 */
 	Route::group(['prefix' => 'currencies'], function(){
 
@@ -116,6 +116,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 			}
 		]);	
 	});
+
+	/**
+	 * ------------------- Route index for typePqr ---------------
+	 */
+	Route::group(['prefix' => 'typePqr'], function(){
+
+		Route::get('', [
+			'as' => 'typePqr',
+			'uses' => function() {
+				return view('typePqr.index');
+			}
+		]);	
+	});
+
 
 
 
