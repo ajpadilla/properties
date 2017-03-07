@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Http\Requests\CreateCountryRequest;
+use App\Http\Requests\UpdateCountryRequest;
 
 class CountryController extends Controller
 {
@@ -28,6 +30,19 @@ class CountryController extends Controller
 		$result = $query->paginate($perPage);
 
 		return response()->json($result);
+	}
+
+	public function store(CreateCountryRequest $request)
+	{
+		if ($request->ajax()) {
+			$input = $request->all();
+			$country = Country::create($input);
+			$this->setSuccess(true);
+    		$this->addToResponseArray('data', $country);
+            $this->addToResponseArray('message', 'Country successfully added');
+    		return $this->getResponseArrayJson();
+		}
+    	return $this->getResponseArrayJson();
 	}
 
 }
