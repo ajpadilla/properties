@@ -34,7 +34,7 @@ class TypePropertyController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(CreateTypePropertyRequest $request)
     {
     	if ($request->ajax()) {
    			$input = $request->all();
