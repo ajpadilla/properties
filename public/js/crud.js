@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 167);
+/******/ 	return __webpack_require__(__webpack_require__.s = 168);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1884,7 +1884,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(150)("./" + name);
+            __webpack_require__(151)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4372,7 +4372,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(164)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(165)(module)))
 
 /***/ }),
 /* 1 */
@@ -24241,13 +24241,13 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_accounting___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_accounting__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_events__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_events__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_events__);
 global.Vue = __webpack_require__(119);
 window.Vue = Vue;
@@ -24258,6 +24258,8 @@ window.axios.defaults.headers.common = {
 		'X-Requested-With': 'XMLHttpRequest'
 };
 
+var decamelize = __webpack_require__(150);
+
 
 
 
@@ -24266,8 +24268,6 @@ window.axios.defaults.headers.common = {
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_events___default.a);
-
-var eventBus = new Vue();
 
 Vue.component('custom-actions', {
 		props: {
@@ -24370,6 +24370,8 @@ window.vm = new Vue({
 				row: objectRow,
 				columns: tableColumns,
 				lastOpenModal: [],
+				localModals: typeof modals !== 'undefined' ? modals : {},
+				foreignData: {},
 				method: '',
 				formModal: false,
 				showModal: false,
@@ -24470,10 +24472,8 @@ window.vm = new Vue({
 				closeModal: function closeModal(modalName) {
 						if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1]) this.lastOpenModal.pop();
 
-						/*if (this.localModals[modalName] != undefined)
-      	this.localModals[modalName] = false;
-      else*/
-						this.$set(this, modalName, false);
+						if (this.localModals[modalName] != undefined) this.localModals[modalName] = false;else this.$set(this, modalName, false);
+
 						this.cleanData();
 				},
 				getData: function getData() {
@@ -24481,7 +24481,7 @@ window.vm = new Vue({
 				},
 
 				cleanData: function cleanData() {
-						this.row = objectRow;
+						//this.row = objectRow;
 						this.flashMessage = '';
 						this.flashType = '';
 						this.errorMessages = [];
@@ -24502,9 +24502,9 @@ window.vm = new Vue({
 						var _this2 = this;
 
 						var lastOpenModal = this.lastOpenModal.pop();
-						if (response.data.success && response.data.data) {
-								this.row = response.data.data;
-						}
+						/*if (response.data.success && response.data.data) {
+      	this.row = response.data.data;
+      }*/
 						this.flashSuccessfulMessage = response.data.message;
 						this.flashSuccessfulType = 'success';
 						Vue.nextTick(function () {
@@ -24534,12 +24534,34 @@ window.vm = new Vue({
 						var model = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 						var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 						var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-						var event = arguments[3];
 
 
 						if (!model || model.target) {
 								this.$events.fire(this.method, this.actionUrl, this.row);
-						} else if (related) {} else {}
+						} else if (related) {} else {
+								this.method = this.url.foreign[model][type].method;
+								var actionUrl = this.url.foreign[model][type].url;
+								this.$events.fire(this.method, actionUrl, this.row[model]);
+						}
+				},
+				getForeignData: function getForeignData() {
+						var callUrl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+						var mapVar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+						var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+						var action = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'index';
+
+						var foreign = this.url.foreign[related][action];
+						if (callUrl == null) callUrl = foreign.url;
+
+						var sendParams = { method: foreign.method, url: foreign.url, data: {} };
+
+						axios(sendParams).then(function (response) {
+								if (response.data.data) {
+										vm.foreignData[mapVar] = response.data.data;
+								}
+						}).catch(function (error) {
+								console.log(error);
+						});
 				}
 		},
 
@@ -25883,7 +25905,7 @@ var _vue = __webpack_require__(119);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueResource = __webpack_require__(160);
+var _vueResource = __webpack_require__(161);
 
 var _vueResource2 = _interopRequireDefault(_vueResource);
 
@@ -26510,7 +26532,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _VuetablePaginationMixin = __webpack_require__(156);
+var _VuetablePaginationMixin = __webpack_require__(157);
 
 var _VuetablePaginationMixin2 = _interopRequireDefault(_VuetablePaginationMixin);
 
@@ -26531,7 +26553,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _VuetablePaginationInfoMixin = __webpack_require__(155);
+var _VuetablePaginationInfoMixin = __webpack_require__(156);
 
 var _VuetablePaginationInfoMixin2 = _interopRequireDefault(_VuetablePaginationInfoMixin);
 
@@ -26753,6 +26775,26 @@ module.exports = function() {
 
 /***/ }),
 /* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function (str, sep) {
+	if (typeof str !== 'string') {
+		throw new TypeError('Expected a string');
+	}
+
+	sep = typeof sep === 'undefined' ? '_' : sep;
+
+	return str
+		.replace(/([a-z\d])([A-Z])/g, '$1' + sep + '$2')
+		.replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + sep + '$2')
+		.toLowerCase();
+};
+
+
+/***/ }),
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -26987,11 +27029,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 150;
+webpackContext.id = 151;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27136,18 +27178,18 @@ if (typeof window !== 'undefined' && window.Vue) {
 exports.default = plugin;
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(161)
+__webpack_require__(162)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(143),
   /* template */
-  __webpack_require__(157),
+  __webpack_require__(158),
   /* scopeId */
   null,
   /* cssModules */
@@ -27174,14 +27216,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(144),
   /* template */
-  __webpack_require__(159),
+  __webpack_require__(160),
   /* scopeId */
   null,
   /* cssModules */
@@ -27208,14 +27250,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(145),
   /* template */
-  __webpack_require__(158),
+  __webpack_require__(159),
   /* scopeId */
   null,
   /* cssModules */
@@ -27242,7 +27284,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
@@ -27275,7 +27317,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
@@ -27308,7 +27350,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -27496,7 +27538,7 @@ if (false) {
 }
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -27516,7 +27558,7 @@ if (false) {
 }
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -27593,7 +27635,7 @@ if (false) {
 }
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28671,7 +28713,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(165);
+    var client = __webpack_require__(166);
 
     return new PromiseObj(function (resolve) {
 
@@ -29125,7 +29167,7 @@ module.exports = plugin;
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29135,7 +29177,7 @@ var content = __webpack_require__(148);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(162)("330703da", content, false);
+var update = __webpack_require__(163)("330703da", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -29151,7 +29193,7 @@ if(false) {
 }
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -29170,7 +29212,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(163)
+var listToStyles = __webpack_require__(164)
 
 /*
 type StyleObject = {
@@ -29387,7 +29429,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports) {
 
 /**
@@ -29420,7 +29462,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29448,14 +29490,14 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(123);
