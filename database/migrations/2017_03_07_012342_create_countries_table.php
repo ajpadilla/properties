@@ -22,7 +22,7 @@ class CreateCountriesTable extends Migration
             $table->foreign('currency_id')
               ->references('id')
               ->on('currencies')
-              ->onUpdate('cascade');
+              ->onUpdate('cascade')
               ->onDelete('cascade');
             $table->timestamps();
         });
