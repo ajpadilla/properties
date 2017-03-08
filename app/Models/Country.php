@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Currency;
 
 class Country extends Model
 {
@@ -27,5 +28,38 @@ class Country extends Model
     protected $searchableColumns = [
     	'name'
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+    */
+
+    protected $appends = [
+        'currency_name'
+    ];
+
+
+    /**
+     * ------ Relations ------ 
+    */
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
+    /**
+     *
+     *-------------------- Accessors and Mutators
+     *
+    */
+
+    public function getCurrencyNameAttribute()
+    {
+        if($this->currency)
+            return $this->currency->name;
+        return false;
+    }
 
 }
