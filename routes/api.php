@@ -242,6 +242,11 @@ Route::group(['prefix' => 'currencies'], function()
 		'as' => 'api.currencies.delete',
 		'uses' => 'CurrencyController@destroy'
 	]);	
+
+	Route::get('select-list', [
+		'as' => 'api.v1.currencies.select-list',
+		'uses' => 'CurrencyController@selectList'
+	]);
 });
 
 /**
@@ -338,5 +343,36 @@ Route::group(['prefix' => 'typeInfractions'], function()
 		'as' => 'api.typeInfractions.delete',
 		'uses' => 'TypeInfractionController@destroy'
 	]);	
+});
+/**
+ * ------------------- API Route for Countries ---------------
+ */
+
+Route::group(['prefix' => 'countries'], function()
+{
+	Route::get('/',[
+		'as' => 'api.countries.index',
+		'uses' => 'CountryController@index'
+	]);	
+
+	Route::post('store', [
+			'as' => 'api.countries.store',
+			'uses' => 'CountryController@store'
+	]);
+
+	Route::get('show/{id?}', [
+			'as' => 'api.countries.show',
+			'uses' => 'CountryController@show'
+	]);
+	
+	Route::patch('update/{id?}', [
+			'as' => 'api.countries.update',
+			'uses' => 'CountryController@update'
+	]);
+
+	/*Route::delete('delete/{id?}', [
+		'as' => 'api.countries.delete',
+		'uses' => 'TypeInfractionController@destroy'
+	]);*/
 });
 

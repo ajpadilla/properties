@@ -156,6 +156,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Countries ---------------
+	 */
+	Route::group(['prefix' => 'countries'], function(){
+
+		Route::get('', [
+			'as' => 'countries',
+			'uses' => function() {
+				return view('countries.index');
+			}
+		]);	
+	});
 
 
 
