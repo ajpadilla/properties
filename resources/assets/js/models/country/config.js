@@ -7,7 +7,15 @@ var objectRow = {
     language: "",
     currency_id: "",
     created_at: "",
-    updated_at: ""
+    updated_at: "",
+    currency: {
+        id: "",
+        name: ""
+    }
+};
+
+var modals = {
+    currency_ADD_inform: false
 };
 
 var tableColumns = [
@@ -59,3 +67,5 @@ var tableColumns = [
         dataClass: 'text-center'
     },
 ];
+
+
