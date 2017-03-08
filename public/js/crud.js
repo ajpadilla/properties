@@ -24307,7 +24307,7 @@ Vue.component('modal', {
 });
 
 Vue.component('filter-bar', {
-		template: '\n\t\t<div class="row">\n\t    <div class="col-md-5">\n\t        <div class="form-inline form-group">\n\t            <label>Buscar</label>\n\t            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">\n          \t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n          \t\t<button class="btn" @click.prevent="resetFilter">Reset</button>\n\t        </div>\n\t    </div>\n\t    <div class="col-md-7">\n\t        <div class="dropdown form-inline pull-right">\n\t            <label>Items por p\xE1gina</label>\n\t            <select class="form-control" v-model="perPage">\n\t            \t<option value=5>5</option>\n\t                <option value=10>10</option>\n\t                <option value=15>15</option>\n\t                <option value=20>20</option>\n\t                <option value=25>25</option>\n\t            </select>\n\t        </div>\n\t    </div>\n\t</div>\n\n\t',
+		template: '\n\t\t<div class="row">\n\t    <div class="col-md-5">\n\t        <div class="form-inline form-group">\n\t            <label>Buscar</label>\n\t            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="">\n          \t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n          \t\t<button class="btn" @click.prevent="resetFilter">Reset</button>\n\t        </div>\n\t    </div>\n\t    <div class="col-md-7">\n\t        <div class="dropdown form-inline pull-right">\n\t            <label>Items por p\xE1gina</label>\n\t            <select class="form-control" v-model="perPage">\n\t            \t<option value=5>5</option>\n\t                <option value=10>10</option>\n\t                <option value=15>15</option>\n\t                <option value=20>20</option>\n\t                <option value=25>25</option>\n\t            </select>\n\t        </div>\n\t    </div>\n\t</div>\n\n\t',
 		data: function data() {
 				return {
 						filterText: '',
@@ -24474,14 +24474,14 @@ window.vm = new Vue({
 
 						if (this.localModals[modalName] != undefined) this.localModals[modalName] = false;else this.$set(this, modalName, false);
 
-						this.cleanData();
+						//this.cleanData();  
 				},
 				getData: function getData() {
 						axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
 				},
 
 				cleanData: function cleanData() {
-						//this.row = objectRow;
+						this.row = objectRow;
 						this.flashMessage = '';
 						this.flashType = '';
 						this.errorMessages = [];

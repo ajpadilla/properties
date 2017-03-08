@@ -100,7 +100,7 @@ Vue.component('filter-bar', {
 	    <div class="col-md-5">
 	        <div class="form-inline form-group">
 	            <label>Buscar</label>
-	            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">
+	            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="">
           		<button class="btn btn-primary" @click.prevent="doFilter">Go</button>
           		<button class="btn" @click.prevent="resetFilter">Reset</button>
 	        </div>
@@ -316,7 +316,7 @@ Vue.component('my-detail-row', {
     		else
     			this.$set(this, modalName, false);
     		
-    		this.cleanData();  
+    		//this.cleanData();  
         },
         getData () {
         	axios.get(this.url.show + this.row.id)
@@ -324,7 +324,7 @@ Vue.component('my-detail-row', {
 	    	.catch(this.failed);
         },
         cleanData: function() {
-            //this.row = objectRow;
+            this.row = objectRow;
             this.flashMessage = '';
             this.flashType = '';
             this.errorMessages = [];
