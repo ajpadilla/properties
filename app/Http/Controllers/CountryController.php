@@ -14,12 +14,12 @@ class CountryController extends Controller
 		if ($request->has('sort')) {
 			list($sortCol, $sortDir) = explode('|', $request->sort);
 			if (\Schema::hasColumn('countries', $sortCol)) {
-				$query = Currency::orderBy($sortCol, $sortDir);
+				$query = Country::orderBy($sortCol, $sortDir);
 			}else{
-				$query = Currency::sortBy($sortCol, $sortDir);
+				$query = Country::sortBy($sortCol, $sortDir);
 			}
 		}else{
-			$query = Currency::orderBy('created_at', 'asc');
+			$query = Country::orderBy('created_at', 'asc');
 		}
 
 		if($request->exists('filter')){
@@ -44,5 +44,31 @@ class CountryController extends Controller
 		}
     	return $this->getResponseArrayJson();
 	}
+
+	public function show(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $country = Country::find($id);
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Country successfully recovered');
+            $this->addToResponseArray('data', $country);
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
+
+    public function update(UpdateCountryRequest $request, $id)
+    {
+        if ($request->ajax()) {
+            $input = $request->all();
+            $country = Country::find($id);
+            $country->update($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $country);
+            $this->addToResponseArray('message', 'Country successfully update');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
 
 }
