@@ -93,6 +93,12 @@
                 <i class="fa fa-circle-o"></i> Tipos de infracciones
               </a>
             </li>
+             <li>
+              <a href="{{ url('admin/countries') }}">
+                <i class="fa fa-circle-o"></i> Países
+              </a>
+            </li>
+
           </ul>
         </li>
         <li class="treeview">
