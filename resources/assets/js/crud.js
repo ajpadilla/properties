@@ -7,6 +7,9 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
+const decamelize = require('decamelize');
+
+
 import accounting from 'accounting'
 import moment from 'moment'
 import Vuetable from 'vuetable-2/src/components/Vuetable'
@@ -16,7 +19,6 @@ import VueEvents from 'vue-events'
 
 Vue.use(VueEvents);
 
-const eventBus = new Vue();
 
 
 Vue.component('custom-actions', {
@@ -202,6 +204,8 @@ Vue.component('my-detail-row', {
 		row: objectRow,
 		columns: tableColumns, 
 		lastOpenModal: [],
+		localModals: (typeof(modals) !== 'undefined' ? modals : {}),
+		foreignData: {},
         method: '',
         formModal: false,
         showModal: false,
@@ -307,10 +311,11 @@ Vue.component('my-detail-row', {
     		if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1])
     			this.lastOpenModal.pop();
 
-    		/*if (this.localModals[modalName] != undefined)
+    		if (this.localModals[modalName] != undefined)
     			this.localModals[modalName] = false;
-    		else*/
-    		this.$set(this, modalName, false);
+    		else
+    			this.$set(this, modalName, false);
+    		
     		this.cleanData();  
         },
         getData () {
@@ -319,7 +324,7 @@ Vue.component('my-detail-row', {
 	    	.catch(this.failed);
         },
         cleanData: function() {
-            this.row = objectRow;
+            //this.row = objectRow;
             this.flashMessage = '';
             this.flashType = '';
             this.errorMessages = [];
@@ -334,9 +339,9 @@ Vue.component('my-detail-row', {
         },
         successSent (response){
         	var lastOpenModal = this.lastOpenModal.pop();
-        	if (response.data.success && response.data.data) {
+        	/*if (response.data.success && response.data.data) {
         		this.row = response.data.data;
-        	}
+        	}*/
         	this.flashSuccessfulMessage = response.data.message;
 	        this.flashSuccessfulType = 'success'; 
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
@@ -359,7 +364,7 @@ Vue.component('my-detail-row', {
                 }
             }
         },
-        submit (model = null, type = null, related = null, event)
+        submit (model = null, type = null, related = null)
         {
 
         	if (!model || model.target) 
@@ -368,8 +373,28 @@ Vue.component('my-detail-row', {
         	}else if( related ){
 
         	}else{
-
+        		this.method = this.url.foreign[model][type].method;
+        		var actionUrl = this.url.foreign[model][type].url;
+        		this.$events.fire(this.method, actionUrl, this.row[model]);
         	}
+        },
+        getForeignData (callUrl = null, mapVar = null, related = null, action = 'index')
+        {
+        	var foreign = this.url.foreign[related][action];
+        	if (callUrl == null)
+        		callUrl = foreign.url;
+
+        	var sendParams = { method: foreign.method, url: foreign.url, data:{} };
+
+        	axios(sendParams)
+        	.then(function (response){
+        		if (response.data.data) {
+        			vm.foreignData[mapVar] = response.data.data;
+        		}
+        	})
+        	.catch(function (error){
+        		console.log(error);
+        	});
         }
   	},
 
