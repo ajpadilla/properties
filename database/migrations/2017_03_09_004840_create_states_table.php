@@ -22,7 +22,7 @@ class CreateStatesTable extends Migration
             $table->foreign('country_id')
               ->references('id')
               ->on('countries')
-              ->onUpdate('cascade');
+              ->onUpdate('cascade')
               ->onDelete('cascade');
             $table->timestamps();
         });
