@@ -169,6 +169,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for State ---------------
+	 */
+	Route::group(['prefix' => 'states'], function(){
+
+		Route::get('', [
+			'as' => 'states',
+			'uses' => function() {
+				return view('states.index');
+			}
+		]);	
+	});
+
 
 
 
