@@ -20,7 +20,8 @@ var objectRow = {
 };
 
 var modals = {
-    country_ADD_inform: false
+    country_ADD_inform: false,
+    currency_ADD_inform: false
 };
 
 var tableColumns = [
