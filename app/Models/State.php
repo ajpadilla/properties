@@ -25,7 +25,13 @@ class State extends Model
      * @var array
      */
     protected $searchableColumns = [
-    	'name'
+        'code',
+    	'name',
+        'area_code',
+        'country' => [
+            'table' => 'countries',
+            'name'
+        ]
     ];
 
 
