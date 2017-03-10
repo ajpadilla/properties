@@ -26,7 +26,13 @@ class Country extends Model
      * @var array
      */
     protected $searchableColumns = [
-    	'name'
+        'code',
+    	'name',
+        'language',
+        'currency' => [
+            'table' => 'currencies',
+            'name'
+        ]
     ];
 
     /**
