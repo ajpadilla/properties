@@ -88,7 +88,6 @@
             if ( !value ) {
                 loadCountries();
                 loadCurrencies();
-                console.log(value);
             }
         });
 
