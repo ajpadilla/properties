@@ -4,23 +4,22 @@ var objectRow = {
     id: "",
     code: "",
     name: "",
-    area_code: "",
-    country_id: "",
+    state_id: "",
     created_at: "",
     updated_at: "",
-    country: {
+    state: {
         id: "",
         name: "",
         code: "",
-        language: "",
-        currency_id: "",
+        area_code: "",
+        country_id: "",
         created_at: "",
-        updated_at: "",
+        updated_at: ""
     }
 };
 
 var modals = {
-    country_ADD_inform: false,
+    state_ADD_inform: false,
 };
 
 var tableColumns = [
@@ -42,15 +41,9 @@ var tableColumns = [
         visible: true
     },
     {
-        name: 'area_code',
-        title: 'Código de area',
-        sortField: 'area_code',
-        visible: true
-    },
-    {
-        name: 'country_name',
+        name: 'state_name',
         title: 'País',
-        sortField: 'country.name',
+        sortField: 'state.name',
         visible: true
     },
     {
