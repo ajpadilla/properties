@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Currency;
+use App\Models\SearchTrait;
+use App\Models\SortTrait;
 
 class Country extends Model
 {
