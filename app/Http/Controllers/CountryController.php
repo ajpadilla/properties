@@ -71,6 +71,17 @@ class CountryController extends Controller
         return $this->getResponseArrayJson();
     }
 
+    public function destroy(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $country = Country::find($id);
+            $this->setSuccess($country->delete());
+            $this->addToResponseArray('message', 'Country delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
     public function selectList(Request $request)
     {
         if ($request->ajax())
