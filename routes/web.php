@@ -182,6 +182,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Municipalities ---------------
+	 */
+	Route::group(['prefix' => 'municipalities'], function(){
+
+		Route::get('', [
+			'as' => 'municipalities',
+			'uses' => function() {
+				return view('municipalities.index');
+			}
+		]);	
+	});
+
+
 
 
 
