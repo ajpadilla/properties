@@ -103,6 +103,11 @@
                 <i class="fa fa-circle-o"></i> Estados
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/municipalities') }}">
+                <i class="fa fa-circle-o"></i> Municipios
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
