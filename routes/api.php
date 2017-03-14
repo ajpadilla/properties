@@ -371,14 +371,19 @@ Route::group(['prefix' => 'countries'], function()
 			'uses' => 'CountryController@update'
 	]);
 
-	/*Route::delete('delete/{id?}', [
+	Route::delete('delete/{id?}', [
 		'as' => 'api.countries.delete',
-		'uses' => 'TypeInfractionController@destroy'
-	]);*/
+		'uses' => 'CountryController@destroy'
+	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.countries.select-list',
+		'uses' => 'CountryController@selectList'
+	]);
 });
 
 /**
- * ------------------- API Route for Countries ---------------
+ * ------------------- API Route for States ---------------
  */
 
 Route::group(['prefix' => 'states'], function()
@@ -409,9 +414,40 @@ Route::group(['prefix' => 'states'], function()
 	]);
 
 	Route::get('select-list', [
-		'as' => 'api.v1.countries.select-list',
-		'uses' => 'CountryController@selectList'
+		'as' => 'api.v1.states.select-list',
+		'uses' => 'StateController@selectList'
+	]);
+});
+
+/**
+ * ------------------- API Route for Municipalities ---------------
+ */
+
+Route::group(['prefix' => 'municipalities'], function()
+{
+	Route::get('/',[
+		'as' => 'api.municipalities.index',
+		'uses' => 'MunicipalityController@index'
+	]);	
+
+	Route::post('store', [
+			'as' => 'api.municipalities.store',
+			'uses' => 'MunicipalityController@store'
+	]);
+
+	Route::get('show/{id?}', [
+			'as' => 'api.municipalities.show',
+			'uses' => 'MunicipalityController@show'
 	]);
 	
+	Route::patch('update/{id?}', [
+			'as' => 'api.municipalities.update',
+			'uses' => 'MunicipalityController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.municipalities.delete',
+		'uses' => 'MunicipalityController@destroy'
+	]);
 });
 
