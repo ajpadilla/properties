@@ -42,7 +42,7 @@
             store: "{{ route('api.countries.store') }}/",
             update: "{{ route('api.countries.update') }}/",
             show: "{{ route('api.countries.show') }}/",
-            {{--delete: "{{ route('api.currencies.delete') }}/"--}}
+            delete: "{{ route('api.countries.delete') }}/",
             foreign: {
                 currency: {
                     select: {
