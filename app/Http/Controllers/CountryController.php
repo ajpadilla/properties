@@ -36,6 +36,7 @@ class CountryController extends Controller
 	{
 		if ($request->ajax()) {
 			$input = $request->all();
+            $input['currency_id'] = $request->input('currency_related.value');
 			$country = Country::create($input);
 			$this->setSuccess(true);
     		$this->addToResponseArray('data', $country);
@@ -61,6 +62,7 @@ class CountryController extends Controller
     {
         if ($request->ajax()) {
             $input = $request->all();
+            $input['currency_id'] = $request->input('currency_related.value');
             $country = Country::find($id);
             $country->update($input);
             $this->setSuccess(true);
