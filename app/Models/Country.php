@@ -44,7 +44,8 @@ class Country extends Model
     */
 
     protected $appends = [
-        'currency_name'
+        'currency_name',
+        'currency_related'
     ];
 
 
@@ -68,6 +69,11 @@ class Country extends Model
         if($this->currency)
             return $this->currency->name;
         return false;
+    }
+
+    public function getCurrencyRelatedAttribute()
+    {
+        return ['text' => $this->currency->name, 'value' => $this->currency->id];
     }
 
 }
