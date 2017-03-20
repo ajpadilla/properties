@@ -108,6 +108,11 @@
                 <i class="fa fa-circle-o"></i> Municipios
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/communities') }}">
+                <i class="fa fa-circle-o"></i> Comunidades
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
