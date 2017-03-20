@@ -27,7 +27,7 @@ class UpdateCountryRequest extends FormRequest
             'name' => 'required|min:1|max:30|unique:currencies,name,'.$this->id,
             'code' => 'required|min:1|max:15|unique:countries,code,'.$this->id,
             'language' => 'required|min:1|max:30|',
-            'currency_id' => 'required|integer|exists:currencies,id'
+            'currency_related.value' => 'required|integer|exists:currencies,id'
         ];
     }
 }
