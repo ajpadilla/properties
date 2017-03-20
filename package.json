@@ -21,6 +21,7 @@
     "vuetable-2": "^1.2.0"
   },
   "dependencies": {
-    "decamelize": "^1.2.0"
+    "decamelize": "^1.2.0",
+    "vuejs-datepicker": "^0.6.3"
   }
 }
