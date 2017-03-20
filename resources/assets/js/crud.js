@@ -10,15 +10,17 @@ window.axios.defaults.headers.common = {
 const decamelize = require('decamelize');
 
 
-import accounting from 'accounting'
-import moment from 'moment'
-import Vuetable from 'vuetable-2/src/components/Vuetable'
-import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
-import VueEvents from 'vue-events'
+import accounting from 'accounting';
+import moment from 'moment';
+import Vuetable from 'vuetable-2/src/components/Vuetable';
+import VuetablePagination from 'vuetable-2/src/components/VuetablePagination';
+import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo';
+import VueEvents from 'vue-events';
+import Datepicker from 'vuejs-datepicker';
+import { BasicSelect } from 'vue-search-select';
+
 
 Vue.use(VueEvents);
-
 
 
 Vue.component('custom-actions', {
@@ -199,6 +201,8 @@ Vue.component('my-detail-row', {
     	Vuetable,
     	VuetablePagination,
     	VuetablePaginationInfo,
+    	Datepicker,
+    	BasicSelect
   	},
 	data:{
 		row: objectRow,
@@ -219,6 +223,7 @@ Vue.component('my-detail-row', {
         url: apiUrl,
         actionUrl: null,
         errorMessages:[],
+        searchText: '',
 		css: {
 			table: {
 		          tableClass: 'table table-bordered table-striped table-hover',
@@ -277,6 +282,9 @@ Vue.component('my-detail-row', {
 	    	console.log(JSON.stringify(data));
       		console.log('slot) action: ' + action, data.name, index)
     	},
+    	onSelect (item) {
+        	this.row[item.relation] = item;
+      	},
     	modal (type) {
     		if (type == 'POST') {
     			this.cleanData();  
@@ -331,10 +339,13 @@ Vue.component('my-detail-row', {
         }, 
         success (response){
         	if (response.data.success && response.data.data) {
+        		console.log('response', response.data.data)
         		this.row = response.data.data;
+        		vm.foreignData['currencyOptions'][1];
         	}
         	this.flashMessage = response.data.message;
-	        this.flashType = 'success'; 
+	        this.flashType = 'success';
+
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
         },
         successSent (response){
@@ -389,7 +400,12 @@ Vue.component('my-detail-row', {
         	axios(sendParams)
         	.then(function (response){
         		if (response.data.data) {
-        			vm.foreignData[mapVar] = response.data.data;
+        			var data = response.data.data;
+        			//vm.foreignData[mapVar] = response.data.data;
+        			vm.foreignData[mapVar] = [];
+        			for(var key in data){
+        				vm.foreignData[mapVar].push({ value: key, text: data[key], relation: related + '_related'  });
+        			}
         		}
         	})
         	.catch(function (error){
