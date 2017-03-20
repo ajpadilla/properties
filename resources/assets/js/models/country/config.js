@@ -5,7 +5,12 @@ var objectRow = {
     name: "",
     code: "",
     language: "",
-    currency_id: "",
+    currency_related: {
+        value: '',
+        text: ''
+    },
+    currency_name: "",
+    multiples : ['Bolivares', 'Pesos Colombianos', 'Dolares', 'Yen'],
     created_at: "",
     updated_at: "",
     currency: {
