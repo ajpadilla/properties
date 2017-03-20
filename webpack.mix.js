@@ -54,6 +54,7 @@ mix.copy('resources/assets/js/models/typeInfraction/config.js', 'public/js/model
 mix.copy('resources/assets/js/models/country/config.js', 'public/js/models/country/config.js');
 mix.copy('resources/assets/js/models/state/config.js', 'public/js/models/state/config.js');
 mix.copy('resources/assets/js/models/municipality/config.js', 'public/js/models/municipality/config.js');
+mix.copy('resources/assets/js/models/community/config.js', 'public/js/models/community/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
