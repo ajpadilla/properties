@@ -27,11 +27,11 @@
 							<input type="text" v-model="row.language" class="form-control" placeholder="language">
 						</div>
 					</div>
-					<!-- SubFamily Id Field -->
+					<!-- Currency Id Field -->
 					<div class="form-group">
 						<label for="currency_id" class="col-sm-2 control-label">Currency:</label>
 						<div class="col-sm-10">
-							<div class="input-group">
+							{{--<div class="input-group">--}}
 								{{--<select class="form-control" v-model="row.currency_id">
 								<option v-for="(name, id) in foreignData.currencyOptions" v-bind:value="id">	
 										@{{ name }}
@@ -44,12 +44,12 @@
 								    @select="onSelect">
 								  </basic-select>
 
-								<span class="input-group-btn">
+								{{--<span class="input-group-btn">
 									<button class="btn btn-primary" @click.prevent="modal('currency_ADD_inform')">
 										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									</button>
-								</span>
-							</div>
+								</span>--}}
+							{{--</div>--}}
 						</div>
 					</div>
 				</div>
