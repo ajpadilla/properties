@@ -5,7 +5,10 @@ var objectRow = {
     code: "",
     name: "",
     area_code: "",
-    country_id: "",
+    country_related: {
+        value: '',
+        text: ''
+    },
     created_at: "",
     updated_at: "",
     country: {
