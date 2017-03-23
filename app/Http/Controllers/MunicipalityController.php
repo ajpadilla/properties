@@ -37,6 +37,7 @@ class MunicipalityController extends Controller
 	{
 		if ($request->ajax()) {
 			$input = $request->all();
+            $input['state_id'] = $request->input('state_related.value');
 			$municipality = Municipality::create($input);
 			$this->setSuccess(true);
     		$this->addToResponseArray('data', $municipality);
@@ -62,6 +63,7 @@ class MunicipalityController extends Controller
     {
         if ($request->ajax()) {
             $input = $request->all();
+            $input['state_id'] = $request->input('state_related.value');
             $municipality = Municipality::find($id);
             $municipality->update($input);
             $this->setSuccess(true);
@@ -78,6 +80,20 @@ class MunicipalityController extends Controller
             $municipality = Municipality::find($id);
             $this->setSuccess($municipality->delete());
             $this->addToResponseArray('message', 'Municipality delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+    
+    public function selectList(Request $request)
+    {
+        if ($request->ajax())
+        {   
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', 
+                Municipality::all()->pluck('name', 'id')->toArray()
+            );
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
