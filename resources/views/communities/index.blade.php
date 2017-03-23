@@ -3,7 +3,7 @@
 @section('content')
 <div id="app">
     <section class="content-header">
-        <h1 class="pull-left">Listado de países</h1>
+        <h1 class="pull-left">Listado de comunidades</h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" href="#" style="margin-top: -10px;margin-bottom: 5px" @click.prevent="modal('POST')">Create</a>
        </h1>
@@ -38,10 +38,10 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            store: "{{ route('api.countries.store') }}/",
-            update: "{{ route('api.countries.update') }}/",
-            show: "{{ route('api.countries.show') }}/",
-            delete: "{{ route('api.countries.delete') }}/",
+            store: "{{ route('api.communities.store') }}/",
+            update: "{{ route('api.communities.update') }}/",
+            show: "{{ route('api.communities.show') }}/",
+            delete: "{{ route('api.communities.delete') }}/",
             foreign: {
                 currency: {
                     select: {
@@ -52,6 +52,18 @@
                         method: 'POST',
                         url: "{{ route('api.currencies.store') }}"
                     }
+                },
+                municipality:{
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.municipalities.select-list') }}"
+                    }
+                },
+                type_community:{
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.typeCommunities.select-list') }}"
+                    }
                 }
             }
         };
@@ -61,19 +73,15 @@
         var vm = window.vm;
 
         var loadCurrencies = function () {
-            vm.getForeignData(vm.url.foreign.currency.select.url, 'currencyOptions', 'currency', 'select');
+            vm.getForeignData(vm.url.foreign.municipality.select.url, 'municipalityOptions', 'municipality', 'select');
+        };
+
+        var loadTypeCommunities = function () {
+            vm.getForeignData(vm.url.foreign.type_community.select.url, 'typeCommunityOptions', 'type_community', 'select');
         };
 
         loadCurrencies();
-
-        /**
-         * Load currecies list after add new currency from add new item form
-        */
-        vm.$watch('localModals.currency_ADD_inform', function (value) {
-            if ( !value ) {
-                loadCurrencies();
-            }
-        });
+        loadTypeCommunities();
 
     </script>
 @endpush
