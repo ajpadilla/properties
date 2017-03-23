@@ -15,18 +15,18 @@ class CreateCommunitiesTable extends Migration
     {
         Schema::create('communities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nit');
+            $table->string('nit', 45);
             $table->string('name', 45);
             $table->string('home_phone', 20);
             $table->string('auxiliary_phone', 20)->nullable();
-            $table->string('cell_phone', 20)->nullable();
+            $table->string('cell_phone', 20);
             $table->string('auxiliary_cell', 20)->nullable();
             $table->string('home_email', 30);
             $table->string('auxiliary_email', 30)->nullable();
             $table->text('address');
             $table->boolean('status');
-            $table->dateTime('opening_date');
-            $table->dateTime('cancellation_date');
+            $table->date('opening_date');
+            $table->date('cancellation_date')->nullable();
             $table->text('reason_retiring');
             $table->integer('municipality_id')->unsigned();
             $table->foreign('municipality_id')
@@ -37,7 +37,7 @@ class CreateCommunitiesTable extends Migration
             $table->integer('type_community_id')->unsigned();
             $table->foreign('type_community_id')
               ->references('id')
-              ->on('types_communities')
+              ->on('type_communities')
               ->onUpdate('cascade')
               ->onDelete('cascade');
             $table->timestamps();
