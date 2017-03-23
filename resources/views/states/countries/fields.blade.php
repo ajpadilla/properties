@@ -32,11 +32,11 @@
 						<label for="currency_id" class="col-sm-2 control-label">Currency:</label>
 						<div class="col-sm-10">
 							{{--<div class="input-group">--}}
-								<select class="form-control" v-model="row.country.currency_id">
-								<option v-for="(name, id) in foreignData.currencyOptions" v-bind:value="id">	
-										@{{ name }}
-									</option>
-								</select>
+								<basic-select :options="foreignData.currencyOptions"
+									:selected-option="row.country_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
 								{{--<span class="input-group-btn">
 									<button class="btn btn-primary" @click.prevent="modal('currency_ADD_inform')">
 										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
