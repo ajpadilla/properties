@@ -44,7 +44,8 @@ class State extends Model
     */
 
     protected $appends = [
-        'country_name'
+        'country_name',
+        'country_related'
     ];
 
     /**
@@ -67,6 +68,11 @@ class State extends Model
         if($this->country)
             return $this->country->name;
         return false;
+    }
+
+    public function getCountryRelatedAttribute()
+    {
+        return ['text' => $this->country->name, 'value' => $this->country->id];
     }
 
 }
