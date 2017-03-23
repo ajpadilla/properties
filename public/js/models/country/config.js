@@ -10,7 +10,6 @@ var objectRow = {
         text: ''
     },
     currency_name: "",
-    multiples : ['Bolivares', 'Pesos Colombianos', 'Dolares', 'Yen'],
     created_at: "",
     updated_at: "",
     currency: {
