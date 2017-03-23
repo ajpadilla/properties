@@ -38,6 +38,7 @@ class StateController extends Controller
 	{
 		if ($request->ajax()) {
 			$input = $request->all();
+            $input['country_id'] = $request->input('country_related.value');
 			$state = State::create($input);
 			$this->setSuccess(true);
     		$this->addToResponseArray('data', $state);
@@ -63,6 +64,7 @@ class StateController extends Controller
     {
         if ($request->ajax()) {
             $input = $request->all();
+            $input['country_id'] = $request->input('country_related.value');
             $state = State::find($id);
             $state->update($input);
             $this->setSuccess(true);
