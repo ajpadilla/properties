@@ -15,8 +15,14 @@ var objectRow = {
     opening_date: "",
     cancellation_date: "",
     reason_retiring: "",
-    municipality_id: "",
-    type_community_id: "",
+    municipality_related: {
+        value: "",
+        text: ""
+    },
+    type_community_related: {
+        value: "",
+        text: ""
+    },
     created_at: "",
     updated_at: "",
 };
@@ -40,23 +46,17 @@ var tableColumns = [
         name: 'name',
         title: 'Nombre',
         sortField: 'name',
-        visible: false
-    },
-    {
-        name: 'address',
-        title: 'Dirección',
-        sortField: 'address',
         visible: true
     },
     {
-        name: 'status',
+        name: 'status_format',
         title: 'Estatus',
         sortField: 'status',
         visible: true
     },
     {
         name: 'municipality_name',
-        title: 'Moneda',
+        title: 'Municipio',
         sortField: 'municipality.name',
         visible: true
     },
@@ -64,6 +64,18 @@ var tableColumns = [
         name: 'type_community_name',
         title: 'Tipo de comunidad',
         sortField: 'type_community.name',
+        visible: true
+    },
+    {
+        name: 'opening_date',
+        title: 'Ingreso',
+        sortField: 'opening_date',
+        visible: true
+    },
+    {
+        name: 'cancellation_date',
+        title: 'Salida',
+        sortField: 'cancellation_date',
         visible: true
     },
     {
