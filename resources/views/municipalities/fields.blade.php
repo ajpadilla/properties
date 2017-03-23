@@ -25,18 +25,18 @@
 					<div class="form-group">
 						<label for="country_id" class="col-sm-2 control-label">State:</label>
 						<div class="col-sm-10">
-							<div class="input-group">
-								<select class="form-control" v-model="row.state_id">
-								<option v-for="(name, id) in foreignData.stateOptions" v-bind:value="id">	
-										@{{ name }}
-									</option>
-								</select>
-								<span class="input-group-btn">
+							{{--<div class="input-group">--}}
+								<basic-select :options="foreignData.stateOptions"
+									:selected-option="row.state_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+								{{--<span class="input-group-btn">
 									<button class="btn btn-primary" @click.prevent="modal('state_ADD_inform')">
 										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 									</button>
-								</span>
-							</div>
+								</span>--}}
+							{{--</div>--}}
 						</div>
 					</div>
 				</div>
