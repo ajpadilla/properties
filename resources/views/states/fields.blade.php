@@ -27,28 +27,28 @@
 							<input type="text" v-model="row.area_code" class="form-control" placeholder="area code">
 						</div>
 					</div>
-					<!-- SubFamily Id Field -->
+					<!-- Country Id Field -->
 					<div class="form-group">
 						<label for="country_id" class="col-sm-2 control-label">Country:</label>
 						<div class="col-sm-10">
-							<div class="input-group">
-								<select class="form-control" v-model="row.country_id">
-								<option v-for="(name, id) in foreignData.countryOptions" v-bind:value="id">	
-										@{{ name }}
-									</option>
-								</select>
-								<span class="input-group-btn">
-									<button class="btn btn-primary" @click.prevent="modal('country_ADD_inform')">
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-									</button>
-								</span>
-							</div>
+							{{--<div class="input-group">--}}
+								<basic-select :options="foreignData.countryOptions"
+									:selected-option="row.country_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+							{{--<span class="input-group-btn">
+								<button class="btn btn-primary" @click.prevent="modal('country_ADD_inform')">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</button>
+							</span>--}}
+							{{--</div>--}}
 						</div>
 					</div>
-				</div>
-				<!-- /.box-body -->
-			</form>
-		</div>
-		<!-- /.box -->
+			</div>
+			<!-- /.box-body -->
+		</form>
 	</div>
+	<!-- /.box -->
+</div>
 </div>
