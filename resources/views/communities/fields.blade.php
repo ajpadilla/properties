@@ -43,10 +43,10 @@
 						<div class="form-group">
 							<label for="cell_phone" class="col-sm-2 control-label">Estatus</label>
 							<div class="col-sm-10">
-								<input type="radio" id="active" value="Active" v-model="row.status">
+								<input type="radio" id="active" value="1" v-model="row.status">
 								<label for="active">Activa</label>
 								<br>
-								<input type="radio" id="inactive" value="Inactive" v-model="row.status">
+								<input type="radio" id="inactive" value="0" v-model="row.status">
 								<label for="inactive">Inactiva</label>
 								<br>
 							</div>
@@ -54,8 +54,9 @@
 						<div class="form-group">
 							<label for="opening_date" class="col-sm-2 control-label">Ingreso</label>
 							<div class="col-sm-10">
-								<datepicker v-model="row.opening_date" format="yyyy MM dd" name="uniquename">
+								<datepicker v-model="row.opening_date" format="yyyy-MM-dd">
 								</datepicker>
+								{{--<input type="text" v-model="row.opening_date" class="form-control" placeholder="opening_date">--}}
 							</div>
 						</div>
 						<div class="form-group">
@@ -95,8 +96,30 @@
 						<div class="form-group">
 							<label for="cancellation_date" class="col-sm-2 control-label">Salida</label>
 							<div class="col-sm-10">
-								<datepicker v-model="row.cancellation_date" format="yyyy MM dd" name="uniquename">
+								<datepicker v-model="row.cancellation_date" format="yyyy-MM-dd">
 								</datepicker>
+								{{--<input type="text" v-model="row.cancellation_date" class="form-control" placeholder="cancellation_date">--}}
+							</div>
+						</div>
+						<!-- Municipality Id Field -->
+						<div class="form-group">
+							<label for="currency_id" class="col-sm-2 control-label">Municipality:</label>
+							<div class="col-sm-10">
+								<basic-select :options="foreignData.municipalityOptions"
+									:selected-option="row.municipality_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="currency_id" class="col-sm-2 control-label">Type Community:</label>
+							<div class="col-sm-10">
+								<basic-select :options="foreignData.typeCommunityOptions"
+									:selected-option="row.type_community_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
 							</div>
 						</div>
 					</div>
