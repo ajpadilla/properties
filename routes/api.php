@@ -176,6 +176,11 @@ Route::group(['prefix' => 'typeCommunities'], function()
 		'as' => 'api.typeCommunities.delete',
 		'uses' => 'TypeCommunityController@destroy'
 	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.typeCommunities.select-list',
+		'uses' => 'TypeCommunityController@selectList'
+	]);
 });
 
 
@@ -449,5 +454,43 @@ Route::group(['prefix' => 'municipalities'], function()
 		'as' => 'api.municipalities.delete',
 		'uses' => 'MunicipalityController@destroy'
 	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.municipalities.select-list',
+		'uses' => 'MunicipalityController@selectList'
+	]);
 });
 
+/**
+ * ------------------- API Route for Communities ---------------
+ */
+
+Route::group(['prefix' => 'communities'], function()
+{
+	Route::get('/',[
+		'as' => 'api.communities.index',
+		'uses' => 'CommunityController@index'
+	]);	
+
+	Route::get('show/{id?}', [
+			'as' => 'api.communities.show',
+			'uses' => 'CommunityController@show'
+	]);
+	
+	
+	Route::post('store', [
+			'as' => 'api.communities.store',
+			'uses' => 'CommunityController@store'
+	]);
+
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.communities.update',
+			'uses' => 'CommunityController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.communities.delete',
+		'uses' => 'CommunityController@destroy'
+	]);
+});
