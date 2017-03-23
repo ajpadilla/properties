@@ -4,7 +4,10 @@ var objectRow = {
     id: "",
     code: "",
     name: "",
-    state_id: "",
+    state_related: {
+        value: '',
+        text: ''
+    },
     created_at: "",
     updated_at: "",
     state: {
