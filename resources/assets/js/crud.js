@@ -339,9 +339,7 @@ Vue.component('my-detail-row', {
         }, 
         success (response){
         	if (response.data.success && response.data.data) {
-        		console.log('response', response.data.data)
         		this.row = response.data.data;
-        		vm.foreignData['currencyOptions'][1];
         	}
         	this.flashMessage = response.data.message;
 	        this.flashType = 'success';
@@ -453,6 +451,8 @@ Vue.component('my-detail-row', {
 
 	    'POST' (actionUrl, data){
 	    	console.log('Enviando datos al servidor', actionUrl, JSON.stringify(data));
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = this.row.token;
+
 	    	axios.post(actionUrl, data)
 	    	.then(this.successSent)
 	    	.catch(this.failed);
