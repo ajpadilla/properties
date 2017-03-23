@@ -26,7 +26,7 @@ class UpdateMunicipalityRequest extends FormRequest
         return [
             'code' => 'min:1|max:15|unique:municipalities,code,'.$this->id,
             'name' => 'required|min:1|max:30|unique:municipalities,name,'.$this->id,
-            'state_id' => 'required|integer|exists:states,id'
+            'state_related.value' => 'required|integer|exists:states,id'
         ];
     }
 }
