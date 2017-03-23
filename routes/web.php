@@ -195,6 +195,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Communities ---------------
+	 */
+	Route::group(['prefix' => 'communities'], function(){
+
+		Route::get('', [
+			'as' => 'communities',
+			'uses' => function() {
+				return view('communities.index');
+			}
+		]);	
+	});
+
 
 
 
