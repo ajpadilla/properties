@@ -10,7 +10,7 @@ class TypeCommunity extends Model
 {
 	use SearchTrait, SortTrait;
 
-	public $table = 'types_communities';
+	public $table = 'type_communities';
 
 	/**
      * The attributes that are mass assignable.
