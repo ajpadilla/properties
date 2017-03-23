@@ -24,7 +24,7 @@ class CreateCountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:currencies,name',
+            'name' => 'required|min:1|max:30|unique:countries,name',
             'code' => 'required|min:1|max:15|unique:countries,code',
             'language' => 'required|min:1|max:30|',
             'currency_related.value' => 'required|integer|exists:currencies,id'
