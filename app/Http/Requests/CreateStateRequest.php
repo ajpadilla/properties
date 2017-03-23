@@ -27,7 +27,7 @@ class CreateStateRequest extends FormRequest
             'name' => 'required|min:1|max:30|unique:states,name',
             'code' => 'min:1|max:15|unique:states,code',
             'area_code' => 'required|min:1|max:30',
-            'country_id' => 'required|integer|exists:countries,id'
+            'country_related.value' => 'required|integer|exists:countries,id'
         ];
     }
 }
