@@ -101,6 +101,40 @@
 								{{--<input type="text" v-model="row.cancellation_date" class="form-control" placeholder="cancellation_date">--}}
 							</div>
 						</div>
+						<!-- Contry Id Field -->
+						<div class="form-group">
+							<label for="currency_id" class="col-sm-2 control-label">Country:</label>
+							<div class="col-sm-10">
+								<basic-select :options="foreignData.countryOptions"
+									:selected-option="row.country_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+								{{--<select class="form-control" v-model="row.country_related.value">
+									<option v-for="country in foreignData.countryOptions" 
+									v-bind:value="country.value">		
+										@{{ country.text }}
+									</option>
+								</select>--}}
+							</div>
+						</div>
+						<!-- State Id Field -->
+						<div class="form-group">
+							<label for="currency_id" class="col-sm-2 control-label">State:</label>
+							<div class="col-sm-10">
+								<basic-select :options="foreignData.stateOptions"
+									:selected-option="row.state_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+								{{--<select class="form-control" v-model="row.state_related.value">
+									<option v-for="state in foreignData.stateOptions" 
+									v-bind:value="state.value">		
+										@{{ state.text}}
+									</option>
+								</select>--}}
+							</div>
+						</div>
 						<!-- Municipality Id Field -->
 						<div class="form-group">
 							<label for="currency_id" class="col-sm-2 control-label">Municipality:</label>
@@ -112,6 +146,7 @@
 								</basic-select>
 							</div>
 						</div>
+						<!-- Type Community Id Field -->
 						<div class="form-group">
 							<label for="currency_id" class="col-sm-2 control-label">Type Community:</label>
 							<div class="col-sm-10">
