@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Country;
+use App\Models\Municipality;
 use App\Models\SearchTrait;
 use App\Models\SortTrait;
 
@@ -55,6 +56,11 @@ class State extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function municipalities()
+    {
+        return $this->hasMany(Municipality::class);
     }
 
     /**
