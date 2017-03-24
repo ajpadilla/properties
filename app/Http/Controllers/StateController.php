@@ -99,4 +99,16 @@ class StateController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+    public function byCountry(Request $request, $countryId)
+    {
+        if($request->ajax()){
+            $country = Country::find($countryId);
+            $states = $country->states->pluck('name', 'id')->toArray();
+            $this->addToResponseArray('data', $states);
+            $this->setSuccess(true);
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
 }
