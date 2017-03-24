@@ -15,6 +15,14 @@ var objectRow = {
     opening_date: "",
     cancellation_date: "",
     reason_retiring: "",
+    country_related: {
+        value: "",
+        text: ""
+    },
+    state_related: {
+        value: "",
+        text: ""
+    },
     municipality_related: {
         value: "",
         text: ""
