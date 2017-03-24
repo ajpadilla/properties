@@ -24566,7 +24566,7 @@ window.vm = new Vue({
       var foreign = this.url.foreign[related][action];
       if (callUrl == null) callUrl = foreign.url;
 
-      var sendParams = { method: foreign.method, url: foreign.url, data: {} };
+      var sendParams = { method: foreign.method, url: callUrl, data: {} };
 
       axios(sendParams).then(function (response) {
         if (response.data.data) {
