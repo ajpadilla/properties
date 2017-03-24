@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Municipality;
+use App\Models\State;
 use App\Http\Requests\CreateMunicipalityRequest;
 use App\Http\Requests\UpdateMunicipalityRequest;
 
@@ -94,6 +95,18 @@ class MunicipalityController extends Controller
             $this->addToResponseArray('data', 
                 Municipality::all()->pluck('name', 'id')->toArray()
             );
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+    public function byState(Request $request, $stateId)
+    {
+        if($request->ajax()){
+            $state = State::find($stateId);
+            $municipalities = $state->municipalities->pluck('name', 'id')->toArray();
+            $this->addToResponseArray('data', $municipalities);
+            $this->setSuccess(true);
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
