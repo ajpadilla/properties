@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Currency;
+use App\Models\State;
 use App\Models\SearchTrait;
 use App\Models\SortTrait;
 
@@ -56,6 +57,11 @@ class Country extends Model
     public function currency()
     {
         return $this->belongsTo(Currency::class);
+    }
+
+    public function states()
+    {
+        return $this->hasMany(State::class);
     }
 
     /**
