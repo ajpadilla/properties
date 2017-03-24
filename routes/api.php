@@ -422,6 +422,11 @@ Route::group(['prefix' => 'states'], function()
 		'as' => 'api.v1.states.select-list',
 		'uses' => 'StateController@selectList'
 	]);
+
+	Route::get('by-country/{countryId?}', [
+		'as' => 'api.v1.states.byCountry',
+		'uses' => 'StateController@byCountry'
+	]);
 });
 
 /**
@@ -458,6 +463,11 @@ Route::group(['prefix' => 'municipalities'], function()
 	Route::get('select-list', [
 		'as' => 'api.v1.municipalities.select-list',
 		'uses' => 'MunicipalityController@selectList'
+	]);
+
+	Route::get('by-state/{stateId?}', [
+		'as' => 'api.v1.municipalities.byState',
+		'uses' => 'MunicipalityController@byState'
 	]);
 });
 
