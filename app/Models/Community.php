@@ -66,6 +66,8 @@ class Community extends Model
     protected $appends = [
       'municipality_name',
       'type_community_name',
+      'country_related',
+      'state_related',
       'municipality_related',
       'type_community_related',
       'status_format'
@@ -119,14 +121,36 @@ class Community extends Model
       return false;
     }
 
+    public function getCountryRelatedAttribute()
+    {
+      return [
+        'text' => $this->municipality->state->country->name, 
+        'value' => $this->municipality->state->country->id
+      ];
+    }
+
+    public function getStateRelatedAttribute()
+    {
+      return [
+        'text' => $this->municipality->state->name, 
+        'value' => $this->municipality->state->id
+      ];
+    }
+
     public function getMunicipalityRelatedAttribute()
     {
-        return ['text' => $this->municipality->name, 'value' => $this->municipality->id];
+        return [
+          'text' => $this->municipality->name, 
+          'value' => $this->municipality->id
+        ];
     }
 
     public function getTypeCommunityRelatedAttribute()
     {
-        return ['text' => $this->typeCommunity->name, 'value' => $this->typeCommunity->id];
+        return [
+          'text' => $this->typeCommunity->name, 
+          'value' => $this->typeCommunity->id
+        ];
     }
 
 }
