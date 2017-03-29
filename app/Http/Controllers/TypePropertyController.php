@@ -34,6 +34,11 @@ class TypePropertyController extends Controller
 
     }
 
+    public function list()
+    {
+        return view('typeProperties.index');
+    }
+
     public function store(CreateTypePropertyRequest $request)
     {
     	if ($request->ajax()) {
