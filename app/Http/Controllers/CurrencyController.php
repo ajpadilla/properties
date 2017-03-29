@@ -32,6 +32,11 @@ class CurrencyController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('currencies.index');
+    }
+
     public function store(CreateCurrencyRequest $request)
     {
     	if ($request->ajax()) {
