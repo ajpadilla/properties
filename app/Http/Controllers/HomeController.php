@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function publicIndex()
+    {
+        return view('auth.login');
+    }
+
+    public function dashboard()
+    {
+        return view('layouts.dashboard');
+    }
 }
