@@ -69,10 +69,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 	Route::group(['prefix' => 'typeIdentifications'], function(){
 
 		Route::get('', [
-			'as' => 'type.typeIdentifications',
-			'uses' => function() {
-				return view('typeIdentifications.index');
-			}
+			'as' => 'typeIdentifications',
+			'uses' => 'TypeIdentificationController@list'
 		]);	
 	});
 
