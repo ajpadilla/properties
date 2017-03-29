@@ -40,6 +40,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for typeAnimals ---------------
+	 */
+	Route::group(['prefix' => 'typeAnimals'], function(){
+
+		Route::get('', [
+			'as' => 'typeAnimals',
+			'uses' => 'TypeAnimalController@list'
+		]);	
+	});
+
 	
 }); 
 
