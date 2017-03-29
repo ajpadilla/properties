@@ -21,9 +21,9 @@ Route::get('/', [
 ]);
 
 
-Route::get('vue-table', function () {
+/*Route::get('vue-table', function () {
     return view('welcome');
-});
+});*/
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 	
