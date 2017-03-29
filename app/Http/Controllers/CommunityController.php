@@ -33,6 +33,11 @@ class CommunityController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('communities.index');
+    }
+
 	public function store(CreateCommunityRequest $request)
 	{
 		if ($request->ajax()) {

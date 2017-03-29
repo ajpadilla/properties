@@ -34,6 +34,11 @@ class StateController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('states.index');
+    }
+
 	public function store(CreateStateRequest $request)
 	{
 		if ($request->ajax()) {

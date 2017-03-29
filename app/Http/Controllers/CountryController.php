@@ -32,6 +32,11 @@ class CountryController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('countries.index');
+    }
+
 	public function store(CreateCountryRequest $request)
 	{
 		if ($request->ajax()) {

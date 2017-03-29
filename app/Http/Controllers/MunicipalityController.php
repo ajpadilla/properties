@@ -34,6 +34,11 @@ class MunicipalityController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('municipalities.index');
+    }
+
 	public function store(CreateMunicipalityRequest $request)
 	{
 		if ($request->ajax()) {
