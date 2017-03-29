@@ -140,6 +140,50 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Countries ---------------
+	 */
+	Route::group(['prefix' => 'countries'], function(){
+
+		Route::get('', [
+			'as' => 'countries',
+			'uses' => 'CountryController@list'
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for State ---------------
+	 */
+	Route::group(['prefix' => 'states'], function(){
+
+		Route::get('', [
+			'as' => 'states',
+			'uses' => 'StateController@list'
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for Municipalities ---------------
+	 */
+	Route::group(['prefix' => 'municipalities'], function(){
+
+		Route::get('', [
+			'as' => 'municipalities',
+			'uses' => 'MunicipalityController@list'
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for Communities ---------------
+	 */
+	Route::group(['prefix' => 'communities'], function(){
+
+		Route::get('', [
+			'as' => 'communities',
+			'uses' => 'CommunityController@list'
+		]);	
+	});
+
 }); 
 
 
