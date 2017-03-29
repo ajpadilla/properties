@@ -118,6 +118,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for TypeRepresentatives ---------------
+	 */
+	Route::group(['prefix' => 'typeRepresentatives'], function(){
+
+		Route::get('', [
+			'as' => 'typeRepresentatives',
+			'uses' =>'TypeRepresentativeController@list'
+		]);	
+	});
+
 
 }); 
 
