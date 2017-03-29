@@ -31,6 +31,12 @@ class TypeAnimalController extends Controller
 
 		return response()->json($result);
 	}
+
+    public function list()
+    {
+        return view('typeAnimals.index');
+    }
+
     public function store(CreateTypeAnimalRequest $request)
     {
     	if ($request->ajax()) {
