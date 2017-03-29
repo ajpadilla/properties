@@ -31,6 +31,12 @@ class EducationalLevelController extends Controller
 
 		return response()->json($result);
 	}
+
+    public function list()
+    {
+        return view('educationalLevels.index');
+    }
+
     public function store(CreateEducationalLevelRequest $request)
     {
     	if ($request->ajax()) {
