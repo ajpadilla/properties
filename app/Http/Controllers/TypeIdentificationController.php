@@ -34,6 +34,11 @@ class TypeIdentificationController extends Controller
 
     }
 
+    public function list()
+    {
+        return view('typeIdentifications.index') ;
+    }
+
     public function store(CreateTypeIdentificationRequest $request)
     {
     	if ($request->ajax()) {
