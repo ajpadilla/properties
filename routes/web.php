@@ -129,6 +129,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for TypeInfractions ---------------
+	 */
+	Route::group(['prefix' => 'typeInfractions'], function(){
+
+		Route::get('', [
+			'as' => 'typeInfractions',
+			'uses' => 'TypeInfractionController@list'
+		]);	
+	});
 
 }); 
 
