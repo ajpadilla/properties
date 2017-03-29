@@ -17,9 +17,7 @@
 
 Route::get('/', [
 	'as' => 'public.index',
-	'uses' => function () {
-		return view('auth.login');
-	}
+	'uses' => 'HomeController@publicIndex'
 ]);
 
 
