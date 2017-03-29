@@ -32,6 +32,11 @@ class DisabilityController extends Controller
 		return response()->json($result);
 	}
 
+    public function list()
+    {
+        return view('disabilities.index');
+    }
+
 	public function store(CreateDisabilityRequest $request)
     {
     	if ($request->ajax()) {
