@@ -85,6 +85,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for educationalLevels ---------------
+	 */
+	Route::group(['prefix' => 'educationalLevels'], function(){
+
+		Route::get('', [
+			'as' => 'educational.levels',
+			'uses' =>'EducationalLevelController@list'
+		]);	
+	});
+
 }); 
 
 
