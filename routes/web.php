@@ -107,6 +107,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for typePqr ---------------
+	 */
+	Route::group(['prefix' => 'typePqr'], function(){
+
+		Route::get('', [
+			'as' => 'typePqr',
+			'uses' => 'TypePqrController@list'
+		]);	
+	});
+
+
 }); 
 
 
