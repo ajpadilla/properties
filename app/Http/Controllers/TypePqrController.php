@@ -34,6 +34,11 @@ class TypePqrController extends Controller
 
     }
 
+    public function list()
+    {
+        return view('typePqr.index');
+    }
+
     public function store(CreateTypePqrRequets $request)
     {
     	if ($request->ajax()) {
