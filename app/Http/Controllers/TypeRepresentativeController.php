@@ -34,6 +34,11 @@ class TypeRepresentativeController extends Controller
 
     }
 
+    public function list()
+    {
+        return view('typeRepresentatives.index');
+    }
+
     public function store(CreateTypeRepresentativeRequest $request)
     {
     	if ($request->ajax()) {
