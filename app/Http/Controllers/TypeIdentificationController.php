@@ -36,7 +36,7 @@ class TypeIdentificationController extends Controller
 
     public function list()
     {
-        return view('typeIdentifications.index') ;
+        return view('typeIdentifications.index');
     }
 
     public function store(CreateTypeIdentificationRequest $request)

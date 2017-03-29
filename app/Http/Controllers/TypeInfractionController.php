@@ -33,6 +33,11 @@ class TypeInfractionController extends Controller
 
     }
 
+    public function list()
+    {
+        return view('typeInfractions.index');
+    }
+
     public function store(CreateTypeInfractionRequest $request)
     {
     	if ($request->ajax()) {
