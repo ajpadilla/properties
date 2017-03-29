@@ -32,6 +32,11 @@ class TypeCommunityController extends Controller
         return response()->json($result);
     }
 
+    public function list()
+    {
+        return view('typeCommunities.index') ;
+    }
+
     public function store(CreateTypeCommunityRequest $request)
     {
     	if ($request->ajax()) {
