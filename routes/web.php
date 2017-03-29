@@ -17,27 +17,32 @@
 
 Route::get('/', [
 	'as' => 'public.index',
-	'uses' => 'HomeController@publicIndex'
+	'uses' => 'HomeController@index'
 ]);
 
 
-/*Route::get('vue-table', function () {
-    return view('welcome');
-});*/
-
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 	
-	/*Route::get('/dashboard', function () {
-		return view('layouts.dashboard');
-	});*/
-
 	Route::get('/dashboard', [
 		'as' => 'dashboard',
 		'uses' => 'HomeController@dashboard'
 	]);
+
+	/**
+	 * ------------------- Route index for typeProperty ---------------
+	 */
+
+	Route::group(['prefix' => 'typeProperties'], function(){
+
+		Route::get('', [
+			'as' => 'typeProperties',
+			'uses' => 'TypePropertyController@list'
+		]);	
+	});
+
+	
 }); 
 
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index');
