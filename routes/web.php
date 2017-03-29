@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 	return view('auth.login');
-});
+});*/
+
+Route::get('/', [
+	'as' => 'public.index',
+	'uses' => function () {
+		return view('auth.login');
+	}
+]);
+
 
 Route::get('vue-table', function () {
     return view('welcome');
