@@ -96,6 +96,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for currencies ---------------
+	 */
+	Route::group(['prefix' => 'currencies'], function(){
+
+		Route::get('', [
+			'as' => 'currencies',
+			'uses' => 'CurrencyController@list'
+		]);	
+	});
+
 }); 
 
 
