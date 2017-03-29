@@ -51,7 +51,31 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
-	
+
+	/**
+	 * ------------------- Route index for disabilities ---------------
+	 */
+	Route::group(['prefix' => 'disabilities'], function(){
+
+		Route::get('', [
+			'as' => 'disabilities',
+			'uses' => 'DisabilityController@list'
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for typeIdentifications ---------------
+	 */
+	Route::group(['prefix' => 'typeIdentifications'], function(){
+
+		Route::get('', [
+			'as' => 'type.typeIdentifications',
+			'uses' => function() {
+				return view('typeIdentifications.index');
+			}
+		]);	
+	});
+
 }); 
 
 
