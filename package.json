@@ -23,6 +23,7 @@
   "dependencies": {
     "decamelize": "^1.2.0",
     "vue-search-select": "^2.3.6",
+    "vue2-dropzone": "^2.2.4",
     "vuejs-datepicker": "^0.6.3"
   }
 }
