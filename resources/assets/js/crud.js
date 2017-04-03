@@ -411,7 +411,11 @@ Vue.component('my-detail-row', {
         	.catch(function (error){
         		console.log(error);
         	});
+        },
+        'showSuccess': function (file, response) {
+            console.log('A file was successfully uploaded', response)
         }
+
   	},
 
 	events: {
