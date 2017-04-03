@@ -24,7 +24,7 @@
     @include('layouts.modals.info')
 
     {{-- Relation Modals --}}
-
+    @include('communities.photos.add')
 
     <pre>@{{ $data }}</pre>
 </div>
