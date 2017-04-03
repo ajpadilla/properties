@@ -18,6 +18,7 @@ import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePagination
 import VueEvents from 'vue-events';
 import Datepicker from 'vuejs-datepicker';
 import { BasicSelect } from 'vue-search-select';
+import Dropzone from 'vue2-dropzone'
 
 
 Vue.use(VueEvents);
@@ -202,7 +203,8 @@ Vue.component('my-detail-row', {
     	VuetablePagination,
     	VuetablePaginationInfo,
     	Datepicker,
-    	BasicSelect
+    	BasicSelect,
+        Dropzone
   	},
 	data:{
 		row: objectRow,
@@ -446,7 +448,9 @@ Vue.component('my-detail-row', {
 	    		this.modal('PATCH');
 	    	} else if (action == 'delete-item') {
 	    		this.modal('DELETE');
-	    	}
+	    	}else{
+                this.modal(action);
+            }
 	    },
 
 	    'POST' (actionUrl, data){

@@ -24627,6 +24627,8 @@ window.vm = new Vue({
         this.modal('PATCH');
       } else if (action == 'delete-item') {
         this.modal('DELETE');
+      } else {
+        this.modal(action);
       }
     },
     'POST': function POST(actionUrl, data) {
