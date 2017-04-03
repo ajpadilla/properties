@@ -18,7 +18,11 @@
         Action <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#"><i class="glyphicon glyphicon-plus"></i>Add Photo</a></li>
+        <li>
+          <a href="#"  @click.prevent="modal('photo_ADD_inform')">
+            <i class="glyphicon glyphicon-plus"></i>Add Photo
+          </a>
+        </li>
       </ul>
     </div>
   </template>
