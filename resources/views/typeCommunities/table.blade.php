@@ -11,6 +11,12 @@
   @vuetable:cell-clicked="onCellClicked"
   @vuetable:pagination-data="onPaginationData"
   >
+  <template slot="actions" scope="props">
+    <div class="table-button-container">
+        <button class="btn btn-default" @click="onClick('edit-item', props.rowData)"><i class="fa fa-edit"></i> View</button>&nbsp;&nbsp;
+        <button class="btn btn-danger" @click="onClick('delete-item', props.rowData)"><i class="fa fa-remove"></i> Edit</button>&nbsp;&nbsp;
+    </div>
+</template>
 </vuetable> 
 
 <div class="vuetable-pagination">
