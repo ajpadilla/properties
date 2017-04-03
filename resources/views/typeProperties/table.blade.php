@@ -12,22 +12,21 @@
   @vuetable:pagination-data="onPaginationData"
   >
 
-  <template slot="actions" scope="props"> 
-    <div class="custom-actions">
-      <button class="ui basic button"
-      @click="onAction('view-item', props.rowData, props.rowIndex)">
-      <i class="zoom icon"></i>
-    </button>
-    <button class="ui basic button"
-    @click="onAction('edit-item', props.rowData, props.rowIndex)">
-    <i class="edit icon"></i>
-  </button>
-  <button class="ui basic button"
-  @click="onAction('delete-item', props.rowData, props.rowIndex)">
-  <i class="delete icon"></i>
-</button>
-</div>
-</template>
+ <template slot="actions" scope="props">
+    <!-- Single button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Action <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </ul>
+    </div>
+  </template>
 </vuetable> 
 
 <div class="vuetable-pagination">
