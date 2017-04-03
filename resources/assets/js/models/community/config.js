@@ -36,6 +36,7 @@ var objectRow = {
 };
 
 var modals = {
+    photo_ADD_inform: false
 };
 
 var tableColumns = [
