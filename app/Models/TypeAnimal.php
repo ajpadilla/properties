@@ -10,7 +10,7 @@ class TypeAnimal extends Model
 {
  	use SearchTrait, SortTrait;
 
-	public $table = 'types_animals';
+	public $table = 'type_animals';
 
 	/**
      * The attributes that are mass assignable.
