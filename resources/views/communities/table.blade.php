@@ -19,7 +19,7 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a href="#"  @click.prevent="modal('photo_ADD_inform')">
+          <a href="#"  @click.prevent="slotAction('photo_ADD_inform', props.rowData, '{{ route('api.communities.addPhoto') }}/')">
             <i class="glyphicon glyphicon-plus"></i>Add Photo
           </a>
         </li>
