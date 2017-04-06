@@ -75,6 +75,11 @@ class Community extends Model
       'first_photo'
     ];
 
+     protected $dates = [
+        'opening_date', 
+        'cancellation_date'
+    ];
+
 
     /**
      * ------ Relations ------ 
