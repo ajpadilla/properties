@@ -10,7 +10,7 @@ class TypeIdentification extends Model
 {
    	use SearchTrait, SortTrait;
 
-	public $table = 'types_identifications';
+	public $table = 'type_identifications';
 
 	/**
      * The attributes that are mass assignable.

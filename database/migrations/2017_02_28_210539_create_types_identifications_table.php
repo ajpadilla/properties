@@ -13,7 +13,7 @@ class CreateTypesIdentificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('types_identifications', function (Blueprint $table) {
+        Schema::create('type_identifications', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypesIdentificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types_identifications');
+        Schema::dropIfExists('type_identifications');
     }
 }
