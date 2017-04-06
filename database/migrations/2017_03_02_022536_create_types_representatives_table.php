@@ -13,7 +13,7 @@ class CreateTypesRepresentativesTable extends Migration
      */
     public function up()
     {
-        Schema::create('types_representatives', function (Blueprint $table) {
+        Schema::create('type_representatives', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypesRepresentativesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types_representatives');
+        Schema::dropIfExists('type_representatives');
     }
 }

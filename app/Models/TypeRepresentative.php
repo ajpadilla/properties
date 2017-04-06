@@ -10,7 +10,7 @@ class TypeRepresentative extends Model
 {
   	use SearchTrait, SortTrait;
 
-	public $table = 'types_representatives';
+	public $table = 'type_representatives';
 
 	/**
      * The attributes that are mass assignable.
