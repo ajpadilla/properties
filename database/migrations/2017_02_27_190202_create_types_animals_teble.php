@@ -13,7 +13,7 @@ class CreateTypesAnimalsTeble extends Migration
      */
     public function up()
     {
-        Schema::create('types_animals', function (Blueprint $table) {
+        Schema::create('type_animals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypesAnimalsTeble extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types_animals');
+        Schema::dropIfExists('type_animals');
     }
 }
