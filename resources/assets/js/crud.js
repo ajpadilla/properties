@@ -253,21 +253,9 @@ Vue.component('my-detail-row', {
 	},
 
 	methods: {
-	    allcap (value) {
-	      return value.toUpperCase()
-	    },
-	    genderLabel (value) {
-	      return value === 'M'
-	        ? '<span class="label label-success"><i class="glyphicon glyphicon-star"></i> Male</span>'
-	        : '<span class="label label-danger"><i class="glyphicon glyphicon-heart"></i> Female</span>'
-	    },
-	    formatNumber (value) {
-	      return accounting.formatNumber(value, 2)
-	    },
-	    formatDate (value, fmt = 'D MMM YYYY') {
-	      return (value == null)
-	        ? ''
-	        : moment(value, 'YYYY-MM-DD').format(fmt)
+	    uploadImage (value) {
+            if (value)
+	           return '<img src="'+value.storage_route+'" class="img-rounded" alt="'+value.original_filename+'" width="100" height="100">';
 	    },
 	    onPaginationData (paginationData) {
 	      this.$refs.pagination.setPaginationData(paginationData)
@@ -411,6 +399,11 @@ Vue.component('my-detail-row', {
         	.catch(function (error){
         		console.log(error);
         	});
+        },
+        slotAction: function (action, data, url = null){
+            this.actionUrl = url + data.id;
+            this.modal(action);
+            console.log('slotAction', action, data, this.actionUrl);
         },
         'showSuccess': function (file, response) {
             console.log('A file was successfully uploaded', response)
