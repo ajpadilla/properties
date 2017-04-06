@@ -46,6 +46,13 @@ var tableColumns = [
     visible: false
 },
 {
+    name: 'first_photo',
+    title: 'Photo',
+    sortField: '',
+    visible: true,
+    callback: 'uploadImage'
+},
+{
     name: 'nit',
     title: 'Nit',
     sortField: 'nit',
