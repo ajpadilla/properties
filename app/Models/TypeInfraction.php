@@ -11,7 +11,7 @@ class TypeInfraction extends Model
 
 	use SearchTrait, SortTrait;
 
-	public $table = 'types_infractions';
+	public $table = 'type_infractions';
 
 	/**
      * The attributes that are mass assignable.

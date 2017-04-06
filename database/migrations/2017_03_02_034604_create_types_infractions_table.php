@@ -13,7 +13,7 @@ class CreateTypesInfractionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('types_infractions', function (Blueprint $table) {
+        Schema::create('type_infractions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateTypesInfractionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types_infractions');
+        Schema::dropIfExists('type_infractions');
     }
 }
