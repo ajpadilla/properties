@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Community;
 use App\Http\Requests\CreateCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
+use App\Models\CommunityPhoto;
 
 class CommunityController extends Controller
 {
@@ -113,6 +114,21 @@ class CommunityController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+
+    public function addPhoto(Request $request, $communityId)
+    {
+        if ($request->hasFile('file')) 
+        {
+            $data = [];
+            $data['community_id'] = $communityId;
+            $communityPhoto = new CommunityPhoto;
+            $communityPhoto->register($request->file('file'), $data);
+            $this->setSuccess(true);
+            $this->addToResponseArray('communityPhoto', $communityPhoto);
+            return $this->getResponseArrayJson();  
+        }   
+        return $this->getResponseArrayJson();  
+    }   
 
 
 }
