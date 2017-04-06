@@ -503,4 +503,10 @@ Route::group(['prefix' => 'communities'], function()
 		'as' => 'api.communities.delete',
 		'uses' => 'CommunityController@destroy'
 	]);
+
+	Route::post('add-photo/{communityId?}', [
+		'as' => 'api.communities.addPhoto',
+		'uses' => 'CommunityController@addPhoto'
+	]);
+
 });
