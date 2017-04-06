@@ -40,14 +40,14 @@ class CreatePersonsTable extends Migration
             $table->date('admission_date');
             $table->date('cancellation_date');
             $table->boolean('status');
-            $table->integer('city_birth')->unsigned();
-            $table->foreign('city_birth')
+            $table->integer('city_birth_id')->unsigned();
+            $table->foreign('city_birth_id')
                         ->references('id')
                       ->on('municipalities')
                       ->onDelete('restrict')
                       ->onUpdate('cascade');
-            $table->integer('disability')->unsigned();
-            $table->foreign('disability')
+            $table->integer('disability_id')->unsigned();
+            $table->foreign('disability_id')
                         ->references('id')
                       ->on('disabilities')
                       ->onDelete('restrict')
