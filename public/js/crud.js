@@ -34649,19 +34649,8 @@ window.vm = new Vue({
   },
 
   methods: {
-    allcap: function allcap(value) {
-      return value.toUpperCase();
-    },
-    genderLabel: function genderLabel(value) {
-      return value === 'M' ? '<span class="label label-success"><i class="glyphicon glyphicon-star"></i> Male</span>' : '<span class="label label-danger"><i class="glyphicon glyphicon-heart"></i> Female</span>';
-    },
-    formatNumber: function formatNumber(value) {
-      return __WEBPACK_IMPORTED_MODULE_0_accounting___default.a.formatNumber(value, 2);
-    },
-    formatDate: function formatDate(value) {
-      var fmt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'D MMM YYYY';
-
-      return value == null ? '' : __WEBPACK_IMPORTED_MODULE_1_moment___default()(value, 'YYYY-MM-DD').format(fmt);
+    uploadImage: function uploadImage(value) {
+      if (value) return '<img src="' + value.storage_route + '" class="img-rounded" alt="' + value.original_filename + '" width="100" height="100">';
     },
     onPaginationData: function onPaginationData(paginationData) {
       this.$refs.pagination.setPaginationData(paginationData);
@@ -34812,6 +34801,13 @@ window.vm = new Vue({
       });
     },
 
+    slotAction: function slotAction(action, data) {
+      var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+      this.actionUrl = url + data.id;
+      this.modal(action);
+      console.log('slotAction', action, data, this.actionUrl);
+    },
     'showSuccess': function showSuccess(file, response) {
       console.log('A file was successfully uploaded', response);
     }
