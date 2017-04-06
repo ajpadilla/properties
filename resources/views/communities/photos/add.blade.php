@@ -3,9 +3,10 @@
             'modalTitle'    => 'Add photo',
             'modalSync'     => 'photo_ADD_inform',
             'modalClose'    => 'photo_ADD_inform',
-            'model'         => 'Currency',
+            'model'         => 'CommunityPhoto',
             'type'			=> 'store',
-            'content'       => view('communities.photos.fields')
+            'content'       => view('communities.photos.fields'),
+            'btbSave'		=> false
 	]);
 ?>
 
