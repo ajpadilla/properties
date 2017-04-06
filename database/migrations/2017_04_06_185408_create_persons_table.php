@@ -61,7 +61,7 @@ class CreatePersonsTable extends Migration
             $table->integer('type_identification_id')->unsigned();
             $table->foreign('type_identification_id')
                         ->references('id')
-                      ->on('types_identifications')
+                      ->on('type_identifications')
                       ->onDelete('restrict')
                       ->onUpdate('cascade'); 
             $table->timestamps();
