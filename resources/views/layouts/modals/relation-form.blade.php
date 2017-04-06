@@ -8,10 +8,12 @@
 	</template>	
 	<template slot="footer">
 		{{--<button type="button" class="btn btn-default" @click='closeModal("formModal")'>Close</button>--}}
-		<button type="button" class="btn btn-success" @click='submit(
+		@if (isset($btbSave) && $btbSave)
+			<button type="button" class="btn btn-success" @click='submit(
 			{{ ( isset ($model) 	? "'" 	. lcfirst($model) . "'" : 'null' ) }}, 
 			{{ ( isset ($type) 		? "'" 	. $type 	. "'" : 'null' ) }}, 
 			{{ ( isset ($related) 	? "'" 	. $related 	. "'" : 'null' ) }}
-		)'>Save</button>
+			)'>Save</button>
+		@endif
 	</template>	
 </modal>
