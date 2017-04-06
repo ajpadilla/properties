@@ -8,6 +8,7 @@ use App\Models\SearchTrait;
 use App\Models\SortTrait;
 use App\Models\Municipality;
 use App\Models\TypeCommunity;
+use App\Models\CommunityPhoto;
 
 class Community extends Model
 {
@@ -70,7 +71,8 @@ class Community extends Model
       'state_related',
       'municipality_related',
       'type_community_related',
-      'status_format'
+      'status_format',
+      'first_photo'
     ];
 
 
@@ -87,6 +89,20 @@ class Community extends Model
     {
       return $this->belongsTo(TypeCommunity::class);
     }
+
+    public function photos()
+    {
+      return  $this->hasMany(CommunityPhoto::class);
+    }
+
+    /**
+     *  Check if there are photos associated with the model.
+    */
+    public function hasPhotos()
+    {
+      return $this->photos->count();
+    }
+
 
     /**
      *
@@ -153,4 +169,16 @@ class Community extends Model
         ];
     }
 
+    /**
+     *  Return the first photo associated with the model.
+    */
+    public function getFirstPhotoAttribute()
+    {
+        if ($this->hasPhotos()) {
+            foreach ($this->photos as $photo) {
+                return $photo;
+            }
+        }
+        return false;
+    }
 }
