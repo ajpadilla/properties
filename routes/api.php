@@ -510,3 +510,16 @@ Route::group(['prefix' => 'communities'], function()
 	]);
 
 });
+
+/**
+ * ------------------- API Route for Persons ---------------
+ */
+
+Route::group(['prefix' => 'persons'], function()
+{
+	Route::get('/',[
+		'as' => 'api.persons.index',
+		'uses' => 'PersonController@index'
+	]);	
+
+});
