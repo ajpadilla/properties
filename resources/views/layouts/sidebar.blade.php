@@ -113,6 +113,11 @@
                 <i class="fa fa-circle-o"></i> Comunidades
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/persons') }}">
+                <i class="fa fa-circle-o"></i> Persons
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
