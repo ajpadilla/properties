@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SearchTrait;
+use App\Models\SortTrait;
 
 class Person extends Model
 {
+  use SearchTrait, SortTrait;
+
 	public $table = 'persons';
 
 	/**
@@ -45,5 +49,45 @@ class Person extends Model
   		'educational_level_id',
   		'type_identification_id',
   	];
+
+    /**
+     * Attributes that are for searchers of the model.
+     *
+     * @var array
+     */
+    protected $searchableColumns = [
+      'name',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+    */
+
+    protected $appends = [
+     
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+    */
+
+    protected $dates = [
+        
+    ];
+
+    /**
+     * ------ Relations ------ 
+    */
+
+    
+    /**
+     *
+     * -------Accessors And Mutators------
+     *
+    */
 
 }
