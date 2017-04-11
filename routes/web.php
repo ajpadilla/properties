@@ -184,6 +184,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+
+	/**
+	 * ------------------- Route index for Persons ---------------
+	 */
+	Route::group(['prefix' => 'persons'], function(){
+
+		Route::get('', [
+			'as' => 'persons',
+			'uses' => 'PersonController@list'
+		]);	
+	});
+
+
 }); 
 
 
