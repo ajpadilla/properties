@@ -75,6 +75,12 @@ class Community extends Model
       'first_photo'
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+    */
+
      protected $dates = [
         'opening_date', 
         'cancellation_date'
