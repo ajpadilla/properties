@@ -7,7 +7,7 @@
 			</div>
 			<!-- /.box-header -->
 			<!-- form start -->
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" role="form" method="POST">
 				<div class="box-body">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">Name</label>
