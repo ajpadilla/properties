@@ -34,7 +34,7 @@ class TypePropertyController extends Controller
 
     }
 
-    public function list()
+    public function list(Request $request)
     {
         return view('typeProperties.index');
     }
