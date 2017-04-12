@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 
 		Route::get('', [
 			'as' => 'typeProperties',
-			'uses' => 'TypePropertyController@list'
+			'uses' => 'TypePropertyController@listItems'
 		]);	
 	});
 
