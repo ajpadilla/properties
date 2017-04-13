@@ -11,7 +11,7 @@ const decamelize = require('decamelize');
 
 
 import accounting from 'accounting';
-import moment from 'moment';
+import moment from 'moment'; 
 import Vuetable from 'vuetable-2/src/components/Vuetable';
 import VuetablePagination from 'vuetable-2/src/components/VuetablePagination';
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo';
