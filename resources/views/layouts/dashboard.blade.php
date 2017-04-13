@@ -228,6 +228,7 @@
     <!-- ./wrapper -->
 
     <!-- Scripts -->
+    {!! Html::script('js/jquery-3.1.1.min.js') !!}
     {!! Html::script('js/all.min.js') !!}
     {{--{!! Html::script('js/crud.js') !!}--}}
     @yield('scripts')
