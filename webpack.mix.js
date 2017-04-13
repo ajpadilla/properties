@@ -36,6 +36,7 @@ mix.copy('resources/assets/js/icheck/skins/square', 'public/css/icheck/skins/squ
 mix.copy('resources/assets/js/icheck/skins/all.css', 'public/css/icheck/skins/all.css');
 
 mix.js([
+        'resources/assets/js/jquery/3.1.1/jquery-3.1.1.min.js',
         'resources/assets/css/bootstrap-3.3.7-dist/js/bootstrap.min.js',
         'resources/assets/js/admin-lte/2.3.6/app.min.js',
     ], 'public/js/all.min.js');
