@@ -111,6 +111,11 @@ Route::group(['prefix' => 'disabilities'], function()
 		'as' => 'api.disabilities.delete',
 		'uses' => 'DisabilityController@destroy'
 	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.disabilities.select-list',
+		'uses' => 'DisabilityController@selectList'
+	]);
 });
 
 
