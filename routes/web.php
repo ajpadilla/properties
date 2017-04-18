@@ -192,7 +192,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 
 		Route::get('', [
 			'as' => 'persons',
-			'uses' => 'PersonController@list'
+			'uses' => 'PersonController@showList'
 		]);	
 	});
 
