@@ -36,5 +36,9 @@ class PersonController extends Controller
         return view('persons.index');
     }
 
+    public function store()
+    {
+    	# code...
+    }
 
 }
