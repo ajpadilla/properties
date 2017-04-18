@@ -219,6 +219,11 @@ Route::group(['prefix' => 'educationalLevels'], function()
 		'as' => 'api.educationalLevels.delete',
 		'uses' => 'EducationalLevelController@destroy'
 	]);	
+
+	Route::get('select-list', [
+		'as' => 'api.v1.educationalLevels.select-list',
+		'uses' => 'EducationalLevelController@selectList'
+	]);
 });
 
 
