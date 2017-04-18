@@ -75,7 +75,13 @@
                     method: 'GET',
                     url: "{{ route('api.v1.educationalLevels.select-list') }}/"
                 },
-            }
+            },
+            type_identification:{
+                select: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.typeIdentifications.select-list') }}/"
+                },
+            },
         }
     };
     </script>
@@ -103,12 +109,17 @@
 
         var loadEducationalLevel = function () {
             vm.getForeignData(vm.url.foreign.educational_level.select.url, 'educationalLevelOptions', 'educational_level', 'select');
-            console.log();
         }
+
+        var loadTypeIdentification = function () {
+            vm.getForeignData(vm.url.foreign.type_identification.select.url, 'typeIdentificationOptions', 'type_identification', 'select');
+        }
+
 
         loadCountries();
         loadDisability();
         loadEducationalLevel();
+        loadTypeIdentification();
 
         vm.$watch('row.country_related.value', function (value) {
             loadStates();
