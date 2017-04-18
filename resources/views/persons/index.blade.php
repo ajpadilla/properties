@@ -37,8 +37,8 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            {{--store: "{{ route('api.states.store') }}/",
-            update: "{{ route('api.states.update') }}/",
+            store: "{{ route('api.persons.store') }}/",
+            {{--update: "{{ route('api.states.update') }}/",
             show: "{{ route('api.states.show') }}/",
             delete: "{{ route('api.states.delete') }}/",--}}
             foreign: {
