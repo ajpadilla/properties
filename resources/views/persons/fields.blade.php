@@ -241,7 +241,8 @@
 								</basic-select>
 							</div>
 						</div>
-						<!-- Disability Id Field -->
+
+						<!-- educational level Id Field -->
 						<div class="form-group">
 							<label for="currency_id" class="col-sm-2 control-label">Educational Level</label>
 							<div class="col-sm-10">
@@ -251,7 +252,19 @@
 									@select="onSelect">
 								</basic-select>
 							</div>
-						</div
+						</div>
+
+						<!-- Type identification Id Field -->
+						<div class="form-group">
+							<label for="currency_id" class="col-sm-2 control-label">Type identification</label>
+							<div class="col-sm-10">
+								<basic-select :options="foreignData.typeIdentificationOptions"
+									:selected-option="row.type_identification_related"
+									placeholder="select item"
+									@select="onSelect">
+								</basic-select>
+							</div>
+						</div>
 					</div>
 					
 				</div>
