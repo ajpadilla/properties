@@ -537,4 +537,31 @@ Route::group(['prefix' => 'persons'], function()
 		'uses' => 'PersonController@index'
 	]);	
 
+	Route::post('store', [
+		'as' => 'api.persons.store',
+		'uses' => 'PersonController@store'
+	]);
+
+
+	/**Route::get('show/{id?}', [
+			'as' => 'api.communities.show',
+			'uses' => 'PersonController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.communities.update',
+			'uses' => 'PersonController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.communities.delete',
+		'uses' => 'PersonController@destroy'
+	]);
+
+	Route::post('add-photo/{communityId?}', [
+		'as' => 'api.communities.addPhoto',
+		'uses' => 'PersonController@addPhoto'
+	]);**/
+
+
 });
