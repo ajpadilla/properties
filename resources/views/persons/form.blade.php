@@ -6,5 +6,5 @@
 @stop
 
 @section('modal-form-content')
-	@include('states.fields')
+	@include('persons.fields')
 @stop
