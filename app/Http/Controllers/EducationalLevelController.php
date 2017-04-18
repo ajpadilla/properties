@@ -86,4 +86,18 @@ class EducationalLevelController extends Controller
         }
         return $this->getResponseArrayJson(); 
     }
+
+    public function selectList(Request $request)
+    {
+        if ($request->ajax())
+        {   
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', 
+                EducationalLevel::all()->pluck('name', 'id')->toArray()
+            );
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
 }
