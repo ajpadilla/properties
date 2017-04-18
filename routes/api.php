@@ -149,6 +149,11 @@ Route::group(['prefix' => 'typeIdentifications'], function()
 		'as' => 'api.typeIdentifications.delete',
 		'uses' => 'TypeIdentificationController@destroy'
 	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.typeIdentifications.select-list',
+		'uses' => 'TypeIdentificationController@selectList'
+	]);
 });
 
 /**
