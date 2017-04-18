@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use App\Http\Requests\CreatePersonRequest;
 
 class PersonController extends Controller
 {
@@ -36,7 +37,7 @@ class PersonController extends Controller
         return view('persons.index');
     }
 
-    public function store()
+    public function store(CreatePersonRequest $request)
     {
     	# code...
     }
