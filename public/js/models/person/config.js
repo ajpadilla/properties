@@ -35,7 +35,7 @@ var objectRow = {
         value: "",
         text: ""
     },
-    city_birth_related: {
+    municipality_related: {
         value: "",
         text: ""
     },
