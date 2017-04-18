@@ -40,48 +40,83 @@
             {{--store: "{{ route('api.states.store') }}/",
             update: "{{ route('api.states.update') }}/",
             show: "{{ route('api.states.show') }}/",
-            delete: "{{ route('api.states.delete') }}/",
+            delete: "{{ route('api.states.delete') }}/",--}}
             foreign: {
-                country: {
-                    select: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.countries.select-list') }}"
-                    },
-                    store: {
-                        method: 'POST',
-                        url: "{{ route('api.countries.store') }}"
-                    }
-                },
-                currency: {
-                    select: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.currencies.select-list') }}"
-                    },
-                    store: {
-                        method: 'POST',
-                        url: "{{ route('api.currencies.store') }}"
-                    }
+               country: {
+                select: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.countries.select-list') }}/"
                 }
-            }--}}
-        };
+            },
+            state: {
+                byCountry: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.states.byCountry') }}/"
+                }
+            },
+            municipality:{
+                select: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.municipalities.select-list') }}/"
+                },
+                byState: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.municipalities.byState') }}/"
+                }
+            },
+            disability:{
+                select: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.disabilities.select-list') }}/"
+                },
+            },
+            educational_level:{
+                select: {
+                    method: 'GET',
+                    url: "{{ route('api.v1.educationalLevels.select-list') }}/"
+                },
+            }
+        }
+    };
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
         var vm = window.vm;
 
-        /*var loadCountries = function () {
+        var loadCountries = function () {
             vm.getForeignData(vm.url.foreign.country.select.url, 'countryOptions', 'country', 'select');
-        };*/
+        };
 
-        /**
-         * Load currecies list after add new currency from add new item form
-        */
-        /*vm.$watch('localModals.country_ADD_inform', function (value) {
-            if ( !value ) {
-                loadCountries();
-                loadCurrencies();
-            }
-        });*/
+        var loadStates = function () {
+            console.log(vm.url.foreign.state.byCountry.url + vm.row.country_related.value);
+            vm.getForeignData(vm.url.foreign.state.byCountry.url + vm.row.country_related.value, 'stateOptions', 'state', 'byCountry');
+        };
+
+        var loadMunicipalities = function () {
+            vm.getForeignData(vm.url.foreign.municipality.byState.url + vm.row.state_related.value, 'municipalityOptions', 'municipality', 'byState');
+        };
+
+        var loadDisability = function () {
+            vm.getForeignData(vm.url.foreign.disability.select.url, 'disabilityOptions', 'disability', 'select');
+            console.log();
+        }
+
+        var loadEducationalLevel = function () {
+            vm.getForeignData(vm.url.foreign.educational_level.select.url, 'educationalLevelOptions', 'educational_level', 'select');
+            console.log();
+        }
+
+        loadCountries();
+        loadDisability();
+        loadEducationalLevel();
+
+        vm.$watch('row.country_related.value', function (value) {
+            loadStates();
+        });
+
+         vm.$watch('row.state_related.value', function (value) {
+            loadMunicipalities();
+        });
 
     </script>
 @endpush
