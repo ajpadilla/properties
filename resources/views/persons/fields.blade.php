@@ -125,7 +125,9 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Birth date</label>
 							<div class="col-sm-10">
-								<input type="date" v-model="row.birth_date" class="form-control" placeholder="Birth date">
+								{{--<input type="date" v-model="row.birth_date" class="form-control" placeholder="Birth date">--}}
+								<datepicker v-model="row.birth_date" format="yyyy-MM-dd">
+								</datepicker>
 							</div>
 						</div>
 						<div class="form-group">
@@ -165,13 +167,17 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Admission date</label>
 							<div class="col-sm-10">
-								<input type="date" v-model="row.admission_date" class="form-control" placeholder="Admission date">
+								{{--<input type="date" v-model="row.admission_date" class="form-control" placeholder="Admission date">--}}
+								<datepicker v-model="row.admission_date" format="yyyy-MM-dd">
+								</datepicker>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Cancellation date</label>
 							<div class="col-sm-10">
-								<input type="date" v-model="row.cancellation_date" class="form-control" placeholder="Cancellation date">
+								{{--<input type="date" v-model="row.cancellation_date" class="form-control" placeholder="Cancellation date">--}}
+								<datepicker v-model="row.cancellation_date" format="yyyy-MM-dd">
+								</datepicker>
 							</div>
 						</div>
 						<div class="form-group">
