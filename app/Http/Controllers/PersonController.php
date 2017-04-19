@@ -154,4 +154,15 @@ class PersonController extends Controller
         return $this->getResponseArrayJson();
     }
 
+    public function destroy(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $person = Person::find($id);
+            $this->setSuccess($person->delete());
+            $this->addToResponseArray('message', 'Person successfully delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
 }
