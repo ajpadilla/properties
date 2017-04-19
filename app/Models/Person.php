@@ -90,4 +90,12 @@ class Person extends Model
      *
     */
 
+    public function setOpeningDateAttribute($value) {
+      $this->attributes['admission_date'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function setCancellationDateAttribute($value) {
+      $this->attributes['cancellation_date'] = $value ? date('Y-m-d', strtotime($value)) : NULL;
+    }
+
 }
