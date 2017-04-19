@@ -104,7 +104,24 @@ class PersonController extends Controller
 
     public function update(UpdatePersonRequest $request)
     {
-    	# code...
+   		if ($request->ajax()) {
+            $input = $request->all();
+            $input['city_birth_id'] = $request->input('city_birth_related.value');
+            unset($input['city_birth_related']);
+            $input['disability_id'] = $request->input('disability_related.value');
+            unset($input['disability_related']);
+            $input['educational_level_id'] = $request->input('educational_level_related.value');
+            unset($input['educational_level_related']);
+            $input['type_identification_id'] = $request->input('type_identification_related.value');
+            unset($input['type_identification_related']);
+            $person = Person::find($id);
+            $person->update($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $person);
+            $this->addToResponseArray('message', 'Community successfully update');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
     }
 
 }
