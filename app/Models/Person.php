@@ -76,7 +76,9 @@ class Person extends Model
     */
 
     protected $dates = [
-        
+        'birth_date',
+        'admission_date',
+        'cancellation_date'
     ];
 
     /**
