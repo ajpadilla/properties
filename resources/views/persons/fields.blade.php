@@ -131,11 +131,11 @@
 						<div class="form-group">
 							<label for="cell_phone" class="col-sm-2 control-label">Gender</label>
 							<div class="col-sm-10">
-								<input type="radio" id="active" value="male" v-model="row.status">
-								<label for="active">Male</label>
+								<input type="radio" id="male" value="male" v-model="row.gender">
+								<label for="male">Male</label>
 								<br>
-								<input type="radio" id="inactive" value="female" v-model="row.status">
-								<label for="inactive">Female</label>
+								<input type="radio" id="female" value="female" v-model="row.gender">
+								<label for="female">Female</label>
 								<br>
 							</div>
 						</div>
