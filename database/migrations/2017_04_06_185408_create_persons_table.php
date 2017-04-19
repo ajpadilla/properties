@@ -25,7 +25,7 @@ class CreatePersonsTable extends Migration
             $table->string('auxiliary_phone', 30)->nullable();
             $table->string('cell_phone', 30);
             $table->string('auxiliary_cell', 30)->nullable();
-            $table->string('home_email');
+            $table->string('home_email', 30);
             $table->string('auxiliary_email', 30)->nullable();
             $table->text('correspondence_address');
             $table->string('city_correspondence', 30);
