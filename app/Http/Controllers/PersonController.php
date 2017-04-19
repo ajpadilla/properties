@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Http\Requests\CreatePersonRequest;
+use App\Http\Requests\UpdatePersonRequest;
 
 class PersonController extends Controller
 {
@@ -99,6 +100,11 @@ class PersonController extends Controller
             return $this->getResponseArrayJson();
         }
         return $this->getResponseArrayJson();   
+    }
+
+    public function update(UpdatePersonRequest $request)
+    {
+    	# code...
     }
 
 }
