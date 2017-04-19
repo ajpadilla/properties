@@ -223,8 +223,8 @@
 						<div class="form-group">
 							<label for="currency_id" class="col-sm-2 control-label">City birth</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.municipalityOptions"
-									:selected-option="row.municipality_related"
+								<basic-select :options="foreignData.cityBirthOptions"
+									:selected-option="row.city_birth_related"
 									placeholder="select item"
 									@select="onSelect">
 								</basic-select>
