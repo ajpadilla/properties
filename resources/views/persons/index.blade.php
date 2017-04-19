@@ -38,9 +38,9 @@
         var fieldInitOrder = 'id';
         var apiUrl = {
             store: "{{ route('api.persons.store') }}/",
-            {{--update: "{{ route('api.states.update') }}/",
-            show: "{{ route('api.states.show') }}/",
-            delete: "{{ route('api.states.delete') }}/",--}}
+            show: "{{ route('api.persons.show') }}/",
+            update: "{{ route('api.persons.update') }}/",
+            delete: "{{ route('api.persons.delete') }}/",
             foreign: {
                country: {
                 select: {
