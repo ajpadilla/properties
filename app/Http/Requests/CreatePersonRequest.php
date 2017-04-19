@@ -24,7 +24,35 @@ class CreatePersonRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'identification_number' => 'required|min:1|max:45|unique:persons,identification_number',
+            'business_name' => 'required|min:1|max:45',
+            'first_name' => 'required|min:1|max:20',
+            'second_name' => 'required|min:1|max:20',
+            'first_surname' => 'required|min:1|max:25',
+            'second_surname' => 'required|min:1|max:25',
+            'home_phone' => 'required|min:1|max:30',
+            'auxiliary_phone' => 'min:1|max:30',
+            'cell_phone' => 'required|min:1|max:30',
+            'auxiliary_cell' => 'min:1|max:30',
+            'home_email' => 'required|min:1|max:30',
+            'auxiliary_email' => 'min:1|max:30',
+            'correspondence_address' => 'required|min:1|max:500',
+            'city_correspondence' => 'required|min:1|max:30',
+            'country_correspondence' => 'required|min:1|max:30',
+            'office_address' => 'required|min:1|max:500',
+            'city_office' => 'required|min:1|max:30',
+            'country_office' => 'required|min:1|max:30',
+            'birth_date' => 'required',
+            'gender' => 'required|integer',
+            'civil_status' => 'required',
+            'cod_labor_activity' => 'required|min:1|max:30',
+            'admission_date' => 'required',
+            //'cancellation_date' => ,
+            'status' => 'required|integer',
+            'city_birth_related.value' => 'required|integer|exists:municipalities,id',
+            'disability_related.value' => 'required|integer|exists:municipalities,id',
+            'educational_level_related.value' => 'required|integer|exists:municipalities,id',
+            'type_identification_related.value' => 'required|integer|exists:municipalities,id',
         ];
     }
 }
