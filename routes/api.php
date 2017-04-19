@@ -543,12 +543,12 @@ Route::group(['prefix' => 'persons'], function()
 	]);
 
 
-	/**Route::get('show/{id?}', [
-			'as' => 'api.communities.show',
+	Route::get('show/{id?}', [
+			'as' => 'api.persons.show',
 			'uses' => 'PersonController@show'
 	]);
 
-	Route::patch('update/{id?}', [
+	/*Route::patch('update/{id?}', [
 			'as' => 'api.communities.update',
 			'uses' => 'PersonController@update'
 	]);
