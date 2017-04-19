@@ -66,7 +66,12 @@ class Person extends Model
     */
 
     protected $appends = [
-     
+      'country_related',
+      'state_related',
+      'city_birth_related',
+      'disability_related',
+      'educational_level_related',
+      'type_identification_related'
     ];
 
     /**
@@ -85,6 +90,25 @@ class Person extends Model
      * ------ Relations ------ 
     */
 
+    public function cityBirth()
+    {
+      return $this->belongsTo(Municipality::class);
+    }
+
+    public function disability()
+    {
+      return $this->belongsTo(Disability::class);
+    }
+
+    public function educationalLevel()
+    {
+      return $this->belongsTo(EducationalLevel::class);
+    }
+
+    public function typeIdentification()
+    {
+      return $this->belongsTo(TypeIdentification::class);
+    }
     
     /**
      *
@@ -102,6 +126,62 @@ class Person extends Model
 
     public function setBirthDateAttribute($value) {
       $this->attributes['birth_date'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function getCountryRelatedAttribute()
+    {
+      return [
+        'text' => $this->cityBirth->state->country->name, 
+        'value' => $this->cityBirth->state->country->id
+      ];
+    }
+
+    public function getStateRelatedAttribute()
+    {
+      return [
+        'text' => $this->cityBirth->state->name, 
+        'value' => $this->cityBirth->state->id
+      ];
+    }
+
+    public function getCityBirthRelatedAttribute()
+    {
+        return [
+          'text' => $this->cityBirth->name, 
+          'value' => $this->cityBirth->id
+        ];
+    }
+
+    public function getDisabilityRelatedAttribute()
+    {
+      if(count($this->disability)){
+        return [
+          'text' => $this->disability->name, 
+          'value' => $this->disability->id
+        ];
+      }else{
+        return [
+          'text' => '', 
+          'value' => ''
+        ];
+
+      }
+    }
+
+    public function getEducationalLevelRelatedAttribute()
+    {
+      return [
+          'text' => $this->educationalLevel->name, 
+          'value' => $this->educationalLevel->id
+      ];
+    }
+
+    public function getTypeIdentificationRelatedAttribute()
+    {
+      return [
+          'text' => $this->typeIdentification->name, 
+          'value' => $this->typeIdentification->id
+      ];
     }
 
 }
