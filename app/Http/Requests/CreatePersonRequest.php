@@ -50,9 +50,9 @@ class CreatePersonRequest extends FormRequest
             //'cancellation_date' => ,
             'status' => 'required|integer',
             'city_birth_related.value' => 'required|integer|exists:municipalities,id',
-            'disability_related.value' => 'required|integer|exists:municipalities,id',
-            'educational_level_related.value' => 'required|integer|exists:municipalities,id',
-            'type_identification_related.value' => 'required|integer|exists:municipalities,id',
+            'disability_related.value' => 'required|integer|exists:disabilities,id',
+            'educational_level_related.value' => 'required|integer|exists:educational_levels,id',
+            'type_identification_related.value' => 'required|integer|exists:type_identifications,id',
         ];
     }
 }
