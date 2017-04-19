@@ -89,4 +89,16 @@ class PersonController extends Controller
     	return $this->getResponseArrayJson();
     }
 
+    public function show(Request $request, $id)
+    {
+    	if ($request->ajax()) {
+            $person = Person::find($id);
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Person successfully recovered');
+            $this->addToResponseArray('data', $person);
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();   
+    }
+
 }
