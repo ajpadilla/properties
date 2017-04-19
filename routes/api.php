@@ -548,17 +548,17 @@ Route::group(['prefix' => 'persons'], function()
 			'uses' => 'PersonController@show'
 	]);
 
-	/*Route::patch('update/{id?}', [
-			'as' => 'api.communities.update',
+	Route::patch('update/{id?}', [
+			'as' => 'api.persons.update',
 			'uses' => 'PersonController@update'
 	]);
 
 	Route::delete('delete/{id?}', [
-		'as' => 'api.communities.delete',
+		'as' => 'api.persons.delete',
 		'uses' => 'PersonController@destroy'
 	]);
 
-	Route::post('add-photo/{communityId?}', [
+	/**Route::post('add-photo/{communityId?}', [
 		'as' => 'api.communities.addPhoto',
 		'uses' => 'PersonController@addPhoto'
 	]);**/
