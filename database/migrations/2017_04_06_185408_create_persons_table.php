@@ -46,7 +46,7 @@ class CreatePersonsTable extends Migration
                       ->on('municipalities')
                       ->onDelete('restrict')
                       ->onUpdate('cascade');
-            $table->integer('disability_id')->unsigned();
+            $table->integer('disability_id')->nullable()->unsigned();
             $table->foreign('disability_id')
                         ->references('id')
                       ->on('disabilities')
