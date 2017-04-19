@@ -54,7 +54,8 @@
                     url: "{{ route('api.v1.states.byCountry') }}/"
                 }
             },
-            municipality:{
+            {{-- Municipality --}}
+            city_birth:{
                 select: {
                     method: 'GET',
                     url: "{{ route('api.v1.municipalities.select-list') }}/"
@@ -99,7 +100,7 @@
         };
 
         var loadMunicipalities = function () {
-            vm.getForeignData(vm.url.foreign.municipality.byState.url + vm.row.state_related.value, 'municipalityOptions', 'municipality', 'byState');
+            vm.getForeignData(vm.url.foreign.city_birth.byState.url + vm.row.state_related.value, 'cityBirthOptions', 'city_birth', 'byState');
         };
 
         var loadDisability = function () {
