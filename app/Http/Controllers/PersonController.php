@@ -39,7 +39,19 @@ class PersonController extends Controller
 
     public function store(CreatePersonRequest $request)
     {
-    	# code...
+   		if ($request->ajax()) {
+			$input = $request->all();
+            $input['city_birth_id'] = $request->input('city_birth_related.value');
+            $input['disability_id'] = $request->input('disability_related.value');
+            $input['educational_level_id'] = $request->input('educational_level_related.value');
+            $input['type_identification_id'] = $request->input('type_identification_related.value');
+			$person = Person::create($input);
+			$this->setSuccess(true);
+    		$this->addToResponseArray('data', $person);
+            $this->addToResponseArray('message', 'Person successfully added');
+    		return $this->getResponseArrayJson();
+		}
+    	return $this->getResponseArrayJson();
     }
 
 }
