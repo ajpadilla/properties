@@ -558,10 +558,10 @@ Route::group(['prefix' => 'persons'], function()
 		'uses' => 'PersonController@destroy'
 	]);
 
-	/**Route::post('add-photo/{communityId?}', [
-		'as' => 'api.communities.addPhoto',
+	Route::post('add-photo/{personId?}', [
+		'as' => 'api.persons.addPhoto',
 		'uses' => 'PersonController@addPhoto'
-	]);**/
+	]);
 
 
 });
