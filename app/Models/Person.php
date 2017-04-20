@@ -88,7 +88,8 @@ class Person extends Model
       'city_birth_related',
       'disability_related',
       'educational_level_related',
-      'type_identification_related'
+      'type_identification_related',
+      'first_photo'
     ];
 
     /**
@@ -126,7 +127,21 @@ class Person extends Model
     {
       return $this->belongsTo(TypeIdentification::class);
     }
-    
+      
+    public function photos()
+    {
+      return  $this->hasMany(PersonPhoto::class);
+    }
+
+
+    /**
+     *  Check if there are photos associated with the model.
+    */
+    public function hasPhotos()
+    {
+      return $this->photos->count();
+    }
+
     /**
      *
      * -------Accessors And Mutators------
@@ -199,6 +214,20 @@ class Person extends Model
           'text' => $this->typeIdentification->name, 
           'value' => $this->typeIdentification->id
       ];
+    }
+
+
+    /**
+     *  Return the first photo associated with the model.
+    */
+    public function getFirstPhotoAttribute()
+    {
+        if ($this->hasPhotos()) {
+            foreach ($this->photos as $photo) {
+                return $photo;
+            }
+        }
+        return false;
     }
 
 }
