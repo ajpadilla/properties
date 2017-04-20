@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Http\Requests\CreatePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
+use App\Models\PersonPhoto;
 
 class PersonController extends Controller
 {
@@ -164,5 +165,20 @@ class PersonController extends Controller
         }
         return $this->getResponseArrayJson(); 
     }
+
+    public function addPhoto(Request $request, $personId)
+    {
+        if ($request->hasFile('file')) 
+        {
+            $data = [];
+            $data['person_id'] = $personId;
+            $personPhoto = new PersonPhoto;
+            $personPhoto->register($request->file('file'), $data);
+            $this->setSuccess(true);
+            $this->addToResponseArray('personPhoto', $personPhoto);
+            return $this->getResponseArrayJson();  
+        }   
+        return $this->getResponseArrayJson();  
+    } 
 
 }
