@@ -120,12 +120,16 @@ class CommunityController extends Controller
         if ($request->hasFile('file')) 
         {
             $data = [];
-            $data['community_id'] = $communityId;
-            $communityPhoto = new CommunityPhoto;
-            $communityPhoto->register($request->file('file'), $data);
-            $this->setSuccess(true);
-            $this->addToResponseArray('communityPhoto', $communityPhoto);
-            return $this->getResponseArrayJson();  
+            $community = Community::find($communityId);
+            if ($community) {
+                $data['community_id'] = $communityId;
+                $communityPhoto = new CommunityPhoto;
+                $communityPhoto->register($request->file('file'), $data);
+                $this->setSuccess(true);
+                $this->addToResponseArray('communityPhoto', $communityPhoto);
+                return $this->getResponseArrayJson(); 
+            } 
+            return $this->getResponseArrayJson(); 
         }   
         return $this->getResponseArrayJson();  
     }   
