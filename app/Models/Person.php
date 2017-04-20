@@ -56,7 +56,24 @@ class Person extends Model
      * @var array
      */
     protected $searchableColumns = [
-      'name',
+      'identification_number',
+      'first_name',
+      'cityBirth' => [
+        'table' => 'municipalities',
+        'name'
+      ],
+      'disability' => [
+        'table' => 'disabilities',
+        'name'
+      ],
+      'educationalLevel' => [
+        'table' => 'educational_levels',
+        'name'
+      ],
+      'typeIdentification' => [
+        'table' => 'type_identifications',
+        'name'
+      ],
     ];
 
     /**
