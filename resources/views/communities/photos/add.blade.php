@@ -5,7 +5,7 @@
             'modalClose'    => 'photo_ADD_inform',
             'model'         => 'CommunityPhoto',
             'type'			=> 'store',
-            'content'       => view('communities.photos.fields'),
+            'content'       => view('layouts.modals.dropzone'),
             'btbSave'		=> false
 	]);
 ?>
