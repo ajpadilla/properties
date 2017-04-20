@@ -25,9 +25,16 @@ class CommunityPhoto extends Model
     	'community_id'
     ];
 
-     protected $appends = [
+     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+
+    protected $appends = [
         'storage_route'
-     ];
+    ];
+
    	public function register(UploadedFile $file, $data = array())
     {
         $this->upload = new Upload($file);
