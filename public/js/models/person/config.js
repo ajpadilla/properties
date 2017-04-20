@@ -57,6 +57,7 @@ var objectRow = {
 
 var modals = {
     state_ADD_inform: false,
+    photo_ADD_inform: false
 };
 
 var tableColumns = [
@@ -65,6 +66,14 @@ var tableColumns = [
         sortField: 'id',
         visible: false
     },
+    {
+        name: 'first_photo',
+        title: 'Photo',
+        sortField: '',
+        visible: true,
+        callback: 'uploadImage'
+    },
+
     {
         name: 'identification_number',
         title: 'Nro identidad',
@@ -119,6 +128,12 @@ var tableColumns = [
         titleClass: 'text-center',
         dataClass: 'text-center'
     },
+    {
+        name: '__slot:actions',
+        title: 'Actions',
+        titleClass: 'center aligned',
+        dataClass: 'center aligned'
+    }  
 ];
 
 
