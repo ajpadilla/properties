@@ -22,7 +22,7 @@ class PersonPhoto extends Model
     	'mime', 
         'extension',
     	'complete_path', 
-    	'community_id'
+    	'person_id'
     ];
 
     /**
@@ -47,6 +47,21 @@ class PersonPhoto extends Model
             'complete_path' => public_path().'/storage', 
             'person_id' => $data['person_id']
         ]);
+    }
+
+    public function getMimeTypeAttribute()
+    {
+         return Storage::mimeType($this->filename.'.'.$this->extension);
+    }
+
+    public function getSizeAttribute()
+    {
+        return Storage::size($this->filename.'.'.$this->extension);
+    }
+
+    public function getFilenameExtensionAttribute()
+    {
+        return $this->filename.'.'.$this->extension;
     }
 
     public function getStorageRouteAttribute()
