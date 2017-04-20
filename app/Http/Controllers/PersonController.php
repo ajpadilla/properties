@@ -171,12 +171,16 @@ class PersonController extends Controller
         if ($request->hasFile('file')) 
         {
             $data = [];
-            $data['person_id'] = $personId;
-            $personPhoto = new PersonPhoto;
-            $personPhoto->register($request->file('file'), $data);
-            $this->setSuccess(true);
-            $this->addToResponseArray('personPhoto', $personPhoto);
-            return $this->getResponseArrayJson();  
+            $person = Person::find($personId);
+            if($person){
+            	$data['person_id'] = $personId;
+            	$personPhoto = new PersonPhoto;
+            	$personPhoto->register($request->file('file'), $data);
+            	$this->setSuccess(true);
+            	$this->addToResponseArray('personPhoto', $personPhoto);
+            	return $this->getResponseArrayJson();
+            }
+           	return $this->getResponseArrayJson();  
         }   
         return $this->getResponseArrayJson();  
     } 
