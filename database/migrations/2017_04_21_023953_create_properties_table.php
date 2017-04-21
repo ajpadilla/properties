@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
             $table->text('address');
             $table->string('registration_number', 20);
             $table->date('date_construction');
-            $table->boolean('state');
+            $table->boolean('status');
             $table->boolean('reside_property');
             $table->string('type_contract', 30);
             $table->date('start_date_lease');
