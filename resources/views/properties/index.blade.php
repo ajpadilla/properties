@@ -55,6 +55,12 @@
                         url: "{{ route('api.v1.communities.select-list') }}/"
                     }
                 },
+                person: {
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.persons.select-list') }}/"
+                    }
+                },
             }
     };
     </script>
@@ -66,11 +72,16 @@
             vm.getForeignData(vm.url.foreign.type_property.select.url, 'typePropertyOptions', 'type_property', 'select');
         };
 
-        var loadtypeProperties = function () {
+        var loadCommunity = function () {
             vm.getForeignData(vm.url.foreign.community.select.url, 'communityOptions', 'community', 'select');
         };
 
+        var loadPersons = function () {
+            vm.getForeignData(vm.url.foreign.person.select.url, 'personOptions', 'person', 'select');
+        };
+
         loadtypeProperties();
-        loadtypeProperties();
+        loadCommunity();
+        loadPersons();
     </script>
 @endpush
