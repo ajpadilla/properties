@@ -572,5 +572,9 @@ Route::group(['prefix' => 'persons'], function()
 		'uses' => 'PersonController@addPhoto'
 	]);
 
+	Route::get('select-list', [
+		'as' => 'api.v1.persons.select-list',
+		'uses' => 'PersonController@selectList'
+	]);
 
 });
