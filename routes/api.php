@@ -529,6 +529,10 @@ Route::group(['prefix' => 'communities'], function()
 		'uses' => 'CommunityController@addPhoto'
 	]);
 
+	Route::get('select-list', [
+		'as' => 'api.v1.communities.select-list',
+		'uses' => 'CommunityController@selectList'
+	]);
 });
 
 /**
