@@ -10,7 +10,7 @@ var objectRow = {
     address: '',
     registration_number: '',
     date_construction: '',
-    state: '',
+    status: '',
     reside_property: '',
     type_contract: '',
     start_date_lease: '',
@@ -26,9 +26,9 @@ var objectRow = {
     person_related: {
         value: "",
         text: ""
-    }
+    },
     created_at: "",
-    updated_at: "",
+    updated_at: ""
 };
 
 var modals = {
