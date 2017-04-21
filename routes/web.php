@@ -196,6 +196,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Properties ---------------
+	 */
+	Route::group(['prefix' => 'properties'], function(){
+
+		Route::get('', [
+			'as' => 'properties',
+			'uses' => 'PropertyController@showList'
+		]);	
+	});
+
 
 }); 
 
