@@ -26,9 +26,9 @@ var objectRow = {
     person_related: {
         value: "",
         text: ""
-    }
+    },
     created_at: "",
-    updated_at: "",
+    updated_at: ""
 };
 
 var modals = {
