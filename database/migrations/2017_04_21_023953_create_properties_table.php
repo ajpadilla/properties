@@ -46,7 +46,6 @@ class CreatePropertiesTable extends Migration
             ->on('persons')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
