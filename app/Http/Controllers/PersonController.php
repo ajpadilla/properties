@@ -117,36 +117,6 @@ class PersonController extends Controller
             unset($input['type_identification_related']);
             $person = Person::find($id);
             $person->update($input);
-            /*$person->identification_number =  $input['identification_number'];
-	  		$person->business_name = $input['business_name'];
-	  		$person->first_name = $input['first_name'];
-	  		$person->second_name = $input['second_name'];
-	  		$person->first_surname = $input['first_surname'];
-	  		$person->second_surname = $input['second_surname'];
-	  		$person->home_phone = $input['home_phone'];
-	  		$person->auxiliary_phone = $input['auxiliary_phone'];
-	  		$person->cell_phone = $input['cell_phone'];
-	  		$person->auxiliary_cell = $input['auxiliary_cell'];
-	  		$person->home_email = $input['home_email'];
-	  		$person->auxiliary_email = $input['auxiliary_email'];
-	  		$person->correspondence_address = $input['correspondence_address'];
-	  		$person->city_correspondence = $input['city_correspondence'];
-	  		$person->country_correspondence = $input['country_correspondence'];
-	  		$person->office_address = $input['office_address'];
-	  		$person->city_office = $input['city_office'];
-	  		$person->country_office = $input['country_office'];
-	  		$person->birth_date = '2016-01-01';
-	  		$person->gender = $input['gender'];
-	  		$person->civil_status = $input['civil_status'];
-	  		$person->cod_labor_activity = $input['cod_labor_activity'];
-	  		$person->admission_date = $input['admission_date'];
-	  		$person->cancellation_date = $input['cancellation_date'];
-	  		$person->status = $input['status'];
-	  		$person->city_birth_id = $input['city_birth_id'];
-	  		$person->disability_id = $input['disability_id'];
-	  		$person->educational_level_id = $input['educational_level_id'];
-	  		$person->type_identification_id = $input['type_identification_id'];
-	  		$person->update();*/
             $this->setSuccess(true);
             $this->addToResponseArray('data', $person);
             $this->addToResponseArray('message', 'Person successfully update');
@@ -161,6 +131,19 @@ class PersonController extends Controller
             $person = Person::find($id);
             $this->setSuccess($person->delete());
             $this->addToResponseArray('message', 'Person successfully delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+    public function selectList(Request $request)
+    {
+        if ($request->ajax())
+        {   
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', 
+                Person::all()->pluck('name', 'id')->toArray()
+            );
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
