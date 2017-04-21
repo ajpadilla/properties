@@ -120,7 +120,7 @@
 						<div class="form-group">
 							<label for="community_related" class="col-sm-2 control-label">Community</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.cityBirthOptions"
+								<basic-select :options="foreignData.communityOptions"
 									:selected-option="row.community_related"
 									placeholder="select item"
 									@select="onSelect">
