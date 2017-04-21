@@ -49,6 +49,12 @@
                         url: "{{ route('api.v1.typeProperties.select-list') }}/"
                     }
                 },
+                community: {
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.communities.select-list') }}/"
+                    }
+                },
             }
     };
     </script>
@@ -60,6 +66,11 @@
             vm.getForeignData(vm.url.foreign.type_property.select.url, 'typePropertyOptions', 'type_property', 'select');
         };
 
+        var loadtypeProperties = function () {
+            vm.getForeignData(vm.url.foreign.community.select.url, 'communityOptions', 'community', 'select');
+        };
+
+        loadtypeProperties();
         loadtypeProperties();
     </script>
 @endpush
