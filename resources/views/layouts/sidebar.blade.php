@@ -118,6 +118,11 @@
                 <i class="fa fa-circle-o"></i> Persons
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/properties') }}">
+                <i class="fa fa-circle-o"></i> Properties
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
