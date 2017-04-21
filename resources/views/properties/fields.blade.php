@@ -109,7 +109,7 @@
 						<div class="form-group">
 							<label for="type_property_related" class="col-sm-2 control-label">Type property</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.cityBirthOptions"
+								<basic-select :options="foreignData.typePropertyOptions"
 									:selected-option="row.type_property_related"
 									placeholder="select item"
 									@select="onSelect">
