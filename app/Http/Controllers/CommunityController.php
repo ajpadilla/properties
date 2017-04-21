@@ -115,6 +115,20 @@ class CommunityController extends Controller
     }
 
 
+    public function selectList(Request $request)
+    {
+        if ($request->ajax())
+        {   
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', 
+                Community::all()->pluck('name', 'id')->toArray()
+            );
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+
     public function addPhoto(Request $request, $communityId)
     {
         if ($request->hasFile('file')) 
