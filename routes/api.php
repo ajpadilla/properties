@@ -46,7 +46,12 @@ Route::group(['prefix' => 'typeProperties'], function()
 	Route::delete('delete/{id?}', [
 		'as' => 'api.typeProperties.delete',
 		'uses' => 'TypePropertyController@destroy'
-	]);		
+	]);	
+
+	Route::get('select-list', [
+		'as' => 'api.v1.typeProperties.select-list',
+		'uses' => 'TypePropertyController@selectList'
+	]);	
 });
 
 /**
