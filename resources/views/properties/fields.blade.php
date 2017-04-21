@@ -131,7 +131,7 @@
 						<div class="form-group">
 							<label for="person_related" class="col-sm-2 control-label">Person</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.cityBirthOptions"
+								<basic-select :options="foreignData.personOptions"
 									:selected-option="row.person_related"
 									placeholder="select item"
 									@select="onSelect">
