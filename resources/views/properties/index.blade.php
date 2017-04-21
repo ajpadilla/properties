@@ -43,93 +43,23 @@
             update: "{{ route('api.persons.update') }}/",
             delete: "{{ route('api.persons.delete') }}/",
             foreign: {
-               country: {
-                select: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.countries.select-list') }}/"
-                }
-            },
-            state: {
-                byCountry: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.states.byCountry') }}/"
-                }
-            },
-            {{-- Municipality --}}
-            city_birth:{
-                select: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.municipalities.select-list') }}/"
+               type_property: {
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.typeProperties.select-list') }}/"
+                    }
                 },
-                byState: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.municipalities.byState') }}/"
-                }
-            },
-            disability:{
-                select: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.disabilities.select-list') }}/"
-                },
-            },
-            educational_level:{
-                select: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.educationalLevels.select-list') }}/"
-                },
-            },
-            type_identification:{
-                select: {
-                    method: 'GET',
-                    url: "{{ route('api.v1.typeIdentifications.select-list') }}/"
-                },
-            },
-        }
+            }
     };
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
         var vm = window.vm;
 
-        var loadCountries = function () {
-            vm.getForeignData(vm.url.foreign.country.select.url, 'countryOptions', 'country', 'select');
+        var loadtypeProperties = function () {
+            vm.getForeignData(vm.url.foreign.type_property.select.url, 'typePropertyOptions', 'type_property', 'select');
         };
 
-        var loadStates = function () {
-            console.log(vm.url.foreign.state.byCountry.url + vm.row.country_related.value);
-            vm.getForeignData(vm.url.foreign.state.byCountry.url + vm.row.country_related.value, 'stateOptions', 'state', 'byCountry');
-        };
-
-        var loadMunicipalities = function () {
-            vm.getForeignData(vm.url.foreign.city_birth.byState.url + vm.row.state_related.value, 'cityBirthOptions', 'city_birth', 'byState');
-        };
-
-        var loadDisability = function () {
-            vm.getForeignData(vm.url.foreign.disability.select.url, 'disabilityOptions', 'disability', 'select');
-            console.log();
-        }
-
-        var loadEducationalLevel = function () {
-            vm.getForeignData(vm.url.foreign.educational_level.select.url, 'educationalLevelOptions', 'educational_level', 'select');
-        }
-
-        var loadTypeIdentification = function () {
-            vm.getForeignData(vm.url.foreign.type_identification.select.url, 'typeIdentificationOptions', 'type_identification', 'select');
-        }
-
-
-        loadCountries();
-        loadDisability();
-        loadEducationalLevel();
-        loadTypeIdentification();
-
-        vm.$watch('row.country_related.value', function (value) {
-            loadStates();
-        });
-
-         vm.$watch('row.state_related.value', function (value) {
-            loadMunicipalities();
-        });
-
+        loadtypeProperties();
     </script>
 @endpush
