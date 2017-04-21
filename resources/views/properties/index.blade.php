@@ -33,7 +33,7 @@
 {{--@section('title-content', 'Listing event types')--}}
 
 @push('vue-scripts')
-    {!! Html::script('js/models/person/config.js') !!}
+    {!! Html::script('js/models/property/config.js') !!}
     <script type="text/javascript">
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
