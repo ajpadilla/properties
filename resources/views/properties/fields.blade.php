@@ -11,268 +11,134 @@
 				<div class="box-body">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Identification number</label>
+							<label for="description" class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-10">
-								<input type="text" v-model="row.identification_number" class="form-control" placeholder="Code">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Business name</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.business_name" class="form-control" placeholder="Business name">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">First name</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.first_name" class="form-control" placeholder="First name">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Second name</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.second_name" class="form-control" placeholder="Second name">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">First surname</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.first_surname" class="form-control" placeholder="First name">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Second surname</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.second_surname" class="form-control" placeholder="Second name">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Home phone</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.home_phone" class="form-control" placeholder="Home phone">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Auxiliary phone</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.auxiliary_phone" class="form-control" placeholder="Auxiliary phone">
-							</div>
-						</div>	
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Cell phone</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.cell_phone" class="form-control" placeholder="Cell phone">
-							</div>
-						</div>	
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Auxiliary cell</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.auxiliary_cell" class="form-control" placeholder="Auxiliary cell">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Home email</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.home_email" class="form-control" placeholder="Home email">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Auxiliary email</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.auxiliary_email" class="form-control" placeholder="Auxiliary email">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="reason_retiring" class="col-sm-2 control-label">Correspondence address</label>
-							<div class="col-sm-10">
-								<textarea class="form-control" rows="1" v-model="row.correspondence_address">
+								<textarea class="form-control" rows="1" v-model="row.description">
 								</textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">City correspondence</label>
+							<label for="number" class="col-sm-2 control-label">Identification number</label>
 							<div class="col-sm-10">
-								<input type="text" v-model="row.city_correspondence" class="form-control" placeholder="City correspondence">
+								<input type="text" v-model="row.number" class="form-control" placeholder="Number">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Country correspondence</label>
+							<label for="area" class="col-sm-2 control-label">Area</label>
 							<div class="col-sm-10">
-								<input type="text" v-model="row.country_correspondence" class="form-control" placeholder="Country correspondence">
+								<input type="text" v-model="row.area" class="form-control" placeholder="Number">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="number_habitants" class="col-sm-2 control-label">Number habitants</label>
+							<div class="col-sm-10">
+								<input type="text" v-model="row.number_habitants" class="form-control" placeholder="Number habitants">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="number_pets" class="col-sm-2 control-label">Number pets</label>
+							<div class="col-sm-10">
+								<input type="text" v-model="row.number_pets" class="form-control" placeholder="Number pets">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="address" class="col-sm-2 control-label">Address</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="1" v-model="row.address">
+								</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="registration_number" class="col-sm-2 control-label">Registration number</label>
+							<div class="col-sm-10">
+								<input type="text" v-model="row.registration_number" class="form-control" placeholder="Registration number">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="date_construction" class="col-sm-2 control-label">Date construction</label>
+							<div class="col-sm-10">
+								<datepicker v-model="row.date_construction" format="yyyy-MM-dd">
+								</datepicker>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="reason_retiring" class="col-sm-2 control-label">Office address</label>
-							<div class="col-sm-10">
-								<textarea class="form-control" rows="1" v-model="row.office_address">
-								</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">City office</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.city_office" class="form-control" placeholder="City office">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Country office</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.country_office" class="form-control" placeholder="Country office">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Birth date</label>
-							<div class="col-sm-10">
-								{{--<input type="date" v-model="row.birth_date" class="form-control" placeholder="Birth date">--}}
-								<datepicker v-model="row.birth_date" format="yyyy-MM-dd">
-								</datepicker>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="cell_phone" class="col-sm-2 control-label">Gender</label>
-							<div class="col-sm-10">
-								<input type="radio" id="male" value="male" v-model="row.gender">
-								<label for="male">Male</label>
-								<br>
-								<input type="radio" id="female" value="female" v-model="row.gender">
-								<label for="female">Female</label>
-								<br>
-							</div>
-						</div>
-						<!-- civil status Id Field -->
-						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">Civil status:</label>
-							<div class="col-sm-10">
-								{{--<basic-select :options=""
-									:selected-option="row.country_related"
-									placeholder="select item"
-									@select="onSelect">
-								</basic-select>--}}
-								<select v-model="row.civil_status">
-								  <option disabled value="">Please select one</option>
-								  <option>married</option>
-								  <option>bachelor</option>
-								  <option>divorced</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Cod labor activity</label>
-							<div class="col-sm-10">
-								<input type="text" v-model="row.cod_labor_activity" class="form-control" placeholder="Cod labor activity">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Admission date</label>
-							<div class="col-sm-10">
-								{{--<input type="date" v-model="row.admission_date" class="form-control" placeholder="Admission date">--}}
-								<datepicker v-model="row.admission_date" format="yyyy-MM-dd">
-								</datepicker>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Cancellation date</label>
-							<div class="col-sm-10">
-								{{--<input type="date" v-model="row.cancellation_date" class="form-control" placeholder="Cancellation date">--}}
-								<datepicker v-model="row.cancellation_date" format="yyyy-MM-dd">
-								</datepicker>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="cell_phone" class="col-sm-2 control-label">Status</label>
+							<label for="cell_phone" class="col-sm-2 control-label">status</label>
 							<div class="col-sm-10">
 								<input type="radio" id="active" value="1" v-model="row.status">
-								<label for="active">Activa</label>
+								<label for="male">Active</label>
 								<br>
 								<input type="radio" id="inactive" value="0" v-model="row.status">
-								<label for="inactive">Inactiva</label>
+								<label for="female">inactive</label>
 								<br>
 							</div>
 						</div>
-						<!-- Contry Id Field -->
 						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">Country:</label>
+							<label for="cell_phone" class="col-sm-2 control-label">Reside property</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.countryOptions"
-									:selected-option="row.country_related"
-									placeholder="select item"
-									@select="onSelect">
-								</basic-select>
-								{{--<select class="form-control" v-model="row.country_related.value">
-									<option v-for="country in foreignData.countryOptions" 
-									v-bind:value="country.value">		
-										@{{ country.text }}
-									</option>
-								</select>--}}
+								<input type="radio" id="Yes" value="1" v-model="row.reside_property">
+								<label for="male">Yes</label>
+								<br>
+								<input type="radio" id="No" value="0" v-model="row.reside_property">
+								<label for="female">No</label>
+								<br>
 							</div>
 						</div>
-						<!-- State Id Field -->
 						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">State:</label>
+							<label for="type_contract" class="col-sm-2 control-label">Registration number</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.stateOptions"
-									:selected-option="row.state_related"
-									placeholder="select item"
-									@select="onSelect">
-								</basic-select>
-								{{--<select class="form-control" v-model="row.state_related.value">
-									<option v-for="state in foreignData.stateOptions" 
-									v-bind:value="state.value">		
-										@{{ state.text}}
-									</option>
-								</select>--}}
+								<input type="text" v-model="row.type_contract" class="form-control" placeholder="Type contract">
 							</div>
 						</div>
-						<!-- City birth Id Field -->
 						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">City birth</label>
+							<label for="start_date_lease" class="col-sm-2 control-label">Start date lease</label>
+							<div class="col-sm-10">
+								<datepicker v-model="row.start_date_lease" format="yyyy-MM-dd">
+								</datepicker>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="end_date_lease" class="col-sm-2 control-label">End date lease</label>
+							<div class="col-sm-10">
+								<datepicker v-model="row.end_date_lease" format="yyyy-MM-dd">
+								</datepicker>
+							</div>
+						</div>										
+						<!-- type property Id Field -->
+						<div class="form-group">
+							<label for="type_property_related" class="col-sm-2 control-label">Type property</label>
 							<div class="col-sm-10">
 								<basic-select :options="foreignData.cityBirthOptions"
-									:selected-option="row.city_birth_related"
+									:selected-option="row.type_property_related"
 									placeholder="select item"
 									@select="onSelect">
 								</basic-select>
 							</div>
 						</div>
-						<!-- Disability Id Field -->
+						<!-- community Id Field -->
 						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">Disability</label>
+							<label for="community_related" class="col-sm-2 control-label">Community</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.disabilityOptions"
-									:selected-option="row.disability_related"
+								<basic-select :options="foreignData.cityBirthOptions"
+									:selected-option="row.community_related"
 									placeholder="select item"
 									@select="onSelect">
 								</basic-select>
-							</div>
+							</div>						
 						</div>
-
-						<!-- educational level Id Field -->
+						<!-- person Id Field -->
 						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">Educational Level</label>
+							<label for="person_related" class="col-sm-2 control-label">Person</label>
 							<div class="col-sm-10">
-								<basic-select :options="foreignData.educationalLevelOptions"
-									:selected-option="row.educational_level_related"
+								<basic-select :options="foreignData.cityBirthOptions"
+									:selected-option="row.person_related"
 									placeholder="select item"
 									@select="onSelect">
 								</basic-select>
-							</div>
-						</div>
-
-						<!-- Type identification Id Field -->
-						<div class="form-group">
-							<label for="currency_id" class="col-sm-2 control-label">Type identification</label>
-							<div class="col-sm-10">
-								<basic-select :options="foreignData.typeIdentificationOptions"
-									:selected-option="row.type_identification_related"
-									placeholder="select item"
-									@select="onSelect">
-								</basic-select>
-							</div>
+							</div>						
 						</div>
 					</div>
-					
 				</div>
 				<!-- /.box-body -->
 			</form>
