@@ -10,7 +10,7 @@ var objectRow = {
     address: '',
     registration_number: '',
     date_construction: '',
-    state: '',
+    status: '',
     reside_property: '',
     type_contract: '',
     start_date_lease: '',
