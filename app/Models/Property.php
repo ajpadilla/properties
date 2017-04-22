@@ -37,7 +37,7 @@ class Property extends Model
      * @var array
     */
     protected $searchableColumns = [
-
+      ''
     ];
 
     /**
@@ -50,7 +50,8 @@ class Property extends Model
       'status_format',
       'type_property_related',
       'community_related',
-      'person_related'
+      'person_related',
+      'first_photo'
     ];
 
     /**
@@ -83,6 +84,20 @@ class Property extends Model
     {
    		return $this->belongsTo(Person::class);
     }
+
+    public function photos()
+    {
+      return  $this->hasMany(PropertyPhoto::class);
+    }
+
+    /**
+     *  Check if there are photos associated with the model.
+    */
+    public function hasPhotos()
+    {
+      return $this->photos->count();
+    }
+
 
 
     /**
@@ -130,5 +145,18 @@ class Property extends Model
         'text' => $this->person->first_name,
         'value' => $this->person->id
       ];
+    }
+
+     /**
+     *  Return the first photo associated with the model.
+    */
+    public function getFirstPhotoAttribute()
+    {
+        if ($this->hasPhotos()) {
+            foreach ($this->photos as $photo) {
+                return $photo;
+            }
+        }
+        return false;
     }
 }
