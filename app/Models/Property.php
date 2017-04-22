@@ -47,7 +47,10 @@ class Property extends Model
     */
 
     protected $appends = [
-      
+      'status_format',
+      'type_property_related',
+      'community_related',
+      'person_related'
     ];
 
     /**
@@ -57,12 +60,29 @@ class Property extends Model
     */
 
     protected $dates = [
-       
+       'date_construction',
+       'start_date_lease',
+       'end_date_lease'
     ];
 
     /**
      * ------ Relations ------ 
     */
+
+    public function typeProperty()
+    {
+   		return $this->belongsTo(TypeProperty::class);
+    }
+
+    public function community()
+    {
+   		return $this->belongsTo(Community::class);
+    }
+
+    public function person()
+    {
+   		return $this->belongsTo(Person::class);
+    }
 
 
     /**
@@ -71,4 +91,44 @@ class Property extends Model
      *
     */
 
+    public function setDateConstructionAttribute($value) {
+      $this->attributes['date_construction'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function setStartDateLeaseAttribute($value) {
+      $this->attributes['start_date_lease'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function setEndDateLeaseAttribute($value) {
+      $this->attributes['end_date_lease'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function getStatusFormatAttribute()
+    {
+      return $this->status ? 'Active' : 'Inactive';
+    }
+
+    public function getTypePropertyRelatedAttribute()
+    {
+      return [
+        'text' => $this->typeProperty->name,
+        'value' => $this->typeProperty->id
+      ];
+    }
+
+    public function getCommunityRelatedAttribute()
+    {
+      return [
+        'text' => $this->community->name,
+        'value' => $this->community->id
+      ];
+    }
+
+    public function getPersonRelatedAttribute()
+    {
+      return [
+        'text' => $this->person->first_name,
+        'value' => $this->person->id
+      ];
+    }
 }
