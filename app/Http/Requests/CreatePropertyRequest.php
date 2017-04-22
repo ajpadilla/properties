@@ -30,7 +30,7 @@ class CreatePropertyRequest extends FormRequest
             'number_habitants' => 'required|integer',
             'number_pets' => 'required|integer',
             'address' => 'required|min:1|max:500',
-            'registration_number' => 'required|min:1|max:20',
+            'registration_number' => 'required|min:1|max:20|unique:properties,registration_number',
             'date_construction' => 'required', 
             'status' => 'required|integer',
             'reside_property' => 'required|integer',
