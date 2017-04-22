@@ -611,14 +611,10 @@ Route::group(['prefix' => 'properties'], function()
 		'uses' => 'PropertyController@destroy'
 	]);
 
-	/*Route::post('add-photo/{personId?}', [
+	Route::post('add-photo/{personId?}', [
 		'as' => 'api.properties.addPhoto',
-		'uses' => 'PersonController@addPhoto'
+		'uses' => 'PropertyController@addPhoto'
 	]);
 
-	Route::get('select-list', [
-		'as' => 'api.v1.properties.select-list',
-		'uses' => 'PersonController@selectList'
-	]);*/
 
 });
