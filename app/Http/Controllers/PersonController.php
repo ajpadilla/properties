@@ -142,7 +142,7 @@ class PersonController extends Controller
         {   
             $this->setSuccess(true);
             $this->addToResponseArray('data', 
-                Person::all()->pluck('name', 'id')->toArray()
+                Person::all()->pluck('first_name', 'id')->toArray()
             );
             return $this->getResponseArrayJson(); 
         }
