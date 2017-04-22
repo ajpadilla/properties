@@ -86,7 +86,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="type_contract" class="col-sm-2 control-label">Registration number</label>
+							<label for="type_contract" class="col-sm-2 control-label">Type contract</label>
 							<div class="col-sm-10">
 								<input type="text" v-model="row.type_contract" class="form-control" placeholder="Type contract">
 							</div>
