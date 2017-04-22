@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Models\PropertyPhoto;
 
 class PropertyController extends Controller
 {
@@ -100,6 +101,25 @@ class PropertyController extends Controller
         }
         return $this->getResponseArrayJson(); 
     }
+
+    public function addPhoto(Request $request, $propertyId)
+    {
+        if ($request->hasFile('file')) 
+        {
+            $data = [];
+            $property = Property::find($propertyId);
+            if($property){
+            	$data['property_id'] = $propertyId;
+            	$propertyPhoto = new PropertyPhoto;
+            	$propertyPhoto->register($request->file('file'), $data);
+            	$this->setSuccess(true);
+            	$this->addToResponseArray('propertyPhoto', $propertyPhoto);
+            	return $this->getResponseArrayJson();
+            }
+           	return $this->getResponseArrayJson();  
+        }   
+        return $this->getResponseArrayJson();  
+    } 
 
 
 }
