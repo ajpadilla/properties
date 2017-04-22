@@ -38,10 +38,10 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            store: "{{ route('api.persons.store') }}/",
-            show: "{{ route('api.persons.show') }}/",
-            update: "{{ route('api.persons.update') }}/",
-            delete: "{{ route('api.persons.delete') }}/",
+            store: "{{ route('api.properties.store') }}/",
+            show: "{{ route('api.properties.show') }}/",
+            update: "{{ route('api.properties.update') }}/",
+            delete: "{{ route('api.properties.delete') }}/",
             foreign: {
                type_property: {
                     select: {
