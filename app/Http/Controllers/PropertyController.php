@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Http\Requests\CreatePropertyRequest;
 
 class PropertyController extends Controller
 {
@@ -36,5 +37,24 @@ class PropertyController extends Controller
     {
         return view('properties.index');
     }
+
+    public function store(CreatePropertyRequest $request){
+    	if ($request->ajax()) {
+    		$input = $request->all();
+    		$input['type_property_id'] = $request->input('type_property_related.value');
+    		unset($input['type_property_related']);
+    		$input['community_id'] = $request->input('community_related.value');
+    		unset($input['community_related']);
+    		$input['person_id'] = $request->input('person_related.value');
+    		unset($input['person_related']);
+    		$property = Property::create($input);
+    		$this->setSuccess(true);
+    		$this->addToResponseArray('data', $property);
+    		$this->addToResponseArray('message', 'Property successfully added');
+    		return $this->getResponseArrayJson();
+    	}
+    	return $this->getResponseArrayJson();
+    }
+
 
 }
