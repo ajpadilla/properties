@@ -62,9 +62,9 @@ var tableColumns = [
         visible: true
     },
     {
-        name: 'state',
+        name: 'status_format',
         title: 'Estatus',
-        sortField: 'state',
+        sortField: 'status_format',
         visible: true
     },
     {
