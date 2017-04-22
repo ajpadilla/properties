@@ -578,3 +578,47 @@ Route::group(['prefix' => 'persons'], function()
 	]);
 
 });
+
+/**
+ * ------------------- API Route for Properties ---------------
+ */
+
+Route::group(['prefix' => 'properties'], function()
+{
+	Route::get('/',[
+		'as' => 'api.properties.index',
+		'uses' => 'PropertyController@index'
+	]);	
+
+	Route::post('store', [
+		'as' => 'api.properties.store',
+		'uses' => 'PropertyController@store'
+	]);
+
+
+	Route::get('show/{id?}', [
+			'as' => 'api.properties.show',
+			'uses' => 'PropertyController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.properties.update',
+			'uses' => 'PropertyController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.properties.delete',
+		'uses' => 'PropertyController@destroy'
+	]);
+
+	/*Route::post('add-photo/{personId?}', [
+		'as' => 'api.properties.addPhoto',
+		'uses' => 'PersonController@addPhoto'
+	]);
+
+	Route::get('select-list', [
+		'as' => 'api.v1.properties.select-list',
+		'uses' => 'PersonController@selectList'
+	]);*/
+
+});
