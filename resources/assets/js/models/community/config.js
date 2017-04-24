@@ -39,6 +39,14 @@ var modals = {
     photo_ADD_inform: false
 };
 
+var options = {
+    countryOptions: [],
+    stateOptions: [],
+    municipalityOptions: [],
+    typeCommunityOptions: []
+};
+
+
 var tableColumns = [
 {
     name: 'id',
