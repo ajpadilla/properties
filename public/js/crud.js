@@ -26068,7 +26068,7 @@ window.vm = new Vue({
     columns: tableColumns,
     lastOpenModal: [],
     localModals: typeof modals !== 'undefined' ? modals : {},
-    foreignData: {},
+    foreignData: typeof options !== 'undefined' ? options : {},
     method: '',
     formModal: false,
     showModal: false,
