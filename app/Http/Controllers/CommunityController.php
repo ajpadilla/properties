@@ -122,7 +122,10 @@ class CommunityController extends Controller
             if ($community) {
                 $data['community_id'] = $communityId;
                 $communityPhoto = new CommunityPhoto;
-                $communityPhoto->register($request->file('file'), $data);
+                $communityPhoto->register($request->file('file'),
+                    'storage/communities/community_'.$communityId.'_photos/',
+                    $data
+                );
                 $this->setSuccess(true);
                 $this->addToResponseArray('communityPhoto', $communityPhoto);
                 return $this->getResponseArrayJson(); 

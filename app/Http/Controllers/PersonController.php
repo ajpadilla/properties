@@ -158,7 +158,10 @@ class PersonController extends Controller
             if($person){
             	$data['person_id'] = $personId;
             	$personPhoto = new PersonPhoto;
-            	$personPhoto->register($request->file('file'), $data);
+            	$personPhoto->register($request->file('file'),
+                    'storage/persons/person_'.$personId.'_photos/',
+                    $data
+                );
             	$this->setSuccess(true);
             	$this->addToResponseArray('personPhoto', $personPhoto);
             	return $this->getResponseArrayJson();

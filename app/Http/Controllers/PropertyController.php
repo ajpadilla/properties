@@ -111,7 +111,9 @@ class PropertyController extends Controller
             if($property){
             	$data['property_id'] = $propertyId;
             	$propertyPhoto = new PropertyPhoto;
-            	$propertyPhoto->register($request->file('file'), $data);
+            	$propertyPhoto->register($request->file('file'), 
+                    'storage/properties/property_'.$propertyId.'_photos/',
+            		$data);
             	$this->setSuccess(true);
             	$this->addToResponseArray('propertyPhoto', $propertyPhoto);
             	return $this->getResponseArrayJson();
