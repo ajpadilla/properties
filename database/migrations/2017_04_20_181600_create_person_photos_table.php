@@ -16,10 +16,12 @@ class CreatePersonPhotosTable extends Migration
         Schema::create('person_photos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename');
-            $table->string('original_filename');
-            $table->string('mime');
-            $table->string('extension');
+            $table->string('path');
             $table->string('complete_path');
+            $table->string('complete_thumbnail_path');
+            $table->integer('size');
+            $table->string('extension', 3);
+            $table->string('mimetype', 32);
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')
                 ->references('id')

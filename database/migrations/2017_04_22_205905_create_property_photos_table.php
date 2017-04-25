@@ -16,10 +16,12 @@ class CreatePropertyPhotosTable extends Migration
         Schema::create('property_photos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('filename');
-            $table->string('original_filename');
-            $table->string('mime');
-            $table->string('extension');
+            $table->string('path');
             $table->string('complete_path');
+            $table->string('complete_thumbnail_path');
+            $table->integer('size');
+            $table->string('extension', 3);
+            $table->string('mimetype', 32);
             $table->integer('property_id')->unsigned();
             $table->foreign('property_id')
                 ->references('id')
