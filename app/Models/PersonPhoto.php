@@ -17,11 +17,13 @@ class PersonPhoto extends Model
      * @var array
      */
     protected $fillable = [
-    	'filename',
-    	'original_filename', 
-    	'mime', 
+    	'complete_path',
+        'complete_thumbnail_path',
+        'filename',
+        'path',
         'extension',
-    	'complete_path', 
+        'size',
+        'mimetype',
     	'person_id'
     ];
 
@@ -35,38 +37,40 @@ class PersonPhoto extends Model
         'storage_route'
     ];
 
-    public function register(UploadedFile $file, $data = array())
+    public function register(UploadedFile $file, $path = '', $data = array())
     {
-        $this->upload = new Upload($file);
+        $this->upload = new Upload($file,74,103,$path);
         $this->upload->process();
-        $this->create([
-            'filename' => $this->upload->getFile()->getFilename(),
-            'original_filename' => $this->upload->getFile()->getClientOriginalName(), 
-            'mime' => $this->upload->getFile()->getClientMimeType(),
-            'extension' => $this->upload->getFile()->getClientOriginalExtension(), 
-            'complete_path' => public_path().'/storage', 
-            'person_id' => $data['person_id']
-        ]);
+        $result = array_merge($data,[
+            'complete_path' => $this->upload->getCompletePublicFilePath(),
+            'complete_thumbnail_path'=> $this->upload->getCompleteThumbnailPublicFilePath(),
+            'filename' => $this->upload->getFileName(),
+            'path' => $this->upload->getUploadPath(),
+            'extension' => $this->upload->getFileExtension(),
+            'size' => $this->upload->getSize(),
+            'mimetype' => $this->upload->getMimeType(),
+            ]);
+        $this->create($result);    
     }
-
+    
     public function getMimeTypeAttribute()
     {
-         return Storage::mimeType($this->filename.'.'.$this->extension);
+        // return Storage::mimeType($this->filename.'.'.$this->extension);
     }
 
     public function getSizeAttribute()
     {
-        return Storage::size($this->filename.'.'.$this->extension);
+        //return Storage::size($this->filename.'.'.$this->extension);
     }
 
     public function getFilenameExtensionAttribute()
     {
-        return $this->filename.'.'.$this->extension;
+       return $this->filename.'.'.$this->extension;
     }
 
     public function getStorageRouteAttribute()
     {
-        return '/storage/'.$this->filename_extension;
+        return $this->complete_path;
     }
 
 }
