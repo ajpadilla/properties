@@ -35,6 +35,12 @@ var modals = {
     photo_ADD_inform: false
 };
 
+var options = {
+    typePropertyOptions: [],
+    communityOptions: [],
+    personOptions: []
+};
+
 var tableColumns = [
     {
         name: 'id',
