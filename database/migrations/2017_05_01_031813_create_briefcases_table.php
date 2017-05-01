@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBriefcaseTable extends Migration
+class CreateBriefcasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBriefcaseTable extends Migration
      */
     public function up()
     {
-        Schema::create('briefcase', function (Blueprint $table) {
+        Schema::create('briefcases', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date_cut');
             $table->date('publication_date');
@@ -44,6 +44,6 @@ class CreateBriefcaseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('briefcase');
+        Schema::dropIfExists('briefcases');
     }
 }
