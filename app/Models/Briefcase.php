@@ -78,6 +78,12 @@ class Briefcase extends Model
     	return $this->belongsToMany(Due::class, 'briefcase_due', 'briefcase_id', 'due_id')->withPivot('amount')->withTimestamps();
     }
 
+    public function sanctions()
+    {
+    	return $this->belongsToMany(Sanction::class, 'briefcase_sanction', 'briefcase_id', 'sanction_id')->withPivot('amount')->withTimestamps();
+    }
+
+
     /**
      *
      * -------Accessors And Mutators------
