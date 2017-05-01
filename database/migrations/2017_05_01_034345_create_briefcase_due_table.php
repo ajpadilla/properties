@@ -27,6 +27,7 @@ class CreateBriefcaseDueTable extends Migration
             ->on('dues')
             ->onDelete('restrict')
             ->onUpdate('cascade');
+            $table->unique(['briefcase_id', 'due_id']);  
             $table->timestamps();
         });
     }

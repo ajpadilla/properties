@@ -27,6 +27,7 @@ class CreateBriefcaseSanctionTable extends Migration
             ->on('sanctions')
             ->onDelete('restrict')
             ->onUpdate('cascade');
+            $table->unique(['briefcase_id', 'sanction_id']);  
             $table->timestamps();
         });
     }

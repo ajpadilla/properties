@@ -27,6 +27,7 @@ class CreateBriefcaseInterestTable extends Migration
             ->on('interests')
             ->onDelete('restrict')
             ->onUpdate('cascade');
+            $table->unique(['briefcase_id', 'interest_id']);  
             $table->timestamps();
         });
     }
