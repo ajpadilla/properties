@@ -11,7 +11,7 @@ class Interest extends Model
 {
 	use SearchTrait, SortTrait;
 
-	public $table = 'interest';
+	public $table = 'interests';
 
 	/**
 	     * The attributes that are mass assignable.
