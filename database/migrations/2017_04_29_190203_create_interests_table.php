@@ -16,7 +16,6 @@ class CreateInterestsTable extends Migration
         Schema::create('interests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->float('percent', 8, 2);
             $table->timestamps();
         });
     }
