@@ -16,7 +16,6 @@ class CreateSanctionsTable extends Migration
         Schema::create('sanctions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->float('amount', 8, 2
             $table->timestamps();
         });
     }
