@@ -13,35 +13,35 @@ class Briefcase extends Model
 
 	public $table = 'briefcases';
 
-  /**
+  	/**
      * The attributes that are mass assignable.
      *
      * @var array
-  */
-  protected $fillable = [
-    'date_cut', 
-    'publication_date', 
-    'honorarium',
-    'total_capital',
-    'total_sanction',
-    'total_interest',
-    'total_debt',
-    'debt_indicator',
-    'sms_indicator',
-    'positive_balance',
-    'application_code',
-    'debt_height',
-    'property_id'
-  ];
+  	*/
+  	protected $fillable = [
+	  'date_cut', 
+	  'publication_date', 
+	  'honorarium',
+	  'total_capital',
+	  'total_sanction',
+	  'total_interest',
+	  'total_debt',
+	  'debt_indicator',
+	  'sms_indicator',
+	  'positive_balance',
+	  'application_code',
+	  'debt_height',
+	  'property_id'
+  	];
 
-  /**
+  	/**
      * Attributes that are for searchers of the model.
      *
      * @var array
      */
-    protected $searchableColumns = [
-     
-    ];
+  	protected $searchableColumns = [
+
+  	];
 
     /**
      * The accessors to append to the model's array form.
@@ -50,14 +50,7 @@ class Briefcase extends Model
     */
 
     protected $appends = [
-      'municipality_name',
-      'type_community_name',
-      'country_related',
-      'state_related',
-      'municipality_related',
-      'type_community_related',
-      'status_format',
-      'first_photo'
+
     ];
 
 
@@ -67,14 +60,18 @@ class Briefcase extends Model
      * @var array
     */
 
-     protected $dates = [
-        'opening_date', 
-        'cancellation_date'
+    protected $dates = [
+
     ];
 
     /**
      * ------ Relations ------ 
     */
+
+    public function interests()
+    {
+    	return $this->belongsToMany(Interest::class, 'briefcase_interest', 'briefcase_id', 'interest_id')->withPivot('percent')->withTimestamps();
+    }
 
     /**
      *
