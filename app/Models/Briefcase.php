@@ -73,6 +73,11 @@ class Briefcase extends Model
     	return $this->belongsToMany(Interest::class, 'briefcase_interest', 'briefcase_id', 'interest_id')->withPivot('percent')->withTimestamps();
     }
 
+    public function dues()
+    {
+    	return $this->belongsToMany(Due::class, 'briefcase_due', 'briefcase_id', 'due_id')->withPivot('amount')->withTimestamps();
+    }
+
     /**
      *
      * -------Accessors And Mutators------
