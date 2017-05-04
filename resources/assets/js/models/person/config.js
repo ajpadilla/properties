@@ -99,9 +99,9 @@ var tableColumns = [
         visible: true
     },
     {
-        name: 'first_name',
+        name: 'first_surname',
         title: 'Apellido',
-        sortField: 'first_name',
+        sortField: 'first_surname',
         visible: true
     },
     {
