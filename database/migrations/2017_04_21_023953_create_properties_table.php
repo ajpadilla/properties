@@ -18,16 +18,16 @@ class CreatePropertiesTable extends Migration
             $table->text('description');
             $table->string('number', 50);
             $table->string('area', 50);
-            $table->integer('number_habitants');
-            $table->integer('number_pets');
-            $table->text('address');
+            $table->integer('number_habitants')->nullable();
+            $table->integer('number_pets')->nullable();
+            $table->text('address')->nullable();
             $table->string('registration_number', 20);
             $table->date('date_construction');
             $table->boolean('status');
-            $table->boolean('reside_property');
+            $table->boolean('reside_property')->nullable()->default(false);
             $table->string('type_contract', 30);
-            $table->date('start_date_lease');
-            $table->date('end_date_lease');
+            $table->date('start_date_lease')->nullable();
+            $table->date('end_date_lease')->nullable();
             $table->integer('type_property_id')->unsigned();
             $table->foreign('type_property_id')
             ->references('id')
