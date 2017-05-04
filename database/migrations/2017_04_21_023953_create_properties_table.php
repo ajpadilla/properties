@@ -21,7 +21,7 @@ class CreatePropertiesTable extends Migration
             $table->integer('number_habitants')->nullable();
             $table->integer('number_pets')->nullable();
             $table->text('address')->nullable();
-            $table->string('registration_number', 20);
+            $table->string('registration_number', 20)->unique();
             $table->date('date_construction');
             $table->boolean('status');
             $table->boolean('reside_property')->nullable()->default(false);
