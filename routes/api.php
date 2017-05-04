@@ -615,6 +615,17 @@ Route::group(['prefix' => 'properties'], function()
 		'as' => 'api.properties.addPhoto',
 		'uses' => 'PropertyController@addPhoto'
 	]);
+});
 
+/**
+ * ------------------- API Route for File ---------------
+ */
+
+Route::group(['prefix' => 'files'], function()
+{
+	Route::get('/',[
+		'as' => 'api.files.import',
+		'uses' => 'FileController@import'
+	]);	
 
 });
