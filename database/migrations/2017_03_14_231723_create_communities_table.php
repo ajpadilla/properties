@@ -27,7 +27,7 @@ class CreateCommunitiesTable extends Migration
             $table->boolean('status');
             $table->date('opening_date');
             $table->date('cancellation_date')->nullable();
-            $table->text('reason_retiring');
+            $table->text('reason_retiring')->nullable();
             $table->integer('municipality_id')->unsigned();
             $table->foreign('municipality_id')
               ->references('id')
