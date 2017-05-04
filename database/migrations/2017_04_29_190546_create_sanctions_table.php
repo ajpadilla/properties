@@ -15,7 +15,7 @@ class CreateSanctionsTable extends Migration
     {
         Schema::create('sanctions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
+            $table->string('name', 50)->unique();
             $table->timestamps();
         });
     }

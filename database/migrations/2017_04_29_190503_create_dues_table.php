@@ -15,7 +15,7 @@ class CreateDuesTable extends Migration
     {
         Schema::create('dues', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
+            $table->string('name', 50)->unique();
             $table->timestamps();
         });
     }
