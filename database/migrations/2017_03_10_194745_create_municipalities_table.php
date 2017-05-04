@@ -15,7 +15,7 @@ class CreateMunicipalitiesTable extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code', 15)->nullable();
+            $table->string('code', 15)->unique();
             $table->string('name', 30);
             $table->integer('state_id')->unsigned();
             $table->foreign('state_id')
