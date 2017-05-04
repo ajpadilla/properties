@@ -43,6 +43,8 @@ class Person extends Model
   		'cod_labor_activity',
   		'admission_date',
   		'cancellation_date',
+      'income_level',
+      'expenses_level',
   		'status',
   		'city_birth_id',
   		'disability_id',
