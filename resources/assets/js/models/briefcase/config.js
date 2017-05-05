@@ -18,6 +18,10 @@ var objectRow = {
         value: "",
         text: ""
     },
+    community_related: {
+        value: "",
+        text: ""
+    },
     created_at: "",
     updated_at: "",
 };
@@ -75,7 +79,7 @@ var tableColumns = [
 },
 {
     name: 'property_name',
-    title: 'Salida',
+    title: 'Property',
     sortField: 'property.name',
     visible: true
 },
