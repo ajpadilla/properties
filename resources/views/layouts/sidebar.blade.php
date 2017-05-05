@@ -115,12 +115,17 @@
             </li>
             <li>
               <a href="{{ url('admin/persons') }}">
-                <i class="fa fa-circle-o"></i> Persons
+                <i class="fa fa-circle-o"></i> Personas
               </a>
             </li>
             <li>
               <a href="{{ url('admin/properties') }}">
-                <i class="fa fa-circle-o"></i> Properties
+                <i class="fa fa-circle-o"></i> Propiedades
+              </a>
+            </li>
+             <li>
+              <a href="{{ url('admin/briefcases') }}">
+                <i class="fa fa-circle-o"></i> Cartera
               </a>
             </li>
           </ul>
