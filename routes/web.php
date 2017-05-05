@@ -207,6 +207,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Briefcases ---------------
+	 */
+	Route::group(['prefix' => 'briefcases'], function(){
+
+		Route::get('', [
+			'as' => 'briefcases',
+			'uses' => 'BriefcaseController@showList'
+		]);	
+	});
+
 
 }); 
 
