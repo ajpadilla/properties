@@ -9,6 +9,7 @@ use App\Models\SortTrait;
 use App\Models\Municipality;
 use App\Models\TypeCommunity;
 use App\Models\CommunityPhoto;
+use App\Models\Property;
 
 class Community extends Model
 {
@@ -104,6 +105,11 @@ class Community extends Model
     public function photos()
     {
       return  $this->hasMany(CommunityPhoto::class);
+    }
+
+    public function properties()
+    {
+      return  $this->hasMany(Property::class, 'community_id');
     }
 
     /**
