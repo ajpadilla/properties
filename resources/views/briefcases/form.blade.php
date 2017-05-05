@@ -6,5 +6,5 @@
 @stop
 
 @section('modal-form-content')
-	@include('communities.fields')
+	@include('briefcases.fields')
 @stop
