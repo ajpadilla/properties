@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\SearchTrait;
 use App\Models\SortTrait;
+use App\Models\Property;
+
 
 class Briefcase extends Model
 {	
@@ -50,7 +52,9 @@ class Briefcase extends Model
     */
 
     protected $appends = [
-
+        'property_name',
+        'property_related',
+        'community_related'
     ];
 
 
@@ -67,6 +71,11 @@ class Briefcase extends Model
     /**
      * ------ Relations ------ 
     */
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'property_id');
+    }
 
     public function interests()
     {
@@ -89,5 +98,37 @@ class Briefcase extends Model
      * -------Accessors And Mutators------
      *
     */
+
+    public function setDateCutAttribute($value) {
+      $this->attributes['date_cut'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function setPublicationDateAttribute($value) {
+      $this->attributes['publication_date'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function getPropertyNameAttribute()
+    {
+      if($this->property)
+        return $this->property->number;
+      return false;
+    }
+
+    public function getCommunityRelatedAttribute()
+    {
+      return [
+        'text' => $this->property->community->name, 
+        'value' => $this->property->community->id
+      ];
+    }
+
+    public function getPropertyRelatedAttribute()
+    {
+      return [
+        'text' => $this->property->number, 
+        'value' => $this->property->id
+      ];
+    }
+
 
 }
