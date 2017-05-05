@@ -611,6 +611,16 @@ Route::group(['prefix' => 'properties'], function()
 		'uses' => 'PropertyController@destroy'
 	]);
 
+	Route::get('select-list', [
+		'as' => 'api.v1.properties.select-list',
+		'uses' => 'PropertyController@selectList'
+	]);
+
+	Route::get('by-community/{communityId?}', [
+		'as' => 'api.v1.properties.byCommunity',
+		'uses' => 'PropertyController@byCommunity'
+	]);
+
 	Route::post('add-photo/{personId?}', [
 		'as' => 'api.properties.addPhoto',
 		'uses' => 'PropertyController@addPhoto'
@@ -627,5 +637,39 @@ Route::group(['prefix' => 'files'], function()
 		'as' => 'api.files.import',
 		'uses' => 'FileController@import'
 	]);	
+
+});
+
+/**
+ * ------------------- API Route for Briefcase ---------------
+ */
+
+Route::group(['prefix' => 'briefcases'], function()
+{
+	Route::get('/',[
+		'as' => 'api.briefcases.index',
+		'uses' => 'BriefcaseController@index'
+	]);	
+
+	Route::post('store', [
+		'as' => 'api.briefcases.store',
+		'uses' => 'BriefcaseController@store'
+	]);
+
+
+	Route::get('show/{id?}', [
+			'as' => 'api.briefcases.show',
+			'uses' => 'BriefcaseController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.briefcases.update',
+			'uses' => 'BriefcaseController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.briefcases.delete',
+		'uses' => 'BriefcaseController@destroy'
+	]);
 
 });
