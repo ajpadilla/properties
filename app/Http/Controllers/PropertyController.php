@@ -7,6 +7,7 @@ use App\Models\Property;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\PropertyPhoto;
+use App\Models\Community;
 
 class PropertyController extends Controller
 {
@@ -102,6 +103,19 @@ class PropertyController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+    public function selectList(Request $request)
+    {
+        if ($request->ajax())
+        {   
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', 
+                Property::all()->pluck('number', 'id')->toArray()
+            );
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
     public function addPhoto(Request $request, $propertyId)
     {
         if ($request->hasFile('file')) 
@@ -122,6 +136,18 @@ class PropertyController extends Controller
         }   
         return $this->getResponseArrayJson();  
     } 
+
+    public function byCommunity(Request $request, $communityId)
+    {
+        if($request->ajax()){
+            $community = Community::find($communityId);
+            $properties = $community->properties->pluck('number', 'id')->toArray();
+            $this->addToResponseArray('data', $properties);
+            $this->setSuccess(true);
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
 
 
 }
