@@ -37,59 +37,43 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            {{--store: "{{ route('api.communities.store') }}/",
-            update: "{{ route('api.communities.update') }}/",
-            show: "{{ route('api.communities.show') }}/",
-            delete: "{{ route('api.communities.delete') }}/",
+            store: "{{ route('api.briefcases.store') }}/",
+            show: "{{ route('api.briefcases.show') }}/",
+            update: "{{ route('api.briefcases.update') }}/",
+            delete: "{{ route('api.briefcases.delete') }}/",
             foreign: {
-                currency: {
+                community: {
                     select: {
                         method: 'GET',
-                        url: "{{ route('api.v1.currencies.select-list') }}/"
+                        url: "{{ route('api.v1.communities.select-list') }}/"
                     },
-                    store: {
-                        method: 'POST',
-                        url: "{{ route('api.currencies.store') }}/"
-                    }
                 },
-                country: {
-                    select: {
+                property: {
+                    byCommunity: {
                         method: 'GET',
-                        url: "{{ route('api.v1.countries.select-list') }}/"
-                    }
-                },
-                state: {
-                    byCountry: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.states.byCountry') }}/"
-                    }
-                },
-                municipality:{
-                    select: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.municipalities.select-list') }}/"
+                        url: "{{ route('api.v1.properties.byCommunity') }}/"
                     },
-                    byState: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.municipalities.byState') }}/"
-                    }
                 },
-                type_community:{
-                    select: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.typeCommunities.select-list') }}/"
-                    }
-                }
-            }--}}
+            }
         };
     </script>
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
         var vm = window.vm;
 
-        /*var loadCountries = function () {
-            vm.getForeignData(vm.url.foreign.country.select.url, 'countryOptions', 'country', 'select');
-        };*/
+        var loadComminities = function () {
+            vm.getForeignData(vm.url.foreign.community.select.url, 'communityOptions', 'community', 'select');
+        };
+
+        loadComminities();
+
+        var loadProperties = function () {
+            vm.getForeignData(vm.url.foreign.property.byCommunity.url + vm.row.community_related.value, 'propertyOptions', 'property', 'byCommunity');
+        };
+
+        vm.$watch('row.community_related.value', function (value) {
+            loadProperties();
+        });
 
     </script>
 @endpush
