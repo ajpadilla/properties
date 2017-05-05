@@ -31,5 +31,10 @@ class BriefcaseController extends Controller
 		return response()->json($result);
 	}
 
+	public function list()
+    {
+        return view('briefcases.index');
+    }
+
 
 }
