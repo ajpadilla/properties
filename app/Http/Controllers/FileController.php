@@ -21,6 +21,7 @@ use App\Models\Briefcase;
 use App\Models\Interest;
 use App\Models\Due;
 use App\Models\Sanction;
+use App\Http\Requests\CreateUploaFileRequest;
 
 
 class FileController extends Controller
@@ -298,4 +299,10 @@ class FileController extends Controller
 			}
 		});*/
 	}
+}
+
+
+public function create(Request $request)
+{
+	return view('upload.create');
 }
