@@ -15,7 +15,7 @@ class CreateBriefcaseInterestTable extends Migration
     {
         Schema::create('briefcase_interest', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('percent', 8, 2);  
+            $table->float('percent', 8, 2)->default(0.0);  
             $table->integer('briefcase_id')->unsigned();
             $table->foreign('briefcase_id')
             ->references('id')
