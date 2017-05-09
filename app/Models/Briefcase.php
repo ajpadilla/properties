@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\SearchTrait;
 use App\Models\SortTrait;
 use App\Models\Property;
-
+use App\Models\Interest;
+use App\Models\Due;
+use App\Models\Sanction;
 
 class Briefcase extends Model
 {	
@@ -84,12 +86,14 @@ class Briefcase extends Model
 
     public function dues()
     {
-    	return $this->belongsToMany(Due::class, 'briefcase_due', 'briefcase_id', 'due_id')->withPivot('amount')->withTimestamps();
+    	return $this->belongsToMany(Due::class, 'briefcase_due', 'briefcase_id', 'due_id')
+        ->withPivot('amount')->withTimestamps();
     }
 
     public function sanctions()
     {
-    	return $this->belongsToMany(Sanction::class, 'briefcase_sanction', 'briefcase_id', 'sanction_id')->withPivot('amount')->withTimestamps();
+    	return $this->belongsToMany(Sanction::class, 'briefcase_sanction', 'briefcase_id', 'sanction_id')
+        ->withPivot('amount')->withTimestamps();
     }
 
 
