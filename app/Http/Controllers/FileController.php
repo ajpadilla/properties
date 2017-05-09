@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Upload\Upload;
 use App\Models\Currency;
 use App\Models\Country;
 use App\Models\State;
@@ -24,9 +25,19 @@ use App\Models\Sanction;
 
 class FileController extends Controller
 {
+
+	protected $upload;
+
 	public function import()
 	{
-		$path = public_path().'/'.'import.csv';
+
+		if (Community::count() == 0) {
+			echo "No hay comunidades";
+		}else{
+			echo Community::count();
+		}
+
+		/*$path = public_path().'/'.'import.csv';
 
 		Excel::filter('chunk')->load($path)->chunk(250, function($results)
 		{
@@ -285,6 +296,6 @@ class FileController extends Controller
 					}
 				}
 			}
-		});
+		});*/
 	}
 }
