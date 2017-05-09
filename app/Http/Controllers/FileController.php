@@ -29,6 +29,11 @@ class FileController extends Controller
 
 	protected $upload;
 
+	public function create(Request $request)
+	{
+		return view('upload.create');
+	}
+
 	public function import()
 	{
 
@@ -298,11 +303,6 @@ class FileController extends Controller
 				}
 			}
 		});*/
-	}
-
-	public function create(Request $request)
-	{
-		return view('upload.create');
 	}
 }
 
