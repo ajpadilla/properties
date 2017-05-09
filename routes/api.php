@@ -631,10 +631,10 @@ Route::group(['prefix' => 'properties'], function()
  * ------------------- API Route for File ---------------
  */
 
-Route::group(['prefix' => 'files'], function()
+Route::group(['prefix' => 'upload'], function()
 {
 	Route::get('/',[
-		'as' => 'api.files.import',
+		'as' => 'api.upload.file.import',
 		'uses' => 'FileController@import'
 	]);	
 
