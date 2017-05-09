@@ -225,7 +225,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 
 		Route::get('', [
 			'as' => 'upload',
-			'uses' => 'BriefcaseController@showList'
+			'uses' => 'FileController@create'
 		]);	
 	});
 
