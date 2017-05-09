@@ -57,6 +57,24 @@
 			
 		}
 
+		public function saveFile()
+		{
+			$destinationPath = $this->getUploadPath();
+	      	$extension = $this->file->getClientOriginalExtension();
+	      	$fileName = $this->file->getClientOriginalName().'.'.$extension; 
+	      	$this->file->move($destinationPath, $fileName); 
+		}
+
+		public function processFile()
+		{
+			if (File::exists($this->getUploadPath())) {
+				$this->saveFile();
+			} else {
+				File::makeDirectory($this->getUploadPath());
+				$this->saveFile();
+			}
+		}
+
 		public function getCompletePublicFilePath(){
 			return $this->publicFilePath . $this->fileNameInDir;
 		}
