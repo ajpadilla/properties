@@ -299,10 +299,10 @@ class FileController extends Controller
 			}
 		});*/
 	}
+
+	public function create(Request $request)
+	{
+		return view('upload.create');
+	}
 }
 
-
-public function create(Request $request)
-{
-	return view('upload.create');
-}
