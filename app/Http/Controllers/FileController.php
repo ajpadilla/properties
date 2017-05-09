@@ -34,7 +34,7 @@ class FileController extends Controller
 		return view('upload.create');
 	}
 
-	public function import()
+	public function import(CreateUploaFileRequest $request)
 	{
 
 		if (Community::count() == 0) {
