@@ -35,7 +35,7 @@ class CreatePersonsTable extends Migration
             $table->string('country_office', 30)->nullable();
             $table->date('birth_date')->nullable();
             $table->enum('gender', ['male', 'female']);
-            $table->enum('civil_status', ['married', 'bachelor', 'divorced']);  
+            $table->enum('civil_status', ['married', 'bachelor', 'divorced']); 
             $table->string('cod_labor_activity', 20)->nullable();
             $table->date('admission_date')->nullable();
             $table->date('cancellation_date')->nullable();
