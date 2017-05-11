@@ -21,7 +21,7 @@ Route::get('/', [
 ]);
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function (){
 	
 	Route::get('/dashboard', [
 		'as' => 'dashboard',
@@ -226,6 +226,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
 		Route::get('', [
 			'as' => 'upload',
 			'uses' => 'FileController@create'
+		]);	
+
+		Route::post('store',[
+			'as' => 'upload.import',
+			'uses' => 'FileController@import'
 		]);	
 	});
 
