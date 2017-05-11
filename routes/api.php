@@ -627,18 +627,6 @@ Route::group(['prefix' => 'properties'], function()
 	]);
 });
 
-/**
- * ------------------- API Route for File ---------------
- */
-
-Route::group(['prefix' => 'upload'], function()
-{
-	Route::get('/',[
-		'as' => 'api.upload.file.import',
-		'uses' => 'FileController@import'
-	]);	
-
-});
 
 /**
  * ------------------- API Route for Briefcase ---------------
