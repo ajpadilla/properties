@@ -13,7 +13,7 @@ class TypeAnimalController extends Controller
 	{
 		if ($request->has('sort')) {
 			list($sortCol, $sortDir) = explode('|', $request->sort);
-			if (\Schema::hasColumn('types_animals', $sortCol)) {
+			if (\Schema::hasColumn('type_animals', $sortCol)) {
 				$query = TypeAnimal::orderBy($sortCol, $sortDir);
 			}else{
 				$query = TypeAnimal::sortBy($sortCol, $sortDir);
