@@ -24,7 +24,7 @@ class CreateTypeAnimalRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_animals,name',
+            'name' => 'required|min:1|max:30|unique:type_animals,name',
         ];    
     }
 }

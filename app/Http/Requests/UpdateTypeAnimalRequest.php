@@ -24,7 +24,7 @@ class UpdateTypeAnimalRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:50|unique:types_animals,name,' .$this->id,
+            'name' => 'required|min:1|max:50|unique:type_animals,name,' .$this->id,
         ];
     }
 }
