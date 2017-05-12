@@ -13,7 +13,7 @@ class CreateTypesPqrTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_pqr', function (Blueprint $table) {
+        Schema::create('type_services', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->timestamps();
