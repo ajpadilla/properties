@@ -27,14 +27,13 @@ class CreateSuppliersTable extends Migration
             $table->string('cell_phone', 20);
             $table->string('auxiliary_cell', 20)->nullable();
             $table->string('home_email', 30);
-            $table->string('auxiliary_email', 30);
+            $table->string('auxiliary_email', 30)->nullable();
             $table->integer('type_identification_id')->unsigned();
             $table->foreign('type_identification_id')
               ->references('id')
               ->on('type_identifications')
               ->onUpdate('cascade')
               ->onDelete('cascade');
-            $table->timestamps();
             $table->timestamps();
         });
     }
