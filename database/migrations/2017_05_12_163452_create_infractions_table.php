@@ -20,7 +20,7 @@ class CreateInfractionsTable extends Migration
             $table->date('date_notification');
             $table->text('description');
             $table->text('response')->nullable();
-            $table->integer('type_infraction_id');
+            $table->integer('type_infraction_id')->unsigned();
             $table->foreign('type_infraction_id')
               ->references('id')
               ->on('type_infractions')
