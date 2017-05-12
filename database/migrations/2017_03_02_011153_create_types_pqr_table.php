@@ -27,6 +27,6 @@ class CreateTypesPqrTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_pqr');
+        Schema::dropIfExists('type_services');
     }
 }
