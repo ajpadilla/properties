@@ -14,7 +14,7 @@ class TypePqrController extends Controller
     {
     	if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('types_pqr', $sortCol)) {
+            if (\Schema::hasColumn('type_services', $sortCol)) {
                 $query = TypePqr::orderBy($sortCol, $sortDir);
             }else{
                 $query = TypePqr::sortBy($sortCol, $sortDir);
