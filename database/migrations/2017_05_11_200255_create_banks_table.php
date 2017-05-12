@@ -19,13 +19,13 @@ class CreateBanksTable extends Migration
             $table->string('nit', 30);
             $table->string('name', 30);
             $table->string('home_phone', 30);
-            $table->string('auxiliar_phone', 30);
+            $table->string('auxiliar_phone', 30)->nullable();
             $table->string('home_email', 30);
-            $table->string('auxiliar_email', 30);
-            $table->string('url', 30);
-            $table->string('subsidiary', 30);
-            $table->date('opening_date');
-            $table->date('cancellation_date');
+            $table->string('auxiliar_email', 30)->nullable();
+            $table->string('url', 30)->nullable();
+            $table->string('subsidiary', 30)->nullable();
+            $table->date('opening_date')->nullable();
+            $table->date('cancellation_date')->nullable();
             $table->integer('municipality_id')->unsigned();
             $table->foreign('municipality_id')
               ->references('id')
