@@ -31,7 +31,7 @@ class CreateMarketRatesTable extends Migration
               ->references('id')
               ->on('communities')
               ->onUpdate('cascade')
-              ->onDelete('cascade'
+              ->onDelete('cascade');
             $table->timestamps();
         });
     }
