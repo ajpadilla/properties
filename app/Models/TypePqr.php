@@ -10,7 +10,7 @@ class TypePqr extends Model
 {
 	use SearchTrait, SortTrait;
 
-	public $table = 'type_pqr';
+	public $table = 'type_services';
 
 	/**
      * The attributes that are mass assignable.
