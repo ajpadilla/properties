@@ -16,6 +16,12 @@ class CreateTypePaymentsTable extends Migration
         Schema::create('type_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
+            $table->integer('account_id')->unsigned();
+            $table->foreign('account_id')
+              ->references('id')
+              ->on('accounts')
+              ->onUpdate('cascade')
+              ->onDelete('cascade');
             $table->timestamps();
         });
     }
