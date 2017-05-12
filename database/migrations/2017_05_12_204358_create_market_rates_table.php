@@ -16,7 +16,7 @@ class CreateMarketRatesTable extends Migration
         Schema::create('market_rates', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
-            $table->float('amount' 8,2);
+            $table->float('amount', 8,2);
             $table->date('date_quote');
             $table->date('approval_date');
             $table->boolean('status');
