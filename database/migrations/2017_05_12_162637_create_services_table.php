@@ -18,8 +18,8 @@ class CreateServicesTable extends Migration
             $table->date('date_origin');
             $table->boolean('status');
             $table->text('description');
-            $table->date('date_response');
-            $table->text('description_response');
+            $table->date('date_response')->nullable();
+            $table->text('description_response')->nullable();
             $table->integer('type_service_id')->unsigned();
             $table->foreign('type_service_id')
               ->references('id')
