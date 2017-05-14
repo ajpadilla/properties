@@ -36,14 +36,21 @@ class FileController extends Controller
 
 	public function import(CreateUploaFileRequest $request)
 	{
+		$communityId = NULL;
+		$path = NULL;
 
 		if (Community::count() == 0) {
-			echo "No hay comunidades";
+			$communityId = 1;
+            $path = 'storage/communities/community_'.$communityId.'_files/';
 		}else{
-			echo Community::count();
+			$communityId = Community::count() + 1;
+            $path = 'storage/communities/community_'.$communityId.'_files/';
 		}
 
-		/*$path = public_path().'/'.'import.csv';
+        $this->upload = new Upload($request->file('file'),74,103,$path);
+		$this->upload->processFile();
+
+		$path = public_path().'/'.$this->upload->getCompletePublicFilePath();
 
 		Excel::filter('chunk')->load($path)->chunk(250, function($results)
 		{
@@ -302,7 +309,9 @@ class FileController extends Controller
 					}
 				}
 			}
-		});*/
+		});
+	
+		return view('upload.create');
 	}
 }
 
