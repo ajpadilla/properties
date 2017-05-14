@@ -61,8 +61,8 @@
 		{
 			$destinationPath = $this->getUploadPath();
 	      	$extension = $this->file->getClientOriginalExtension();
-	      	$fileName = $this->file->getClientOriginalName().'.'.$extension; 
-	      	$this->file->move($destinationPath, $fileName); 
+	      	$this->fileNameInDir = $this->fileName.'.'.$extension; 
+	      	$this->file->move($destinationPath, $this->fileNameInDir); 
 		}
 
 		public function processFile()
