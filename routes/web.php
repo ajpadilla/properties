@@ -180,7 +180,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'communities',
-			'uses' => 'CommunityController@list'
+			'uses' => 'CommunityController@showList'
 		]);	
 	});
 
