@@ -109,7 +109,7 @@
               </a>
             </li>
             <li>
-              <a href="{{ url('admin/communities') }}">
+              <a href="{{ route('communities.index') }}">
                 <i class="fa fa-circle-o"></i> Comunidades
               </a>
             </li>
