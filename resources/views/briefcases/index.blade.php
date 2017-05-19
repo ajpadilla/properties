@@ -24,6 +24,7 @@
     @include('layouts.modals.info')
 
     {{-- Relation Modals --}}
+    @include('briefcases.interests.add')
 
     <pre>@{{ $data }}</pre>
 </div>
