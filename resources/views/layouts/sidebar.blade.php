@@ -128,6 +128,11 @@
                 <i class="fa fa-circle-o"></i> Cartera
               </a>
             </li>
+             <li>
+              <a href="{{ url('admin/upload') }}">
+                <i class="fa fa-circle-o"></i> Upload
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
