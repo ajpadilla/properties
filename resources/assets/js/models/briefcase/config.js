@@ -22,12 +22,20 @@ var objectRow = {
         value: "",
         text: ""
     },
+    interest:{
+        id: "",
+        name: "",
+        created_at: "",
+        updated_at
+    }
     created_at: "",
     updated_at: "",
 };
 
 var modals = {
-    photo_ADD_inform: false
+    interests_ADD: false,
+    sanctions_ADD: false,
+    dues_ADD: false
 };
 
 var options = {
