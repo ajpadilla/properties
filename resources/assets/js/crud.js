@@ -370,6 +370,7 @@ Vue.component('my-detail-row', {
         	{
         		this.$events.fire(this.method, this.actionUrl, this.row);
         	}else if( related ){
+                
 
         	}else{
         		this.method = this.url.foreign[model][type].method;
