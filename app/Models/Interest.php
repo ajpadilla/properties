@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 use App\Models\SearchTrait;
 use App\Models\SortTrait;
 
@@ -11,7 +12,7 @@ class Interest extends Model
 {
 	use SearchTrait, SortTrait;
 
-	public $table = 'interests';
+	public $table = 'Interest';
 
 	/**
 	     * The attributes that are mass assignable.
@@ -62,5 +63,4 @@ class Interest extends Model
      * -------Accessors And Mutators------
      *
     */
-
 }
