@@ -26196,6 +26196,7 @@ window.vm = new Vue({
       /*if (response.data.success && response.data.data) {
       	this.row = response.data.data;
       }*/
+      console.log('successSent:', response.data.data);
       this.flashSuccessfulMessage = response.data.message;
       this.flashSuccessfulType = 'success';
       Vue.nextTick(function () {
@@ -26229,10 +26230,12 @@ window.vm = new Vue({
 
       if (!model || model.target) {
         this.$events.fire(this.method, this.actionUrl, this.row);
-      } else if (related) {} else {
+        //}else if( related ){
+      } else {
+        console.log('submit');
         this.method = this.url.foreign[model][type].method;
-        var actionUrl = this.url.foreign[model][type].url;
-        this.$events.fire(this.method, actionUrl, this.row[model]);
+        //var actionUrl = this.url.foreign[model][type].url;
+        this.$events.fire(this.method, this.actionUrl, this.row);
       }
     },
     getForeignData: function getForeignData() {
@@ -26265,6 +26268,7 @@ window.vm = new Vue({
 
       this.actionUrl = url + data.id;
       this.modal(action);
+      //this.row = data;
       console.log('slotAction', action, data, this.actionUrl);
     },
     'showSuccess': function showSuccess(file, response) {
