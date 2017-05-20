@@ -22,12 +22,13 @@ var objectRow = {
         value: "",
         text: ""
     },
-    interest:{
-        id: "",
-        name: "",
-        created_at: "",
-        updated_at
-    }
+    interest_related: {
+        value: "",
+        text: ""
+    },
+    interest: {
+        percent: ""
+    },
     created_at: "",
     updated_at: "",
 };
@@ -39,7 +40,8 @@ var modals = {
 };
 
 var options = {
-    propertyOptions: []
+    propertyOptions: [],
+    interestOptions:[]
 };
 
 
