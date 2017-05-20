@@ -7,7 +7,7 @@ use App\Models\Interest;
 
 class InterestController extends Controller
 {
-
+	
     public function selectList(Request $request)
     {
         if ($request->ajax())
