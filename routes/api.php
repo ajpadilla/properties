@@ -663,23 +663,27 @@ Route::group(['prefix' => 'briefcases'], function()
 
 
 /**
- * ------------------- API Route for Interest ---------------
+ * ------------------- API Route for Briefcase-Interest ---------------
  */
+
+Route::group(['prefix' => 'interests'], function()
+{
+	Route::post('store/briefcase/interest/{id?}', [
+		'as' => 'api.briefcases.interests.store',
+		'uses' => 'BriefcaseController@storeInterest'
+	]);
+});
+
+});
 
 Route::group(['prefix' => 'interests'], function()
 {
 	/*Route::get('/',[
 		'as' => 'api.briefcases.index',
 		'uses' => 'BriefcaseController@index'
-	]);	
+	]);*/	
 
-	Route::post('store', [
-		'as' => 'api.briefcases.store',
-		'uses' => 'BriefcaseController@store'
-	]);
-
-
-	Route::get('show/{id?}', [
+	/*Route::get('show/{id?}', [
 			'as' => 'api.briefcases.show',
 			'uses' => 'BriefcaseController@show'
 	]);
