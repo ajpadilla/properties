@@ -341,6 +341,7 @@ Vue.component('my-detail-row', {
         	/*if (response.data.success && response.data.data) {
         		this.row = response.data.data;
         	}*/
+            console.log('successSent:', response.data.data);
         	this.flashSuccessfulMessage = response.data.message;
 	        this.flashSuccessfulType = 'success'; 
         	Vue.nextTick( () => this.$refs.vuetable.refresh() )
@@ -369,13 +370,13 @@ Vue.component('my-detail-row', {
         	if (!model || model.target) 
         	{
         		this.$events.fire(this.method, this.actionUrl, this.row);
-        	}else if( related ){
-                
+        	//}else if( related ){
 
         	}else{
+                console.log('submit');
         		this.method = this.url.foreign[model][type].method;
-        		var actionUrl = this.url.foreign[model][type].url;
-        		this.$events.fire(this.method, actionUrl, this.row[model]);
+        		//var actionUrl = this.url.foreign[model][type].url;
+        		this.$events.fire(this.method, this.actionUrl, this.row);
         	}
         },
         getForeignData (callUrl = null, mapVar = null, related = null, action = 'index')
@@ -404,6 +405,7 @@ Vue.component('my-detail-row', {
         slotAction: function (action, data, url = null){
             this.actionUrl = url + data.id;
             this.modal(action);
+            //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
         },
         'showSuccess': function (file, response) {
