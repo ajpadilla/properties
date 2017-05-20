@@ -55,6 +55,16 @@
                         url: "{{ route('api.v1.properties.byCommunity') }}/"
                     },
                 },
+                interest:{
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.interests.select-list') }}/"
+                    },
+                    store: {
+                        method: 'POST',
+                        url: "{{ route('api.briefcases.interests.store') }}/"
+                    }
+                }
             }
         };
     </script>
@@ -66,7 +76,12 @@
             vm.getForeignData(vm.url.foreign.community.select.url, 'communityOptions', 'community', 'select');
         };
 
+        var loadInterests = function () {
+            vm.getForeignData(vm.url.foreign.interest.select.url, 'interestOptions', 'interest', 'select');
+        }
+
         loadComminities();
+        loadInterests();
 
         var loadProperties = function () {
             vm.getForeignData(vm.url.foreign.property.byCommunity.url + vm.row.community_related.value, 'propertyOptions', 'property', 'byCommunity');
