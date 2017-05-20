@@ -26,8 +26,12 @@ var objectRow = {
         value: "",
         text: ""
     },
-    interest: {
-        percent: ""
+    sanction_related: {
+        value: "",
+        text: ""
+    },
+    sanction: {
+        amount: ""
     },
     created_at: "",
     updated_at: "",
@@ -41,7 +45,8 @@ var modals = {
 
 var options = {
     propertyOptions: [],
-    interestOptions:[]
+    interestOptions:[],
+    sanctionOptions:[]
 };
 
 
