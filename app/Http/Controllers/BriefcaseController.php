@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Briefcase;
+use App\Models\Interest;
 use App\Http\Requests\CreateBreafcaseRequest;
 use App\Http\Requests\UpdateBreafcaseRequest;
 
@@ -93,5 +94,53 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+    public function storeInterest(Request $request, $id = null )
+    {
+        if ($request->ajax()) 
+        {
+
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $interestId = (int) $request->input('interest_related.value'); 
+
+            $interest = Interest::find($interestId);
+
+            if (empty($interest)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interest not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $input = $request->all();
+
+
+            $exists = $briefcase->interests()->whereInterestId($interestId);
+
+            if ($exists) {
+                $briefcase->interests()->updateExistingPivot($interestId, 
+                    ['percent' => $request->input('interest.percent')]
+                    );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Interest successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }else{
+                $briefcase->interests()->attach($interestId, 
+                    ['percent' => $request->input('interest.percent')]
+                    );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Interest correctly associated with briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+        return $this->getResponseArrayJson(); 
+    }
 
 }
