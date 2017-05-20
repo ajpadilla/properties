@@ -19,7 +19,7 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a href="#"  @click.prevent="slotAction('interests_ADD', props.rowData, '{{ route('api.communities.addPhoto') }}/')">
+          <a href="#"  @click.prevent="slotAction('interests_ADD', props.rowData, '{{ route('api.briefcases.interests.store') }}/')">
             <i class="glyphicon glyphicon-plus"></i>Add Interest
           </a>
         </li>
