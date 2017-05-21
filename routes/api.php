@@ -660,19 +660,40 @@ Route::group(['prefix' => 'briefcases'], function()
 		'uses' => 'BriefcaseController@destroy'
 	]);
 
+	/**
+	 * ------------------- API Route for Briefcase-Interest ---------------
+	 */
 
+	Route::group(['prefix' => 'interests'], function()
+	{
+		Route::post('store/briefcase/interest/{id?}', [
+			'as' => 'api.briefcases.interests.store',
+			'uses' => 'BriefcaseController@storeInterest'
+		]);
+	});
 
-/**
- * ------------------- API Route for Briefcase-Interest ---------------
- */
+	/**
+	 * ------------------- API Route for Briefcase-Sanction ---------------
+	 */
+	Route::group(['prefix' => 'sanctions'], function()
+	{
+		Route::post('store/briefcase/sanctions/{id?}', [
+			'as' => 'api.briefcases.sanctions.store',
+			'uses' => 'BriefcaseController@storeSanction'
+		]);
+	});
 
-Route::group(['prefix' => 'interests'], function()
-{
-	Route::post('store/briefcase/interest/{id?}', [
-		'as' => 'api.briefcases.interests.store',
-		'uses' => 'BriefcaseController@storeInterest'
-	]);
-});
+	/**
+	 * ------------------- API Route for Briefcase-Sanction ---------------
+	 */
+	Route::group(['prefix' => 'dues'], function()
+	{
+		Route::post('store/briefcase/dues/{id?}', [
+			'as' => 'api.briefcases.dues.store',
+			'uses' => 'BriefcaseController@storeDue'
+		]);
+	});
+
 
 });
 
@@ -701,5 +722,61 @@ Route::group(['prefix' => 'interests'], function()
 	Route::get('select-list', [
 		'as' => 'api.v1.interests.select-list',
 		'uses' => 'InterestController@selectList'
+	]);
+});
+
+Route::group(['prefix' => 'sanctions'], function()
+{
+	/*Route::get('/',[
+		'as' => 'api.briefcases.index',
+		'uses' => 'BriefcaseController@index'
+	]);*/	
+
+	/*Route::get('show/{id?}', [
+			'as' => 'api.briefcases.show',
+			'uses' => 'BriefcaseController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.briefcases.update',
+			'uses' => 'BriefcaseController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.briefcases.delete',
+		'uses' => 'BriefcaseController@destroy'
+	]);*/
+
+	Route::get('select-list', [
+		'as' => 'api.v1.sanctions.select-list',
+		'uses' => 'SanctionController@selectList'
+	]);
+});
+
+Route::group(['prefix' => 'dues'], function()
+{
+	/*Route::get('/',[
+		'as' => 'api.briefcases.index',
+		'uses' => 'BriefcaseController@index'
+	]);*/	
+
+	/*Route::get('show/{id?}', [
+			'as' => 'api.briefcases.show',
+			'uses' => 'BriefcaseController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.briefcases.update',
+			'uses' => 'BriefcaseController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.briefcases.delete',
+		'uses' => 'BriefcaseController@destroy'
+	]);*/
+
+	Route::get('select-list', [
+		'as' => 'api.v1.dues.select-list',
+		'uses' => 'DueController@selectList'
 	]);
 });
