@@ -23,6 +23,16 @@
             <i class="glyphicon glyphicon-plus"></i>Add Interest
           </a>
         </li>
+        <li>
+          <a href="#"  @click.prevent="slotAction('sanctions_ADD', props.rowData, '{{ route('api.briefcases.sanctions.store') }}/')">
+            <i class="glyphicon glyphicon-plus"></i>Add Sanction
+          </a>
+        </li>
+         <li>
+          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, '{{ route('api.briefcases.sanctions.store') }}/')">
+            <i class="glyphicon glyphicon-plus"></i>Add Due
+          </a>
+        </li>
       </ul>
     </div>
   </template>

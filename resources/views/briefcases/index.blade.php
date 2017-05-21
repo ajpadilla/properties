@@ -25,6 +25,8 @@
 
     {{-- Relation Modals --}}
     @include('briefcases.interests.add')
+    @include('briefcases.sanctions.add')
+    @include('briefcases.dues.add')
 
     <pre>@{{ $data }}</pre>
 </div>
@@ -64,6 +66,26 @@
                         method: 'POST',
                         url: "{{ route('api.briefcases.interests.store') }}/"
                     }
+                },
+                sanction:{
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.sanctions.select-list') }}/"
+                    },
+                    store: {
+                        method: 'POST',
+                        url: "{{ route('api.briefcases.sanctions.store') }}/"
+                    }
+                },
+                due:{
+                    select: {
+                        method: 'GET',
+                        url: "{{ route('api.v1.dues.select-list') }}/"
+                    },
+                    {{--store: {
+                        method: 'POST',
+                        url: "{{ route('api.briefcases.sanctions.store') }}/"
+                    }--}}
                 }
             }
         };
@@ -80,8 +102,18 @@
             vm.getForeignData(vm.url.foreign.interest.select.url, 'interestOptions', 'interest', 'select');
         }
 
+        var loadSanctions = function () {
+            vm.getForeignData(vm.url.foreign.sanction.select.url, 'sanctionOptions', 'sanction', 'select');
+        }
+
+        var loadDues = function () {
+            vm.getForeignData(vm.url.foreign.due.select.url, 'dueOptions', 'due', 'select');
+        }
+        
         loadComminities();
         loadInterests();
+        loadSanctions();
+        loadDues();
 
         var loadProperties = function () {
             vm.getForeignData(vm.url.foreign.property.byCommunity.url + vm.row.community_related.value, 'propertyOptions', 'property', 'byCommunity');
