@@ -29,7 +29,7 @@
           </a>
         </li>
          <li>
-          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, '{{ route('api.briefcases.sanctions.store') }}/')">
+          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, '{{ route('api.briefcases.dues.store') }}/')">
             <i class="glyphicon glyphicon-plus"></i>Add Due
           </a>
         </li>
