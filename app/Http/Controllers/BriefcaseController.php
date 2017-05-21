@@ -9,7 +9,7 @@ use App\Models\Sanction;
 use App\Models\Due;
 use App\Http\Requests\CreateBreafcaseRequest;
 use App\Http\Requests\UpdateBreafcaseRequest;
-
+use App\Http\Requests\RelationDueBriefcaseRequest;
 
 class BriefcaseController extends Controller
 {
@@ -194,7 +194,7 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
-    public function storeDue(Request $request, $id = null )
+    public function storeDue(RelationDueBriefcaseRequest $request, $id = null )
     {
         if ($request->ajax()) 
         {
