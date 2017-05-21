@@ -33,6 +33,13 @@ var objectRow = {
     sanction: {
         amount: ""
     },
+    due_related: {
+        value: "",
+        text: ""
+    },
+    due: {
+        amount: ""
+    },
     created_at: "",
     updated_at: "",
 };
