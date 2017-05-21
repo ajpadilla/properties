@@ -82,10 +82,10 @@
                         method: 'GET',
                         url: "{{ route('api.v1.dues.select-list') }}/"
                     },
-                    {{--store: {
+                    store: {
                         method: 'POST',
-                        url: "{{ route('api.briefcases.sanctions.store') }}/"
-                    }--}}
+                        url: "{{ route('api.briefcases.dues.store') }}/"
+                    }
                 }
             }
         };
@@ -109,7 +109,7 @@
         var loadDues = function () {
             vm.getForeignData(vm.url.foreign.due.select.url, 'dueOptions', 'due', 'select');
         }
-        
+
         loadComminities();
         loadInterests();
         loadSanctions();
