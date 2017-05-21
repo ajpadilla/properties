@@ -10,6 +10,8 @@ use App\Models\Due;
 use App\Http\Requests\CreateBreafcaseRequest;
 use App\Http\Requests\UpdateBreafcaseRequest;
 use App\Http\Requests\RelationDueBriefcaseRequest;
+use App\Http\Requests\RelationInterestBriefcaseRequest;
+use App\Http\Requests\RelationSanctionBriefcaseRequest;
 
 class BriefcaseController extends Controller
 {
@@ -96,7 +98,7 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
-    public function storeInterest(Request $request, $id = null )
+    public function storeInterest(RelationInterestBriefcaseRequest $request, $id = null )
     {
         if ($request->ajax()) 
         {
@@ -146,7 +148,7 @@ class BriefcaseController extends Controller
     }
 
 
-    public function storeSanction(Request $request, $id = null )
+    public function storeSanction(RelationSanctionBriefcaseRequest $request, $id = null )
     {
         if ($request->ajax()) 
         {
