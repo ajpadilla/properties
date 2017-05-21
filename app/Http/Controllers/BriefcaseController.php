@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Briefcase;
 use App\Models\Interest;
+use App\Models\Sanction;
+use App\Models\Due;
 use App\Http\Requests\CreateBreafcaseRequest;
 use App\Http\Requests\UpdateBreafcaseRequest;
 
@@ -142,5 +144,105 @@ class BriefcaseController extends Controller
         }
         return $this->getResponseArrayJson(); 
     }
+
+
+    public function storeSanction(Request $request, $id = null )
+    {
+        if ($request->ajax()) 
+        {
+
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $sanctionId = (int) $request->input('sanction_related.value'); 
+
+            $sanction = Sanction::find($sanctionId);
+
+            if (empty($sanction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Sanction not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $input = $request->all();
+
+            $exists = $briefcase->sanctions()->whereSanctionId($sanctionId);
+
+            if ($exists) {
+                $briefcase->sanctions()->updateExistingPivot($sanctionId, 
+                    ['amount' => $request->input('sanction.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Sanction successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }else{
+                $briefcase->sanctions()->attach($sanctionId, 
+                    ['amount' => $request->input('sanction.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Sanction correctly associated with briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+    public function storeDue(Request $request, $id = null )
+    {
+        if ($request->ajax()) 
+        {
+
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $dueId = (int) $request->input('due_related.value'); 
+
+            $due = Due::find($dueId);
+
+            if (empty($due)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Due not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $input = $request->all();
+
+            $exists = $briefcase->dues()->whereDueId($dueId);
+
+            if ($exists) {
+                $briefcase->dues()->updateExistingPivot($dueId, 
+                    ['amount' => $request->input('due.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Due successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }else{
+                $briefcase->dues()->attach($dueId, 
+                    ['amount' => $request->input('due.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Due correctly associated with briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+
+
 
 }
