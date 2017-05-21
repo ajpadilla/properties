@@ -26,6 +26,9 @@ var objectRow = {
         value: "",
         text: ""
     },
+    interest: {
+        percent: ""
+    },
     sanction_related: {
         value: "",
         text: ""
