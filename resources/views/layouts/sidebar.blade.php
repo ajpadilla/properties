@@ -143,6 +143,11 @@
                 <i class="fa fa-circle-o"></i> Sanction
               </a>
             </li>
+             <li>
+              <a href="{{ url('admin/dues') }}">
+                <i class="fa fa-circle-o"></i> Dues
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
