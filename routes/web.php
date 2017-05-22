@@ -235,13 +235,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 	});
 
 	/**
-	 * ------------------- Route index for Communities ---------------
+	 * ------------------- Route index for Interests ---------------
 	 */
 	Route::group(['prefix' => 'interests'], function(){
 
 		Route::get('', [
 			'as' => 'interests.index',
 			'uses' => 'InterestController@showList'
+		]);	
+	});
+
+	/**
+	 * ------------------- Route index for Sanction ---------------
+	 */
+	Route::group(['prefix' => 'sanctions'], function(){
+
+		Route::get('', [
+			'as' => 'sanctions.index',
+			'uses' => 'SanctionController@showList'
 		]);	
 	});
 
