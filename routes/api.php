@@ -595,7 +595,6 @@ Route::group(['prefix' => 'properties'], function()
 		'uses' => 'PropertyController@store'
 	]);
 
-
 	Route::get('show/{id?}', [
 			'as' => 'api.properties.show',
 			'uses' => 'PropertyController@show'
@@ -704,7 +703,12 @@ Route::group(['prefix' => 'interests'], function()
 		'uses' => 'InterestController@index'
 	]);	
 
-	/*Route::get('show/{id?}', [
+	Route::post('store', [
+		'as' => 'api.interests.store',
+		'uses' => 'InterestController@store'
+	]);
+
+	Route::get('show/{id?}', [
 			'as' => 'api.interests.show',
 			'uses' => 'InterestController@show'
 	]);
@@ -717,7 +721,7 @@ Route::group(['prefix' => 'interests'], function()
 	Route::delete('delete/{id?}', [
 		'as' => 'api.interests.delete',
 		'uses' => 'InterestController@destroy'
-	]);*/
+	]);
 
 	Route::get('select-list', [
 		'as' => 'api.v1.interests.select-list',
