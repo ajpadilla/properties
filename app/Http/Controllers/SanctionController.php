@@ -8,6 +8,85 @@ use App\Models\Sanction;
 class SanctionController extends Controller
 {
   
+  public function index(Request $request)
+    {
+        if ($request->has('sort')) {
+            list($sortCol, $sortDir) = explode('|', $request->sort);
+            if (\Schema::hasColumn('briefcases', $sortCol)) {
+                $query = Sanction::orderBy($sortCol, $sortDir);
+            }else{
+                $query = Sanction::sortBy($sortCol, $sortDir);
+            }
+        }else{
+            $query = Sanction::orderBy('created_at', 'asc');
+        }
+
+        if($request->exists('filter')){
+            $query->search("{$request->filter}");
+        }
+
+        $perPage = $request->has('per_page') ? (int) $request->per_page : null;
+        $result = $query->paginate($perPage);
+
+        return response()->json($result);
+    }
+
+    public function showList()
+    {
+        return view('interests.index');
+    }
+
+    public function store(CreateInterestRequest $request)
+    {
+        if ($request->ajax()) {
+            $input = $request->all();
+            $sanction = Sanction::create($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $sanction);
+            $this->addToResponseArray('message', 'Sanction successfully added');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
+
+    public function show(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $sanction = Sanction::find($id);
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Sanction successfully recovered');
+            $this->addToResponseArray('data', $sanction);
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();   
+    }
+
+    public function update(UpdateInterestRequest $request, $id)
+    {
+        if ($request->ajax()) {
+            $input = $request->all();
+            $sanction = Sanction::find($id);
+            $sanction->update($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $sanction);
+            $this->addToResponseArray('message', 'Sanction successfully update');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $sanction = Sanction::find($id);
+            $this->setSuccess($interest->delete());
+            $this->addToResponseArray('message', 'Sanction successfully delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
+
+
    public function selectList(Request $request)
     {
         if ($request->ajax())
