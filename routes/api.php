@@ -731,25 +731,30 @@ Route::group(['prefix' => 'interests'], function()
 
 Route::group(['prefix' => 'sanctions'], function()
 {
-	/*Route::get('/',[
-		'as' => 'api.briefcases.index',
-		'uses' => 'BriefcaseController@index'
-	]);*/	
+	Route::get('/',[
+		'as' => 'api.sanctions.index',
+		'uses' => 'SanctionController@index'
+	]);	
 
-	/*Route::get('show/{id?}', [
-			'as' => 'api.briefcases.show',
-			'uses' => 'BriefcaseController@show'
+	Route::post('store', [
+		'as' => 'api.sanctions.store',
+		'uses' => 'SanctionController@store'
+	]);
+
+	Route::get('show/{id?}', [
+			'as' => 'api.sanctions.show',
+			'uses' => 'SanctionController@show'
 	]);
 
 	Route::patch('update/{id?}', [
-			'as' => 'api.briefcases.update',
-			'uses' => 'BriefcaseController@update'
+			'as' => 'api.sanctions.update',
+			'uses' => 'SanctionController@update'
 	]);
 
 	Route::delete('delete/{id?}', [
-		'as' => 'api.briefcases.delete',
-		'uses' => 'BriefcaseController@destroy'
-	]);*/
+		'as' => 'api.sanctions.delete',
+		'uses' => 'SanctionController@destroy'
+	]);
 
 	Route::get('select-list', [
 		'as' => 'api.v1.sanctions.select-list',
