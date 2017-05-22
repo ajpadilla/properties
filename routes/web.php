@@ -234,6 +234,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Communities ---------------
+	 */
+	Route::group(['prefix' => 'interests'], function(){
+
+		Route::get('', [
+			'as' => 'interests.index',
+			'uses' => 'InterestController@showList'
+		]);	
+	});
+
 
 }); 
 
