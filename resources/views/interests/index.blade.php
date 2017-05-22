@@ -12,7 +12,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 {{-- Include Table --}}
-                @include('communities.table')
+                @include('interests.table')
             </div>
         </div>
     </div>
@@ -37,10 +37,10 @@
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
         var apiUrl = {
-            store: "{{ route('api.communities.store') }}/",
-            update: "{{ route('api.communities.update') }}/",
-            show: "{{ route('api.communities.show') }}/",
-            delete: "{{ route('api.communities.delete') }}/",
+            store: "{{ route('api.interests.store') }}/",
+            update: "{{ route('api.interests.update') }}/",
+            show: "{{ route('api.interests.show') }}/",
+            delete: "{{ route('api.interests.delete') }}/",
             foreign: {
                 currency: {
                     select: {
