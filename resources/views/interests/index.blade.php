@@ -32,7 +32,7 @@
 {{--@section('title-content', 'Listing event types')--}}
 
 @push('vue-scripts')
-    {!! Html::script('js/models/community/config.js') !!}
+    {!! Html::script('js/models/interest/config.js') !!}
     <script type="text/javascript">
         var token = '{{ csrf_token() }}';
         var fieldInitOrder = 'id';
