@@ -60,6 +60,7 @@ mix.copy('resources/assets/js/models/person/config.js', 'public/js/models/person
 mix.copy('resources/assets/js/models/property/config.js', 'public/js/models/property/config.js');
 mix.copy('resources/assets/js/models/briefcase/config.js', 'public/js/models/briefcase/config.js');
 mix.copy('resources/assets/js/models/interest/config.js', 'public/js/models/interest/config.js');
+mix.copy('resources/assets/js/models/sanction/config.js', 'public/js/models/sanction/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
