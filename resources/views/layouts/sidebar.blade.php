@@ -138,6 +138,11 @@
                 <i class="fa fa-circle-o"></i> Interests
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/sanctions') }}">
+                <i class="fa fa-circle-o"></i> Sanction
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
