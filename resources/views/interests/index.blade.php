@@ -42,16 +42,6 @@
             show: "{{ route('api.interests.show') }}/",
             delete: "{{ route('api.interests.delete') }}/",
             foreign: {
-                currency: {
-                    select: {
-                        method: 'GET',
-                        url: "{{ route('api.v1.currencies.select-list') }}/"
-                    },
-                    store: {
-                        method: 'POST',
-                        url: "{{ route('api.currencies.store') }}/"
-                    }
-                },
             }
         };
     </script>
