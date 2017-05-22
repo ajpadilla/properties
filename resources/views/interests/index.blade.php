@@ -48,10 +48,5 @@
     {!! Html::script('js/crud.js') !!}
     <script type="text/javascript">
         var vm = window.vm;
-
-        var loadCountries = function () {
-            vm.getForeignData(vm.url.foreign.country.select.url, 'countryOptions', 'country', 'select');
-        };
-
     </script>
 @endpush
