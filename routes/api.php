@@ -764,25 +764,30 @@ Route::group(['prefix' => 'sanctions'], function()
 
 Route::group(['prefix' => 'dues'], function()
 {
-	/*Route::get('/',[
-		'as' => 'api.briefcases.index',
-		'uses' => 'BriefcaseController@index'
-	]);*/	
+	Route::get('/',[
+		'as' => 'api.dues.index',
+		'uses' => 'DueController@index'
+	]);	
 
-	/*Route::get('show/{id?}', [
-			'as' => 'api.briefcases.show',
-			'uses' => 'BriefcaseController@show'
+	Route::post('store', [
+		'as' => 'api.dues.store',
+		'uses' => 'DueController@store'
+	]);
+
+	Route::get('show/{id?}', [
+			'as' => 'api.dues.show',
+			'uses' => 'DueController@show'
 	]);
 
 	Route::patch('update/{id?}', [
-			'as' => 'api.briefcases.update',
-			'uses' => 'BriefcaseController@update'
+			'as' => 'api.dues.update',
+			'uses' => 'DueController@update'
 	]);
 
 	Route::delete('delete/{id?}', [
-		'as' => 'api.briefcases.delete',
-		'uses' => 'BriefcaseController@destroy'
-	]);*/
+		'as' => 'api.dues.delete',
+		'uses' => 'DueController@destroy'
+	]);
 
 	Route::get('select-list', [
 		'as' => 'api.v1.dues.select-list',
