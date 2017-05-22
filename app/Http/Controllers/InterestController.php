@@ -14,7 +14,7 @@ class InterestController extends Controller
     {
         if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('briefcases', $sortCol)) {
+            if (\Schema::hasColumn('interests', $sortCol)) {
                 $query = Interest::orderBy($sortCol, $sortDir);
             }else{
                 $query = Interest::sortBy($sortCol, $sortDir);
