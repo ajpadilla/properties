@@ -61,6 +61,7 @@ mix.copy('resources/assets/js/models/property/config.js', 'public/js/models/prop
 mix.copy('resources/assets/js/models/briefcase/config.js', 'public/js/models/briefcase/config.js');
 mix.copy('resources/assets/js/models/interest/config.js', 'public/js/models/interest/config.js');
 mix.copy('resources/assets/js/models/sanction/config.js', 'public/js/models/sanction/config.js');
+mix.copy('resources/assets/js/models/due/config.js', 'public/js/models/due/config.js');
 
 
 mix.js('resources/assets/js/crud.js', 'public/js/crud.js');
