@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Interest;
+use App\Http\Requests\CreateInterestRequest;
+use App\Http\Requests\UpdateInterestRequest;
 
 class InterestController extends Controller
 {
@@ -36,6 +38,55 @@ class InterestController extends Controller
         return view('interests.index');
     }
 
+    public function store(CreateInterestRequest $request)
+    {
+        if ($request->ajax()) {
+            $input = $request->all();
+            $interest = Interest::create($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $interest);
+            $this->addToResponseArray('message', 'Interest successfully added');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
+
+    public function show(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $interest = Interest::find($id);
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Interest successfully recovered');
+            $this->addToResponseArray('data', $interest);
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();   
+    }
+
+    public function update(UpdateInterestRequest $request, $id)
+    {
+        if ($request->ajax()) {
+            $input = $request->all();
+            $interest = Interest::find($id);
+            $interest->update($input);
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $interest);
+            $this->addToResponseArray('message', 'Interest successfully update');
+            return $this->getResponseArrayJson();
+        }
+        return $this->getResponseArrayJson();
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $interest = Interest::find($id);
+            $this->setSuccess($interest->delete());
+            $this->addToResponseArray('message', 'Interest successfully delete');
+            return $this->getResponseArrayJson(); 
+        }
+        return $this->getResponseArrayJson(); 
+    }
 
     public function selectList(Request $request)
     {
