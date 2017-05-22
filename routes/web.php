@@ -246,7 +246,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 	});
 
 	/**
-	 * ------------------- Route index for Sanction ---------------
+	 * ------------------- Route index for Sanctions ---------------
 	 */
 	Route::group(['prefix' => 'sanctions'], function(){
 
@@ -255,6 +255,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 			'uses' => 'SanctionController@showList'
 		]);	
 	});
+
+	/**
+	 * ------------------- Route index for Dues ---------------
+	 */
+	Route::group(['prefix' => 'dues'], function(){
+
+		Route::get('', [
+			'as' => 'dues.index',
+			'uses' => 'DueController@showList'
+		]);	
+	});
+
 
 
 }); 
