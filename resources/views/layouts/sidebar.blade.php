@@ -133,6 +133,11 @@
                 <i class="fa fa-circle-o"></i> Upload
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/interests') }}">
+                <i class="fa fa-circle-o"></i> Interests
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
