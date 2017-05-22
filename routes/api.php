@@ -699,24 +699,24 @@ Route::group(['prefix' => 'briefcases'], function()
 
 Route::group(['prefix' => 'interests'], function()
 {
-	/*Route::get('/',[
-		'as' => 'api.briefcases.index',
-		'uses' => 'BriefcaseController@index'
-	]);*/	
+	Route::get('/',[
+		'as' => 'api.interests.index',
+		'uses' => 'InterestController@index'
+	]);	
 
 	/*Route::get('show/{id?}', [
-			'as' => 'api.briefcases.show',
-			'uses' => 'BriefcaseController@show'
+			'as' => 'api.interests.show',
+			'uses' => 'InterestController@show'
 	]);
 
 	Route::patch('update/{id?}', [
-			'as' => 'api.briefcases.update',
-			'uses' => 'BriefcaseController@update'
+			'as' => 'api.interests.update',
+			'uses' => 'InterestController@update'
 	]);
 
 	Route::delete('delete/{id?}', [
-		'as' => 'api.briefcases.delete',
-		'uses' => 'BriefcaseController@destroy'
+		'as' => 'api.interests.delete',
+		'uses' => 'InterestController@destroy'
 	]);*/
 
 	Route::get('select-list', [
