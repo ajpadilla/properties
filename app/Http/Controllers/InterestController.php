@@ -31,6 +31,11 @@ class InterestController extends Controller
         return response()->json($result);
     }
 
+    public function showList()
+    {
+        return view('interests.index');
+    }
+
 
     public function selectList(Request $request)
     {
