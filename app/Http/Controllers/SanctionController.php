@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sanction;
+use App\Http\Requests\CreateSanctionRequest;
+use App\Http\Requests\UpdateSanctionRequest;
+
 
 class SanctionController extends Controller
 {
@@ -12,7 +15,7 @@ class SanctionController extends Controller
     {
         if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('briefcases', $sortCol)) {
+            if (\Schema::hasColumn('sanctions', $sortCol)) {
                 $query = Sanction::orderBy($sortCol, $sortDir);
             }else{
                 $query = Sanction::sortBy($sortCol, $sortDir);
@@ -33,10 +36,10 @@ class SanctionController extends Controller
 
     public function showList()
     {
-        return view('interests.index');
+        return view('sanctions.index');
     }
 
-    public function store(CreateInterestRequest $request)
+    public function store(CreateSanctionRequest $request)
     {
         if ($request->ajax()) {
             $input = $request->all();
@@ -61,7 +64,7 @@ class SanctionController extends Controller
         return $this->getResponseArrayJson();   
     }
 
-    public function update(UpdateInterestRequest $request, $id)
+    public function update(UpdateSanctionRequest $request, $id)
     {
         if ($request->ajax()) {
             $input = $request->all();
@@ -79,7 +82,7 @@ class SanctionController extends Controller
     {
         if ($request->ajax()) {
             $sanction = Sanction::find($id);
-            $this->setSuccess($interest->delete());
+            $this->setSuccess($sanction->delete());
             $this->addToResponseArray('message', 'Sanction successfully delete');
             return $this->getResponseArrayJson(); 
         }
