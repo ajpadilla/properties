@@ -215,7 +215,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 		Route::get('', [
 			'as' => 'briefcases',
 			'uses' => 'BriefcaseController@showList'
-		]);	
+		]);
+
+		Route::group(['prefix' => 'interests'], function() {
+			Route::get('{briefcaseId?}', [
+				'as' => 'briefcases.interests.index',
+				'uses' => 'BriefcaseController@showInterestList'		
+			]);
+		});
 	});
 
 	/**
