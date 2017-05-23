@@ -12,7 +12,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 {{-- Include Table --}}
-                @include('briefcases.table')
+                @include('briefcases.interests.table')
             </div>
         </div>
     </div>
