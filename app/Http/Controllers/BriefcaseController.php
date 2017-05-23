@@ -245,6 +245,12 @@ class BriefcaseController extends Controller
     }
 
 
+    public function showInterestList(Request $request, $briefcaseId = null)
+    {
+        $briefcase = Briefcase::find($briefcaseId);
+        return view('briefcases.interests.index', compact('briefcase'));
+    }
+
 
 
 }
