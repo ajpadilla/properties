@@ -26267,7 +26267,11 @@ window.vm = new Vue({
       var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
       this.actionUrl = url + data.id;
-      this.modal(action);
+      if (action) {
+        this.modal(action);
+      } else {
+        document.location = this.actionUrl;
+      }
       //this.row = data;
       console.log('slotAction', action, data, this.actionUrl);
     },
