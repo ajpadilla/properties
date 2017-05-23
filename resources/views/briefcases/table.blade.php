@@ -33,6 +33,11 @@
             <i class="glyphicon glyphicon-plus"></i>Add Due
           </a>
         </li>
+         <li>
+          <a href="#"  @click.prevent="slotAction('', props.rowData, '{{ route('briefcases.interests.index') }}/')">
+            <i class="glyphicon glyphicon-plus"></i>Intereses
+          </a>
+        </li>
       </ul>
     </div>
   </template>
