@@ -28,7 +28,7 @@ var tableColumns = [
     {
         name: 'pivot.percent',
         title: 'Percent',
-        sortField: 'name',
+        sortField: 'percent',
         visible: true
     },
     {
