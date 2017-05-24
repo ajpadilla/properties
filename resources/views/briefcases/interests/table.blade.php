@@ -1,6 +1,6 @@
   <filter-bar></filter-bar>
   <vuetable ref="vuetable"
-  api-url="{{ route('api.briefcases.index') }}"
+  api-url="{{ route('api.v1.briefcases.interests.index', $briefcase->id) }}"
   :fields="columns"
   pagination-path=""
   :css="css.table"
@@ -19,18 +19,20 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a href="#"  @click.prevent="slotAction('interests_ADD', props.rowData, '{{ route('api.briefcases.interests.store') }}/')">
-            <i class="glyphicon glyphicon-plus"></i>Add Interest
-          </a>
-        </li>
-        <li>
-          <a href="#"  @click.prevent="slotAction('sanctions_ADD', props.rowData, '{{ route('api.briefcases.sanctions.store') }}/')">
-            <i class="glyphicon glyphicon-plus"></i>Add Sanction
+          <a href="#"  @click.prevent="slotActionPivot('SHOW', '{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+            <i class="glyphicon glyphicon-plus"></i>Show
           </a>
         </li>
          <li>
-          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, '{{ route('api.briefcases.dues.store') }}/')">
-            <i class="glyphicon glyphicon-plus"></i>Add Due
+          <a href="#"  @click.prevent="slotActionPivot('PATCH','{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/', 
+          '{{ route('api.v1.briefcases.interests.update') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+            <i class="glyphicon glyphicon-plus"></i>Edit
+          </a>
+        </li>
+        <li>
+          <a href="#"  @click.prevent="slotActionPivot('DELETE','{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/', 
+          '{{ route('api.v1.briefcases.interests.delete') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+            <i class="glyphicon glyphicon-plus"></i>Delete
           </a>
         </li>
       </ul>
