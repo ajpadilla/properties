@@ -124,7 +124,7 @@ class BriefcaseController extends Controller
             $input = $request->all();
 
 
-            $exists = $briefcase->interests()->whereInterestId($interestId);
+            $exists = $briefcase->interests()->whereInterestId($interestId)->count();
 
             if ($exists) {
                 $briefcase->interests()->updateExistingPivot($interestId, 
@@ -147,6 +147,127 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+    public function showInterestList(Request $request, $briefcaseId = null)
+    {
+        $briefcase = Briefcase::find($briefcaseId);
+        return view('briefcases.interests.index', compact('briefcase'));
+    }
+
+    public function interests(Request $request, $id = null)
+    {
+        $briefcase = Briefcase::find($id);
+
+        if (empty($briefcase)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'Briefcase not found');
+            return $this->getResponseArrayJson();
+        }
+
+        if (empty($briefcase->interests)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 
+                'Briefcase Does not have associated items
+            ');
+            return $this->getResponseArrayJson();
+        }
+        
+        $query = $briefcase->interests();
+        if (request()->has('sort')) {
+            list($sortCol, $sortDir) = explode('|', request()->sort);
+            $query = $query->orderBy($sortCol, $sortDir);
+        } else {
+            $query = $query->orderBy('created_at', 'asc');
+        }
+
+        if ($request->exists('filter')) {
+          $query->search("{$request->filter}");                     
+        }
+
+        $perPage = request()->has('per_page') ? (int) request()->per_page : null;
+        return response()->json($query->paginate($perPage));
+    }
+
+    public function interest(Request $request, $id = null, $interestId = null)
+    {
+        if ($request->ajax()) 
+        {
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $interest = $briefcase->interests()->whereInterestId($interestId)->first();
+
+            if (empty($interest)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interest not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Interest successfully recovered to briefcase');
+            $this->addToResponseArray('data', $interest);
+            return $this->getResponseArrayJson();
+       }
+   }
+
+   public function interestUpdate(Request $request, $id = null, $interestId = null, $interestPivotId = null)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->interests()->whereInterestId($interestId)->count();
+
+            if ($exists) {
+                $briefcase->interests()->updateExistingPivot($interestId, 
+                    ['percent' => $request->input('pivot.percent')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Interest successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
+
+    public function deleteInterest(Request $request, $id = null, $interestId = null, $interestPivotId = null)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->interests()->whereInterestId($interestId)->count();
+
+            if ($exists) {
+                $briefcase->interests()->detach($interestId);
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Interest successfully delete to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
 
     public function storeSanction(RelationSanctionBriefcaseRequest $request, $id = null )
     {
@@ -173,7 +294,7 @@ class BriefcaseController extends Controller
 
             $input = $request->all();
 
-            $exists = $briefcase->sanctions()->whereSanctionId($sanctionId);
+            $exists = $briefcase->sanctions()->whereSanctionId($sanctionId)->count();
 
             if ($exists) {
                 $briefcase->sanctions()->updateExistingPivot($sanctionId, 
@@ -221,7 +342,7 @@ class BriefcaseController extends Controller
 
             $input = $request->all();
 
-            $exists = $briefcase->dues()->whereDueId($dueId);
+            $exists = $briefcase->dues()->whereDueId($dueId)->count();
 
             if ($exists) {
                 $briefcase->dues()->updateExistingPivot($dueId, 
@@ -245,12 +366,6 @@ class BriefcaseController extends Controller
     }
 
 
-    public function showInterestList(Request $request, $briefcaseId = null)
-    {
-        $briefcase = Briefcase::find($briefcaseId);
-        return view('briefcases.interests.index', compact('briefcase'));
-    }
-
-
+    
 
 }
