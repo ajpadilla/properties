@@ -665,10 +665,33 @@ Route::group(['prefix' => 'briefcases'], function()
 
 	Route::group(['prefix' => 'interests'], function()
 	{
+		
 		Route::post('store/briefcase/interest/{id?}', [
 			'as' => 'api.briefcases.interests.store',
 			'uses' => 'BriefcaseController@storeInterest'
 		]);
+
+		Route::get('{id?}', [
+			'as' => 'api.v1.briefcases.interests.index',
+			'uses' => 'BriefcaseController@interests'
+		]);
+
+		Route::get('show/{id?}/{interestId?}', [
+			'as' => 'api.v1.briefcases.interests.show',
+			'uses' => 'BriefcaseController@interest'
+		]);
+
+		Route::patch('update/{id?}/{interestId?}/{interestPivotId?}', [
+			'as' => 'api.v1.briefcases.interests.update',
+			'uses' => 'BriefcaseController@interestUpdate'
+		]);
+
+		Route::delete('delete/{id?}/{interestId?}/{interestPivotId?}', [
+			'as' => 'api.v1.briefcases.interests.delete',
+			'uses' => 'BriefcaseController@deleteInterest'
+		]);
+
+
 	});
 
 	/**
