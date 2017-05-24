@@ -25946,7 +25946,7 @@ window.Vue = Vue;
 window.axios = __webpack_require__(133);
 
 window.axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest'
 };
 
 var decamelize = __webpack_require__(158);
@@ -25964,388 +25964,406 @@ var decamelize = __webpack_require__(158);
 Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_events___default.a);
 
 Vue.component('custom-actions', {
-  props: {
-    rowData: {
-      type: Object,
-      required: true
+    props: {
+        rowData: {
+            type: Object,
+            required: true
+        },
+        rowIndex: {
+            type: Number
+        }
     },
-    rowIndex: {
-      type: Number
+    template: '<div class="custom-actions">\n    \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'view-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-zoom-in"></i></button>\n      \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'edit-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-pencil"></i></button>\n      \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'delete-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-trash"></i></button>\n    \t\t\t</div>',
+    methods: {
+        itemAction: function itemAction(action, data, index) {
+            console.log('custom-actions: ' + action, data.name, index);
+            this.$events.fire('vuetable-action', action, data);
+            this.$events.emit('init', "Spread from son to father");
+        }
     }
-  },
-  template: '<div class="custom-actions">\n    \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'view-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-zoom-in"></i></button>\n      \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'edit-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-pencil"></i></button>\n      \t\t\t\t<button class="btn btn-sm" @click="itemAction(\'delete-item\', rowData, rowIndex)"><i class="glyphicon glyphicon-trash"></i></button>\n    \t\t\t</div>',
-  methods: {
-    itemAction: function itemAction(action, data, index) {
-      console.log('custom-actions: ' + action, data.name, index);
-      this.$events.fire('vuetable-action', action, data);
-      this.$events.emit('init', "Spread from son to father");
-    }
-  }
 });
 
 Vue.component('modal', {
-  props: {
-    width: {
-      default: null
-    }
-  },
-  template: '<transition name="modal">\n\t\t\t    <div class="modal-mask">\n\t\t\t      <div class="modal-wrapper">\n\t\t\t        <div class="modal-container" :style="{width: optionalWidth}">\n\n\t\t\t          <div class="modal-header">\n\t\t\t            <slot name="header">\n\t\t\t              default header\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-body">\n\t\t\t            <slot name="body">\n\t\t\t              default body\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-footer">\n\t\t\t          <button type="button" class="btn btn-default" @click=\'$emit("close")\'>Close</button>\n\t\t\t            <slot name="footer">\n\t\t\t              default footer\n\t\t\t       \t\t\tdefault footer\n\t\t\t              </button>\n\t\t\t            </slot>\n\t\t\t          </div>\n\t\t\t        </div>\n\t\t\t      </div>\n\t\t\t    </div>\n\t\t\t  </transition>',
-  created: function created() {},
+    props: {
+        width: {
+            default: null
+        }
+    },
+    template: '<transition name="modal">\n\t\t\t    <div class="modal-mask">\n\t\t\t      <div class="modal-wrapper">\n\t\t\t        <div class="modal-container" :style="{width: optionalWidth}">\n\n\t\t\t          <div class="modal-header">\n\t\t\t            <slot name="header">\n\t\t\t              default header\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-body">\n\t\t\t            <slot name="body">\n\t\t\t              default body\n\t\t\t            </slot>\n\t\t\t          </div>\n\n\t\t\t          <div class="modal-footer">\n\t\t\t          <button type="button" class="btn btn-default" @click=\'$emit("close")\'>Close</button>\n\t\t\t            <slot name="footer">\n\t\t\t              default footer\n\t\t\t       \t\t\tdefault footer\n\t\t\t              </button>\n\t\t\t            </slot>\n\t\t\t          </div>\n\t\t\t        </div>\n\t\t\t      </div>\n\t\t\t    </div>\n\t\t\t  </transition>',
+    created: function created() {},
 
-  events: {},
-  computed: {
-    optionalWidth: function optionalWidth() {
-      return this.width + 'px';
+    events: {},
+    computed: {
+        optionalWidth: function optionalWidth() {
+            return this.width + 'px';
+        }
     }
-  }
 });
 
 Vue.component('filter-bar', {
-  template: '\n\t\t<div class="row">\n\t    <div class="col-md-5">\n\t        <div class="form-inline form-group">\n\t            <label>Buscar</label>\n\t            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="">\n          \t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n          \t\t<button class="btn" @click.prevent="resetFilter">Reset</button>\n\t        </div>\n\t    </div>\n\t    <div class="col-md-7">\n\t        <div class="dropdown form-inline pull-right">\n\t            <label>Items por p\xE1gina</label>\n\t            <select class="form-control" v-model="perPage">\n\t            \t<option value=5>5</option>\n\t                <option value=10>10</option>\n\t                <option value=15>15</option>\n\t                <option value=20>20</option>\n\t                <option value=25>25</option>\n\t            </select>\n\t        </div>\n\t    </div>\n\t</div>\n\n\t',
-  data: function data() {
-    return {
-      filterText: '',
-      perPage: 0
-    };
-  },
-
-  methods: {
-    doFilter: function doFilter() {
-      this.$events.fire('filter-set', this.filterText);
-      console.log('desde el component filter:' + this.filterText);
+    template: '\n\t\t<div class="row">\n\t    <div class="col-md-5">\n\t        <div class="form-inline form-group">\n\t            <label>Buscar</label>\n\t            <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="">\n          \t\t<button class="btn btn-primary" @click.prevent="doFilter">Go</button>\n          \t\t<button class="btn" @click.prevent="resetFilter">Reset</button>\n\t        </div>\n\t    </div>\n\t    <div class="col-md-7">\n\t        <div class="dropdown form-inline pull-right">\n\t            <label>Items por p\xE1gina</label>\n\t            <select class="form-control" v-model="perPage">\n\t            \t<option value=5>5</option>\n\t                <option value=10>10</option>\n\t                <option value=15>15</option>\n\t                <option value=20>20</option>\n\t                <option value=25>25</option>\n\t            </select>\n\t        </div>\n\t    </div>\n\t</div>\n\n\t',
+    data: function data() {
+        return {
+            filterText: '',
+            perPage: 0
+        };
     },
-    resetFilter: function resetFilter() {
-      this.filterText = '';
-      this.$events.fire('filter-reset');
+
+    methods: {
+        doFilter: function doFilter() {
+            this.$events.fire('filter-set', this.filterText);
+            console.log('desde el component filter:' + this.filterText);
+        },
+        resetFilter: function resetFilter() {
+            this.filterText = '';
+            this.$events.fire('filter-reset');
+        }
+    },
+    watch: {
+        'perPage': function perPage(value) {
+            this.$events.fire('per-page', value);
+        }
     }
-  },
-  watch: {
-    'perPage': function perPage(value) {
-      this.$events.fire('per-page', value);
-    }
-  }
 
 });
 
 Vue.component('my-detail-row', {
-  props: {
-    rowData: {
-      type: Object,
-      required: true
+    props: {
+        rowData: {
+            type: Object,
+            required: true
+        },
+        rowIndex: {
+            type: Number
+        }
     },
-    rowIndex: {
-      type: Number
+    template: '<div @click="onClick">\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Name: </label>\n\t\t\t      <span>{{rowData.name}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Email: </label>\n\t\t\t      <span>{{rowData.email}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Nickname: </label>\n\t\t\t      <span>{{rowData.nickname}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Birthdate: </label>\n\t\t\t      <span>{{rowData.birthdate}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Gender: </label>\n\t\t\t      <span>{{rowData.gender}}</span>\n\t\t\t    </div>\n  \t\t\t</div>',
+    methods: {
+        onClick: function onClick(event) {
+            console.log('my-detail-row: on-click', event.target);
+        }
     }
-  },
-  template: '<div @click="onClick">\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Name: </label>\n\t\t\t      <span>{{rowData.name}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Email: </label>\n\t\t\t      <span>{{rowData.email}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Nickname: </label>\n\t\t\t      <span>{{rowData.nickname}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Birthdate: </label>\n\t\t\t      <span>{{rowData.birthdate}}</span>\n\t\t\t    </div>\n\t\t\t    <div class="inline field">\n\t\t\t      <label>Gender: </label>\n\t\t\t      <span>{{rowData.gender}}</span>\n\t\t\t    </div>\n  \t\t\t</div>',
-  methods: {
-    onClick: function onClick(event) {
-      console.log('my-detail-row: on-click', event.target);
-    }
-  }
 
 });
 
 window.vm = new Vue({
 
-  el: '#app',
-  created: function created() {
-    console.log('Instancia de Vue 2 Lista', this.row, this.columns);
-    this.$events.on('init', function (message) {
-      console.log("Propagated action:" + message);
-    });
-  },
-  components: {
-    Vuetable: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable___default.a,
-    VuetablePagination: __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination___default.a,
-    VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo___default.a,
-    Datepicker: __WEBPACK_IMPORTED_MODULE_6_vuejs_datepicker___default.a,
-    BasicSelect: __WEBPACK_IMPORTED_MODULE_7_vue_search_select__["BasicSelect"],
-    Dropzone: __WEBPACK_IMPORTED_MODULE_8_vue2_dropzone___default.a
-  },
-  data: {
-    row: objectRow,
-    columns: tableColumns,
-    lastOpenModal: [],
-    localModals: typeof modals !== 'undefined' ? modals : {},
-    foreignData: typeof options !== 'undefined' ? options : {},
-    method: '',
-    formModal: false,
-    showModal: false,
-    deleteModal: false,
-    infoModal: false,
-    token: token,
-    flashMessage: null,
-    flashType: null,
-    flashSuccessfulMessage: null,
-    flashSuccessfulType: null,
-    url: apiUrl,
-    actionUrl: null,
-    errorMessages: [],
-    searchText: '',
-    css: {
-      table: {
-        tableClass: 'table table-bordered table-striped table-hover',
-        ascendingIcon: 'glyphicon glyphicon-chevron-up',
-        descendingIcon: 'glyphicon glyphicon-chevron-down'
-      },
-      pagination: {
-        wrapperClass: 'pagination',
-        activeClass: 'active',
-        disabledClass: 'disabled',
-        pageClass: 'page',
-        linkClass: 'link'
-      },
-      icons: {
-        first: 'glyphicon glyphicon-step-backward',
-        prev: 'glyphicon glyphicon-chevron-left',
-        next: 'glyphicon glyphicon-chevron-right',
-        last: 'glyphicon glyphicon-step-forward'
-      }
+    el: '#app',
+    created: function created() {
+        console.log('Instancia de Vue 2 Lista', this.row, this.columns);
+        this.$events.on('init', function (message) {
+            console.log("Propagated action:" + message);
+        });
     },
-    sortOrder: [{ field: fieldInitOrder, sortField: fieldInitOrder, direction: 'asc' }],
-    moreParams: {}
-  },
-
-  methods: {
-    uploadImage: function uploadImage(value) {
-      if (value) return '<img src="' + value.storage_route + '" class="img-rounded" alt="' + value.original_filename + '" width="100" height="100">';
+    components: {
+        Vuetable: __WEBPACK_IMPORTED_MODULE_2_vuetable_2_src_components_Vuetable___default.a,
+        VuetablePagination: __WEBPACK_IMPORTED_MODULE_3_vuetable_2_src_components_VuetablePagination___default.a,
+        VuetablePaginationInfo: __WEBPACK_IMPORTED_MODULE_4_vuetable_2_src_components_VuetablePaginationInfo___default.a,
+        Datepicker: __WEBPACK_IMPORTED_MODULE_6_vuejs_datepicker___default.a,
+        BasicSelect: __WEBPACK_IMPORTED_MODULE_7_vue_search_select__["BasicSelect"],
+        Dropzone: __WEBPACK_IMPORTED_MODULE_8_vue2_dropzone___default.a
     },
-    onPaginationData: function onPaginationData(paginationData) {
-      this.$refs.pagination.setPaginationData(paginationData);
-      this.$refs.paginationInfo.setPaginationData(paginationData);
-    },
-    onChangePage: function onChangePage(page) {
-      this.$refs.vuetable.changePage(page);
-    },
-    onCellClicked: function onCellClicked(data, field, event) {
-      console.log('cellClicked: ', field.name);
-      this.$refs.vuetable.toggleDetailRow(data.id);
-    },
-    onAction: function onAction(action, data, index) {
-      console.log(JSON.stringify(data));
-      console.log('slot) action: ' + action, data.name, index);
-    },
-    onSelect: function onSelect(item) {
-      this.row[item.relation] = item;
-    },
-    modal: function modal(type) {
-      if (type == 'POST') {
-        this.cleanData();
-        this.row.name = "";
-        this.lastOpenModal.push('formModal');
-        this.method = type;
-        this.formModal = true;
-        this.actionUrl = this.url.store;
-      } else if (type == 'PATCH') {
-        this.lastOpenModal.push('formModal');
-        this.method = type;
-        this.formModal = true;
-        this.actionUrl = this.url.update;
-      } else if (type == 'SHOW') {
-        this.lastOpenModal.push('showModal');
-        this.method = type;
-        this.showModal = true;
-      } else if (type == 'DELETE') {
-        this.lastOpenModal.push('deleteModal');
-        this.method = type;
-        this.deleteModal = true;
-        this.actionUrl = this.url.delete;
-      } else if (type == 'INFO') {
-        this.lastOpenModal.push('infoModal');
-        this.infoModal = true;
-      } else {
-        this.lastOpenModal.push(type);
-        this.localModals[type] = true;
-      }
-    },
-    closeModal: function closeModal(modalName) {
-      if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1]) this.lastOpenModal.pop();
-
-      if (this.localModals[modalName] != undefined) this.localModals[modalName] = false;else this.$set(this, modalName, false);
-
-      //this.cleanData();  
-    },
-    getData: function getData() {
-      axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
+    data: {
+        row: objectRow,
+        columns: tableColumns,
+        lastOpenModal: [],
+        localModals: typeof modals !== 'undefined' ? modals : {},
+        foreignData: typeof options !== 'undefined' ? options : {},
+        method: '',
+        formModal: false,
+        showModal: false,
+        deleteModal: false,
+        infoModal: false,
+        token: token,
+        flashMessage: null,
+        flashType: null,
+        flashSuccessfulMessage: null,
+        flashSuccessfulType: null,
+        url: apiUrl,
+        actionUrl: null,
+        errorMessages: [],
+        searchText: '',
+        css: {
+            table: {
+                tableClass: 'table table-bordered table-striped table-hover',
+                ascendingIcon: 'glyphicon glyphicon-chevron-up',
+                descendingIcon: 'glyphicon glyphicon-chevron-down'
+            },
+            pagination: {
+                wrapperClass: 'pagination',
+                activeClass: 'active',
+                disabledClass: 'disabled',
+                pageClass: 'page',
+                linkClass: 'link'
+            },
+            icons: {
+                first: 'glyphicon glyphicon-step-backward',
+                prev: 'glyphicon glyphicon-chevron-left',
+                next: 'glyphicon glyphicon-chevron-right',
+                last: 'glyphicon glyphicon-step-forward'
+            }
+        },
+        sortOrder: [{ field: fieldInitOrder, sortField: fieldInitOrder, direction: 'asc' }],
+        moreParams: {}
     },
 
-    cleanData: function cleanData() {
-      this.row = objectRow;
-      this.flashMessage = '';
-      this.flashType = '';
-      this.errorMessages = [];
-    },
-    success: function success(response) {
-      var _this = this;
+    methods: {
+        uploadImage: function uploadImage(value) {
+            if (value) return '<img src="' + value.storage_route + '" class="img-rounded" alt="' + value.original_filename + '" width="100" height="100">';
+        },
+        onPaginationData: function onPaginationData(paginationData) {
+            this.$refs.pagination.setPaginationData(paginationData);
+            this.$refs.paginationInfo.setPaginationData(paginationData);
+        },
+        onChangePage: function onChangePage(page) {
+            this.$refs.vuetable.changePage(page);
+        },
+        onCellClicked: function onCellClicked(data, field, event) {
+            console.log('cellClicked: ', field.name);
+            this.$refs.vuetable.toggleDetailRow(data.id);
+        },
+        onAction: function onAction(action, data, index) {
+            console.log(JSON.stringify(data));
+            console.log('slot) action: ' + action, data.name, index);
+        },
+        onSelect: function onSelect(item) {
+            this.row[item.relation] = item;
+        },
+        modal: function modal(type) {
+            if (type == 'POST') {
+                this.cleanData();
+                this.row.name = "";
+                this.lastOpenModal.push('formModal');
+                this.method = type;
+                this.formModal = true;
+                this.actionUrl = this.url.store;
+            } else if (type == 'PATCH') {
+                this.lastOpenModal.push('formModal');
+                this.method = type;
+                this.formModal = true;
+                this.actionUrl = this.url.update;
+            } else if (type == 'SHOW') {
+                this.lastOpenModal.push('showModal');
+                this.method = type;
+                this.showModal = true;
+            } else if (type == 'DELETE') {
+                this.lastOpenModal.push('deleteModal');
+                this.method = type;
+                this.deleteModal = true;
+                this.actionUrl = this.url.delete;
+            } else if (type == 'INFO') {
+                this.lastOpenModal.push('infoModal');
+                this.infoModal = true;
+            } else {
+                this.lastOpenModal.push(type);
+                this.localModals[type] = true;
+            }
+        },
+        closeModal: function closeModal(modalName) {
+            if (modalName == this.lastOpenModal[this.lastOpenModal.length - 1]) this.lastOpenModal.pop();
 
-      if (response.data.success && response.data.data) {
-        this.row = response.data.data;
-      }
-      this.flashMessage = response.data.message;
-      this.flashType = 'success';
+            if (this.localModals[modalName] != undefined) this.localModals[modalName] = false;else this.$set(this, modalName, false);
 
-      Vue.nextTick(function () {
-        return _this.$refs.vuetable.refresh();
-      });
-    },
-    successSent: function successSent(response) {
-      var _this2 = this;
+            //this.cleanData();  
+        },
+        getData: function getData() {
+            var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-      var lastOpenModal = this.lastOpenModal.pop();
-      /*if (response.data.success && response.data.data) {
-      	this.row = response.data.data;
-      }*/
-      console.log('successSent:', response.data.data);
-      this.flashSuccessfulMessage = response.data.message;
-      this.flashSuccessfulType = 'success';
-      Vue.nextTick(function () {
-        return _this2.$refs.vuetable.refresh();
-      });
-      this.closeModal(lastOpenModal);
-      this.modal('INFO');
-    },
+            if (!url) {
+                axios.get(this.url.show + this.row.id).then(this.success).catch(this.failed);
+            } else {
+                axios.get(url).then(this.success).catch(this.failed);
+            }
+        },
 
-    failed: function failed(error) {
-      this.flashMessage = 'Some errors in sended data, please check!.';
-      this.flashType = 'danger';
-      if (error.response.data) {
-        this.updateErrors(error.response.data);
-      }
-    },
-    updateErrors: function updateErrors(errors) {
-      this.errorMessages = [];
-      for (var fieldAttr in errors) {
-        var errorMgs = errors[fieldAttr];
-        for (var msg in errorMgs) {
-          this.errorMessages.push(errorMgs[msg]);
+        cleanData: function cleanData() {
+            this.row = objectRow;
+            this.flashMessage = '';
+            this.flashType = '';
+            this.errorMessages = [];
+        },
+        success: function success(response) {
+            var _this = this;
+
+            if (response.data.success && response.data.data) {
+                this.row = response.data.data;
+            }
+            this.flashMessage = response.data.message;
+            this.flashType = 'success';
+
+            Vue.nextTick(function () {
+                return _this.$refs.vuetable.refresh();
+            });
+        },
+        successSent: function successSent(response) {
+            var _this2 = this;
+
+            var lastOpenModal = this.lastOpenModal.pop();
+            /*if (response.data.success && response.data.data) {
+            	this.row = response.data.data;
+            }*/
+            console.log('successSent:', response.data.data);
+            this.flashSuccessfulMessage = response.data.message;
+            this.flashSuccessfulType = 'success';
+            Vue.nextTick(function () {
+                return _this2.$refs.vuetable.refresh();
+            });
+            this.closeModal(lastOpenModal);
+            this.modal('INFO');
+        },
+
+        failed: function failed(error) {
+            this.flashMessage = 'Some errors in sended data, please check!.';
+            this.flashType = 'danger';
+            if (error.response.data) {
+                this.updateErrors(error.response.data);
+            }
+        },
+        updateErrors: function updateErrors(errors) {
+            this.errorMessages = [];
+            for (var fieldAttr in errors) {
+                var errorMgs = errors[fieldAttr];
+                for (var msg in errorMgs) {
+                    this.errorMessages.push(errorMgs[msg]);
+                }
+            }
+        },
+        submit: function submit() {
+            var model = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+
+            if (!model || model.target) {
+                this.$events.fire(this.method, this.actionUrl, this.row);
+                //}else if( related ){
+            } else {
+                console.log('submit');
+                this.method = this.url.foreign[model][type].method;
+                //var actionUrl = this.url.foreign[model][type].url;
+                this.$events.fire(this.method, this.actionUrl, this.row);
+            }
+        },
+        getForeignData: function getForeignData() {
+            var callUrl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var mapVar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+            var action = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'index';
+
+            var foreign = this.url.foreign[related][action];
+            if (callUrl == null) callUrl = foreign.url;
+
+            var sendParams = { method: foreign.method, url: callUrl, data: {} };
+
+            axios(sendParams).then(function (response) {
+                if (response.data.data) {
+                    var data = response.data.data;
+                    //vm.foreignData[mapVar] = response.data.data;
+                    vm.foreignData[mapVar] = [];
+                    for (var key in data) {
+                        vm.foreignData[mapVar].push({ value: key, text: data[key], relation: related + '_related' });
+                    }
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+
+        slotAction: function slotAction(action, data) {
+            var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+            this.actionUrl = url + data.id;
+            if (action) {
+                this.modal(action);
+            } else {
+                document.location = this.actionUrl;
+            }
+            //this.row = data;
+            console.log('slotAction', action, data, this.actionUrl);
+        },
+        slotActionPivot: function slotActionPivot(action) {
+            var urlGet = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var urlPost = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+            this.getData(urlGet);
+            this.modal(action);
+            if (urlPost) {
+                this.actionUrl = urlPost;
+                console.log('post', this.actionUrl, urlGet);
+            }
+            console.log('get', this.actionUrl, urlGet);
+        },
+        'showSuccess': function showSuccess(file, response) {
+            console.log('A file was successfully uploaded', response);
         }
-      }
+
     },
-    submit: function submit() {
-      var model = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
+    events: {
+        'filter-set': function filterSet(filterText) {
+            var _this3 = this;
 
-      if (!model || model.target) {
-        this.$events.fire(this.method, this.actionUrl, this.row);
-        //}else if( related ){
-      } else {
-        console.log('submit');
-        this.method = this.url.foreign[model][type].method;
-        //var actionUrl = this.url.foreign[model][type].url;
-        this.$events.fire(this.method, this.actionUrl, this.row);
-      }
-    },
-    getForeignData: function getForeignData() {
-      var callUrl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      var mapVar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var action = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'index';
+            console.log('Desde el padre:' + filterText);
 
-      var foreign = this.url.foreign[related][action];
-      if (callUrl == null) callUrl = foreign.url;
+            this.moreParams = {
+                filter: filterText
+            };
+            Vue.nextTick(function () {
+                return _this3.$refs.vuetable.refresh();
+            });
+        },
+        'filter-reset': function filterReset() {
+            var _this4 = this;
 
-      var sendParams = { method: foreign.method, url: callUrl, data: {} };
+            this.moreParams = {};
+            Vue.nextTick(function () {
+                return _this4.$refs.vuetable.refresh();
+            });
+        },
+        'per-page': function perPage(value) {
+            var _this5 = this;
 
-      axios(sendParams).then(function (response) {
-        if (response.data.data) {
-          var data = response.data.data;
-          //vm.foreignData[mapVar] = response.data.data;
-          vm.foreignData[mapVar] = [];
-          for (var key in data) {
-            vm.foreignData[mapVar].push({ value: key, text: data[key], relation: related + '_related' });
-          }
+            console.log('per-page activado:' + value);
+            this.moreParams = {
+                per_page: value
+            };
+            Vue.nextTick(function () {
+                return _this5.$refs.vuetable.refresh();
+            });
+        },
+        'vuetable-action': function vuetableAction(action, data) {
+            this.cleanData();
+            console.log('action:' + action, data);
+            //this.row = data;
+            this.row.id = data.id;
+            this.getData();
+            if (action == 'view-item') {
+                this.modal('SHOW');
+            } else if (action == 'edit-item') {
+                this.modal('PATCH');
+            } else if (action == 'delete-item') {
+                this.modal('DELETE');
+            } else {
+                this.modal(action);
+            }
+        },
+        'POST': function POST(actionUrl, data) {
+            console.log('Enviando datos al servidor', actionUrl, JSON.stringify(data));
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = this.row.token;
+
+            axios.post(actionUrl, data).then(this.successSent).catch(this.failed);
+        },
+        'PATCH': function PATCH(actionUrl, data) {
+            console.log('Actualizando datos al servidor', actionUrl + data.id, JSON.stringify(data));
+            var url = actionUrl + data.id;
+            axios.patch(url, data).then(this.successSent).catch(this.failed);
+        },
+        'DELETE': function DELETE(actionUrl, data) {
+            console.log('Eliminando datos del servidor', actionUrl + data.id, JSON.stringify(data));
+            var url = actionUrl + data.id;
+            axios.delete(url, data).then(this.successSent).catch(this.failed);
         }
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-
-    slotAction: function slotAction(action, data) {
-      var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-      this.actionUrl = url + data.id;
-      if (action) {
-        this.modal(action);
-      } else {
-        document.location = this.actionUrl;
-      }
-      //this.row = data;
-      console.log('slotAction', action, data, this.actionUrl);
-    },
-    'showSuccess': function showSuccess(file, response) {
-      console.log('A file was successfully uploaded', response);
     }
-
-  },
-
-  events: {
-    'filter-set': function filterSet(filterText) {
-      var _this3 = this;
-
-      console.log('Desde el padre:' + filterText);
-
-      this.moreParams = {
-        filter: filterText
-      };
-      Vue.nextTick(function () {
-        return _this3.$refs.vuetable.refresh();
-      });
-    },
-    'filter-reset': function filterReset() {
-      var _this4 = this;
-
-      this.moreParams = {};
-      Vue.nextTick(function () {
-        return _this4.$refs.vuetable.refresh();
-      });
-    },
-    'per-page': function perPage(value) {
-      var _this5 = this;
-
-      console.log('per-page activado:' + value);
-      this.moreParams = {
-        per_page: value
-      };
-      Vue.nextTick(function () {
-        return _this5.$refs.vuetable.refresh();
-      });
-    },
-    'vuetable-action': function vuetableAction(action, data) {
-      this.cleanData();
-      console.log('action:' + action, data);
-      //this.row = data;
-      this.row.id = data.id;
-      this.getData();
-      if (action == 'view-item') {
-        this.modal('SHOW');
-      } else if (action == 'edit-item') {
-        this.modal('PATCH');
-      } else if (action == 'delete-item') {
-        this.modal('DELETE');
-      } else {
-        this.modal(action);
-      }
-    },
-    'POST': function POST(actionUrl, data) {
-      console.log('Enviando datos al servidor', actionUrl, JSON.stringify(data));
-      axios.defaults.headers.common['X-CSRF-TOKEN'] = this.row.token;
-
-      axios.post(actionUrl, data).then(this.successSent).catch(this.failed);
-    },
-    'PATCH': function PATCH(actionUrl, data) {
-      console.log('Actualizando datos al servidor', actionUrl + data.id, JSON.stringify(data));
-      var url = actionUrl + data.id;
-      axios.patch(url, data).then(this.successSent).catch(this.failed);
-    },
-    'DELETE': function DELETE(actionUrl, data) {
-      console.log('Eliminando datos del servidor', actionUrl + data.id, JSON.stringify(data));
-      var url = actionUrl + data.id;
-      axios.delete(url, data).then(this.successSent).catch(this.failed);
-    }
-  }
 
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(127)))
