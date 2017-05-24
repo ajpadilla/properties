@@ -316,11 +316,17 @@ Vue.component('my-detail-row', {
     		
     		//this.cleanData();  
         },
-        getData () {
-        	axios.get(this.url.show + this.row.id)
-        	.then(this.success)
-	    	.catch(this.failed);
-        },
+        getData (url = null) {
+            if (!url) {
+                axios.get(this.url.show + this.row.id)
+                .then(this.success)
+                .catch(this.failed);
+            } else {
+               axios.get(url)
+               .then(this.success)
+               .catch(this.failed);
+           }
+       },
         cleanData: function() {
             this.row = objectRow;
             this.flashMessage = '';
@@ -411,6 +417,15 @@ Vue.component('my-detail-row', {
             }
             //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
+        },
+        slotActionPivot: function (action, urlGet = null, urlPost = null){
+            this.getData(urlGet);
+            this.modal(action);
+            if (urlPost) {
+                this.actionUrl = urlPost;
+                console.log('post',this.actionUrl, urlGet);
+            }
+            console.log('get' ,this.actionUrl, urlGet);
         },
         'showSuccess': function (file, response) {
             console.log('A file was successfully uploaded', response)
