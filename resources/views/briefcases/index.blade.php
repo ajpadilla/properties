@@ -3,7 +3,7 @@
 @section('content')
 <div id="app">
     <section class="content-header">
-        <h1 class="pull-left">Listado de comunidades</h1>
+        <h1 class="pull-left">Listado de carteras</h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" href="#" style="margin-top: -10px;margin-bottom: 5px" @click.prevent="modal('POST')">Create</a>
        </h1>
@@ -58,6 +58,10 @@
                     },
                 },
                 interest:{
+                    index: {
+                        method: 'GET',
+                        url: "{{ route('briefcases.interests.index') }}/"
+                    },
                     select: {
                         method: 'GET',
                         url: "{{ route('api.v1.interests.select-list') }}/"
@@ -68,6 +72,10 @@
                     }
                 },
                 sanction:{
+                    index:{
+                        method: 'GET',
+                        url: "{{ route('briefcases.sanctions.index') }}/"
+                    },
                     select: {
                         method: 'GET',
                         url: "{{ route('api.v1.sanctions.select-list') }}/"
