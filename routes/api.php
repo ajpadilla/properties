@@ -726,7 +726,7 @@ Route::group(['prefix' => 'briefcases'], function()
 	});
 
 	/**
-	 * ------------------- API Route for Briefcase-Sanction ---------------
+	 * ------------------- API Route for Briefcase-Due ---------------
 	 */
 	Route::group(['prefix' => 'dues'], function()
 	{
@@ -734,8 +734,28 @@ Route::group(['prefix' => 'briefcases'], function()
 			'as' => 'api.briefcases.dues.store',
 			'uses' => 'BriefcaseController@storeDue'
 		]);
-	});
 
+		Route::get('{id?}', [
+			'as' => 'api.v1.briefcases.dues.index',
+			'uses' => 'BriefcaseController@dues'
+		]);
+
+		Route::get('show/{id?}/{sanctionId?}', [
+			'as' => 'api.v1.briefcases.dues.show',
+			'uses' => 'BriefcaseController@due'
+		]);
+
+		Route::patch('update/{id?}/{sanctionId?}/{sanctionPivotId?}', [
+			'as' => 'api.v1.briefcases.dues.update',
+			'uses' => 'BriefcaseController@dueUpdate'
+		]);
+
+		Route::delete('delete/{id?}/{sanctionId?}/{sanctionPivotId?}', [
+			'as' => 'api.v1.briefcases.dues.delete',
+			'uses' => 'BriefcaseController@deleteDue'
+		]);
+
+	});
 
 });
 
