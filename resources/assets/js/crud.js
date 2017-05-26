@@ -408,12 +408,13 @@ Vue.component('my-detail-row', {
         		console.log(error);
         	});
         },
-        slotAction: function (action = null, data = null, url = null){
-            this.actionUrl = url + data.id;
+        slotAction: function (action = null, data = null , related = null){
             if (action) {
                 this.modal(action);
+                this.actionUrl = this.url.foreign[related].store.url + data.id;
             }else{
-                document.location = this.actionUrl;
+                this.actionUrl = this.url.foreign[related].index.url + data.id;
+                document.location = this.url.foreign[related].index.url + data.id;
             }
             //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
