@@ -26272,13 +26272,14 @@ window.vm = new Vue({
         slotAction: function slotAction() {
             var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
             var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-            var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+            var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
-            this.actionUrl = url + data.id;
             if (action) {
                 this.modal(action);
+                this.actionUrl = this.url.foreign[related].store.url + data.id;
             } else {
-                document.location = this.actionUrl;
+                this.actionUrl = this.url.foreign[related].index.url + data.id;
+                document.location = this.url.foreign[related].index.url + data.id;
             }
             //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
