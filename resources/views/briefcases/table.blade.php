@@ -19,23 +19,33 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a href="#"  @click.prevent="slotAction('interests_ADD', props.rowData, '{{ route('api.briefcases.interests.store') }}/')">
+          <a href="#"  @click.prevent="slotAction('interests_ADD', props.rowData, 'interest')">
             <i class="glyphicon glyphicon-plus"></i>Add Interest
           </a>
         </li>
         <li>
-          <a href="#"  @click.prevent="slotAction('sanctions_ADD', props.rowData, '{{ route('api.briefcases.sanctions.store') }}/')">
+          <a href="#"  @click.prevent="slotAction('sanctions_ADD', props.rowData, 'sanction')">
             <i class="glyphicon glyphicon-plus"></i>Add Sanction
           </a>
         </li>
          <li>
-          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, '{{ route('api.briefcases.dues.store') }}/')">
+          <a href="#"  @click.prevent="slotAction('dues_ADD', props.rowData, 'due')">
             <i class="glyphicon glyphicon-plus"></i>Add Due
           </a>
         </li>
          <li>
-          <a href="#"  @click.prevent="slotAction('', props.rowData, '{{ route('briefcases.interests.index') }}/')">
+          <a href="#"  @click.prevent="slotAction('', props.rowData, 'interest')">
             <i class="glyphicon glyphicon-plus"></i>Intereses
+          </a>
+        </li>
+        <li>
+          <a href="#"  @click.prevent="slotAction('', props.rowData, 'sanction')">
+            <i class="glyphicon glyphicon-plus"></i>Sanctions
+          </a>
+        </li>
+        <li>
+          <a href="#"  @click.prevent="slotAction('', props.rowData, 'due')">
+            <i class="glyphicon glyphicon-plus"></i>Dues
           </a>
         </li>
       </ul>
