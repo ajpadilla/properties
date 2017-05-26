@@ -357,6 +357,89 @@ class BriefcaseController extends Controller
         return response()->json($query->paginate($perPage));
     }
 
+
+       public function sanction(Request $request, $id = null, $sanctionId = null)
+    {
+        if ($request->ajax()) 
+        {
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $sanction = $briefcase->sanctions()->whereSanctionId($sanctionId)->first();
+
+            if (empty($sanction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Sanction not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Sanction successfully recovered to briefcase');
+            $this->addToResponseArray('data', $sanction);
+            return $this->getResponseArrayJson();
+       }
+   }
+
+   public function sanctionUpdate(Request $request, $id = null, $sanctionId = null, $sanctionPivotId = null)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->sanctions()->whereSanctionId($sanctionId)->count();
+
+            if ($exists) {
+                $briefcase->sanctions()->updateExistingPivot($sanctionId, 
+                    ['amount' => $request->input('pivot.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Sanction successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
+
+    public function deleteSanction(Request $request, $id = null, $sanctionId = null, $sanctionPivotId = null)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->sanctions()->whereSanctionId($sanctionId)->count();
+
+            if ($exists) {
+                $briefcase->sanctions()->detach($sanctionId);
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Sanction successfully delete to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
+
     public function storeDue(RelationDueBriefcaseRequest $request, $id = null )
     {
         if ($request->ajax()) 
