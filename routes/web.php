@@ -231,6 +231,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 			]);
 		});
 
+		Route::group(['prefix' => 'dues'], function() {
+			Route::get('{briefcaseId?}', [
+				'as' => 'briefcases.dues.index',
+				'uses' => 'BriefcaseController@showDuesList'		
+			]);
+		});
+
+
 	});
 
 
