@@ -147,7 +147,7 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
-    public function showInterestList(Request $request, $briefcaseId = null)
+    public function showInterestsList(Request $request, $briefcaseId = null)
     {
         $briefcase = Briefcase::find($briefcaseId);
         return view('briefcases.interests.index', compact('briefcase'));
@@ -315,6 +315,46 @@ class BriefcaseController extends Controller
             }
         }
         return $this->getResponseArrayJson(); 
+    }
+
+    public function showSanctionsList(Request $request, $briefcaseId = null)
+    {
+        $briefcase = Briefcase::find($briefcaseId);
+        return view('briefcases.sanctions.index', compact('briefcase'));
+    }
+
+    public function sanctions(Request $request, $id = null)
+    {
+        $briefcase = Briefcase::find($id);
+
+        if (empty($briefcase)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'Briefcase not found');
+            return $this->getResponseArrayJson();
+        }
+
+        if (empty($briefcase->sanctions)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 
+                'Briefcase Does not have associated items
+            ');
+            return $this->getResponseArrayJson();
+        }
+        
+        $query = $briefcase->sanctions();
+        if (request()->has('sort')) {
+            list($sortCol, $sortDir) = explode('|', request()->sort);
+            $query = $query->orderBy($sortCol, $sortDir);
+        } else {
+            $query = $query->orderBy('created_at', 'asc');
+        }
+
+        if ($request->exists('filter')) {
+          $query->search("{$request->filter}");                     
+        }
+
+        $perPage = request()->has('per_page') ? (int) request()->per_page : null;
+        return response()->json($query->paginate($perPage));
     }
 
     public function storeDue(RelationDueBriefcaseRequest $request, $id = null )
