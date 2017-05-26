@@ -488,7 +488,130 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+    public function showDuesList(Request $request, $briefcaseId = null)
+    {
+        $briefcase = Briefcase::find($briefcaseId);
+        return view('briefcases.dues.index', compact('briefcase'));
+    }
 
-    
+
+     public function dues(Request $request, $id = null)
+    {
+        $briefcase = Briefcase::find($id);
+
+        if (empty($briefcase)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'Briefcase not found');
+            return $this->getResponseArrayJson();
+        }
+
+        if (empty($briefcase->dues)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 
+                'Briefcase Does not have associated items
+            ');
+            return $this->getResponseArrayJson();
+        }
+        
+        $query = $briefcase->dues();
+        if (request()->has('sort')) {
+            list($sortCol, $sortDir) = explode('|', request()->sort);
+            $query = $query->orderBy($sortCol, $sortDir);
+        } else {
+            $query = $query->orderBy('created_at', 'asc');
+        }
+
+        if ($request->exists('filter')) {
+          $query->search("{$request->filter}");                     
+        }
+
+        $perPage = request()->has('per_page') ? (int) request()->per_page : null;
+        return response()->json($query->paginate($perPage));
+    }
+
+    public function due(Request $request, $id = null, $dueId = null)
+    {
+        if ($request->ajax()) 
+        {
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $due = $briefcase->dues()->whereDueId($dueId)->first();
+
+            if (empty($due)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Due not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $this->setSuccess(true);
+            $this->addToResponseArray('message', 'Due successfully recovered to briefcase');
+            $this->addToResponseArray('data', $due);
+            return $this->getResponseArrayJson();
+       }
+   }
+
+
+
+   public function dueUpdate(Request $request, $id = null, $duenId = null, $duePivotId)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->dues()->whereDueId($duenId)->count();
+
+            if ($exists) {
+                $briefcase->dues()->updateExistingPivot($duenId, 
+                    ['amount' => $request->input('pivot.amount')]
+                );
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Due successfully updated to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
+
+    public function deleteDue(Request $request, $id = null, $dueId = null, $duePivotId = null)
+   {
+        if ($request->ajax()) 
+        {
+            $input = $request->all();
+            $briefcase = Briefcase::find($id);
+
+            if (empty($briefcase)) 
+            {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
+
+            $exists = $briefcase->dues()->whereDueId($dueId)->count();
+
+            if ($exists) {
+                $briefcase->dues()->detach($dueId);
+                $this->setSuccess(true);
+                $this->addToResponseArray('message', 'Due successfully delete to briefcase');
+                $this->addToResponseArray('data', $input);
+                return $this->getResponseArrayJson(); 
+            }
+        }
+    }
+
 
 }
