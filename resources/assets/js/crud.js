@@ -408,7 +408,7 @@ Vue.component('my-detail-row', {
         		console.log(error);
         	});
         },
-        slotAction: function (action, data, url = null){
+        slotAction: function (action = null, data = null, url = null){
             this.actionUrl = url + data.id;
             if (action) {
                 this.modal(action);
@@ -418,14 +418,16 @@ Vue.component('my-detail-row', {
             //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
         },
-        slotActionPivot: function (action, urlGet = null, urlPost = null){
-            this.getData(urlGet);
+        slotActionPivot: function (action = null, data = null , related = null){
+            var url = this.url.foreign[related].show.url + data.pivot[related + '_id'];
+            this.getData(url);
             this.modal(action);
-            if (urlPost) {
-                this.actionUrl = urlPost;
-                console.log('post',this.actionUrl, urlGet);
+            if (action == 'PATCH') {
+                this.actionUrl = this.url.foreign[related].update.url + data.pivot[related + '_id'] + '/';
+            }else if(action == 'DELETE') {
+                this.actionUrl = this.url.foreign[related].delete.url + data.pivot[related + '_id'] + '/';
             }
-            console.log('get' ,this.actionUrl, urlGet);
+            console.log('get url:', url, this.actionUrl);
         },
         'showSuccess': function (file, response) {
             console.log('A file was successfully uploaded', response)
