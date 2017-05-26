@@ -690,9 +690,8 @@ Route::group(['prefix' => 'briefcases'], function()
 			'as' => 'api.v1.briefcases.interests.delete',
 			'uses' => 'BriefcaseController@deleteInterest'
 		]);
-
-
 	});
+
 
 	/**
 	 * ------------------- API Route for Briefcase-Sanction ---------------
@@ -703,6 +702,27 @@ Route::group(['prefix' => 'briefcases'], function()
 			'as' => 'api.briefcases.sanctions.store',
 			'uses' => 'BriefcaseController@storeSanction'
 		]);
+
+		Route::get('{id?}', [
+			'as' => 'api.v1.briefcases.sanctions.index',
+			'uses' => 'BriefcaseController@sanctions'
+		]);
+
+		Route::get('show/{id?}/{sanctionId?}', [
+			'as' => 'api.v1.briefcases.sanctions.show',
+			'uses' => 'BriefcaseController@sanction'
+		]);
+
+		Route::patch('update/{id?}/{sanctionId?}/{sanctionPivotId?}', [
+			'as' => 'api.v1.briefcases.sanctions.update',
+			'uses' => 'BriefcaseController@sanctionUpdate'
+		]);
+
+		Route::delete('delete/{id?}/{sanctionId?}/{sanctionPivotId?}', [
+			'as' => 'api.v1.briefcases.sanctions.delete',
+			'uses' => 'BriefcaseController@deleteSanction'
+		]);
+
 	});
 
 	/**
