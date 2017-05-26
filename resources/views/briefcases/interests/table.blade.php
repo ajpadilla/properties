@@ -19,19 +19,17 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a href="#"  @click.prevent="slotActionPivot('SHOW', '{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+          <a href="#"  @click.prevent="slotActionPivot('SHOW', props.rowData, 'interest')">
             <i class="glyphicon glyphicon-plus"></i>Show
           </a>
         </li>
          <li>
-          <a href="#"  @click.prevent="slotActionPivot('PATCH','{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/', 
-          '{{ route('api.v1.briefcases.interests.update') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+          <a href="#"  @click.prevent="slotActionPivot('PATCH', props.rowData, 'interest')">
             <i class="glyphicon glyphicon-plus"></i>Edit
           </a>
         </li>
         <li>
-          <a href="#"  @click.prevent="slotActionPivot('DELETE','{{ route('api.v1.briefcases.interests.show') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/', 
-          '{{ route('api.v1.briefcases.interests.delete') }}/'+props.rowData.pivot.briefcase_id+'/'+props.rowData.pivot.interest_id+'/')">
+          <a href="#"  @click.prevent="slotActionPivot('DELETE', props.rowData, 'interest',)">
             <i class="glyphicon glyphicon-plus"></i>Delete
           </a>
         </li>
