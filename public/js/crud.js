@@ -26269,7 +26269,9 @@ window.vm = new Vue({
             });
         },
 
-        slotAction: function slotAction(action, data) {
+        slotAction: function slotAction() {
+            var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
             var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
             this.actionUrl = url + data.id;
@@ -26281,17 +26283,20 @@ window.vm = new Vue({
             //this.row = data;
             console.log('slotAction', action, data, this.actionUrl);
         },
-        slotActionPivot: function slotActionPivot(action) {
-            var urlGet = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-            var urlPost = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+        slotActionPivot: function slotActionPivot() {
+            var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            var related = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
-            this.getData(urlGet);
+            var url = this.url.foreign[related].show.url + data.pivot[related + '_id'];
+            this.getData(url);
             this.modal(action);
-            if (urlPost) {
-                this.actionUrl = urlPost;
-                console.log('post', this.actionUrl, urlGet);
+            if (action == 'PATCH') {
+                this.actionUrl = this.url.foreign[related].update.url + data.pivot[related + '_id'] + '/';
+            } else if (action == 'DELETE') {
+                this.actionUrl = this.url.foreign[related].delete.url + data.pivot[related + '_id'] + '/';
             }
-            console.log('get', this.actionUrl, urlGet);
+            console.log('get url:', url, this.actionUrl);
         },
         'showSuccess': function showSuccess(file, response) {
             console.log('A file was successfully uploaded', response);
