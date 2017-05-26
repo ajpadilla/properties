@@ -57,7 +57,6 @@
                     url: "{{ route('api.v1.briefcases.interests.delete', $briefcase->id) }}/"
                 }
             },
-
         }
     };
 </script>
