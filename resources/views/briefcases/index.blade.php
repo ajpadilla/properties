@@ -86,6 +86,10 @@
                     }
                 },
                 due:{
+                    index:{
+                        method: 'GET',
+                        url: "{{ route('briefcases.dues.index') }}/"
+                    },
                     select: {
                         method: 'GET',
                         url: "{{ route('api.v1.dues.select-list') }}/"
