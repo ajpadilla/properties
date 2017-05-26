@@ -3,7 +3,7 @@
             'modalTitle'    => 'Agregar Cuota',
             'modalSync'     => 'dues_ADD',
             'modalClose'    => 'dues_ADD',
-            'model'         => 'Due',
+            'model'         => 'Sanction',
             'related'       => true,
             'type'	    => 'store',
             'content'       => view('briefcases.dues.fields'),
