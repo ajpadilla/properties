@@ -220,10 +220,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 		Route::group(['prefix' => 'interests'], function() {
 			Route::get('{briefcaseId?}', [
 				'as' => 'briefcases.interests.index',
-				'uses' => 'BriefcaseController@showInterestList'		
+				'uses' => 'BriefcaseController@showInterestsList'		
 			]);
 		});
+
+		Route::group(['prefix' => 'sanctions'], function() {
+			Route::get('{briefcaseId?}', [
+				'as' => 'briefcases.sanctions.index',
+				'uses' => 'BriefcaseController@showSanctionsList'		
+			]);
+		});
+
 	});
+
 
 	/**
 	 * ------------------- Route index for Briefcases ---------------
