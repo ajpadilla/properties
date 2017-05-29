@@ -84,6 +84,12 @@
                     url: "{{ route('api.v1.typeIdentifications.select-list') }}/"
                 },
             },
+            person_photo:{
+                store: {
+                    method: 'POST',
+                    url: "{{ route('api.persons.addPhoto') }}/"
+                }
+            }
         }
     };
     </script>
