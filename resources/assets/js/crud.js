@@ -431,7 +431,8 @@ Vue.component('my-detail-row', {
             console.log('get url:', url, this.actionUrl);
         },
         'showSuccess': function (file, response) {
-            console.log('A file was successfully uploaded', response)
+            console.log('A file was successfully uploaded', response);
+            Vue.nextTick( () => this.$refs.vuetable.refresh() )
         }
 
   	},
