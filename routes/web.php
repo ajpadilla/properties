@@ -158,7 +158,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'states',
-			'uses' => 'StateController@list'
+			'uses' => 'StateController@showList'
 		]);	
 	});
 
