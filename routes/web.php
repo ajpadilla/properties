@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'currencies',
-			'uses' => 'CurrencyController@list'
+			'uses' => 'CurrencyController@showList'
 		]);	
 	});
 

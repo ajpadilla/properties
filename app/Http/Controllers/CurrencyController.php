@@ -32,7 +32,7 @@ class CurrencyController extends Controller
 		return response()->json($result);
 	}
 
-    public function list()
+    public function showList()
     {
         return view('currencies.index');
     }
@@ -54,6 +54,11 @@ class CurrencyController extends Controller
     {
         if ($request->ajax()) {
             $currency = Currency::find($id);
+            if (empty($currency)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Currency not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Currency successfully recovered');
             $this->addToResponseArray('data', $currency);
@@ -67,6 +72,11 @@ class CurrencyController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $currency = Currency::find($id);
+            if (empty($currency)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Currency not found');
+                return $this->getResponseArrayJson();
+            }
             $currency->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $currency);
@@ -80,6 +90,11 @@ class CurrencyController extends Controller
     {
         if ($request->ajax()) {
             $currency = Currency::find($id);
+            if (empty($currency)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Currency not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($currency->delete());
             $this->addToResponseArray('message', 'Currency delete');
             return $this->getResponseArrayJson(); 
