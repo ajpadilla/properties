@@ -44,7 +44,8 @@ class Municipality extends Model
     */
 
     protected $appends = [
-        'state_name'
+        'state_name',
+        'state_related'
     ];
 
     /**
@@ -67,6 +68,16 @@ class Municipality extends Model
         if($this->state)
             return $this->state->name;
         return false;
+    }
+
+    public function getCountryRelatedAttribute()
+    {
+        return ['text' => $this->state->country->name, 'value' => $this->state->country->id];
+    }
+
+    public function getStateRelatedAttribute()
+    {
+        return ['text' => $this->state->name, 'value' => $this->state->id];
     }
 
 }
