@@ -15,7 +15,7 @@ class MunicipalityController extends Controller
 	{
 		if ($request->has('sort')) {
 			list($sortCol, $sortDir) = explode('|', $request->sort);
-			if (\Schema::hasColumn('countries', $sortCol)) {
+			if (\Schema::hasColumn('municipalities', $sortCol)) {
 				$query = Municipality::orderBy($sortCol, $sortDir);
 			}else{
 				$query = Municipality::sortBy($sortCol, $sortDir);
