@@ -56,6 +56,11 @@ class DueController extends Controller
     {
         if ($request->ajax()) {
             $due = Due::find($id);
+            if (empty($due)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Due not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Due successfully recovered');
             $this->addToResponseArray('data', $due);
@@ -69,6 +74,11 @@ class DueController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $due = Due::find($id);
+            if (empty($due)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Due not found');
+                return $this->getResponseArrayJson();
+            }
             $due->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $due);
@@ -82,6 +92,11 @@ class DueController extends Controller
     {
         if ($request->ajax()) {
             $due = Due::find($id);
+            if (empty($due)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Due not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($due->delete());
             $this->addToResponseArray('message', 'Due successfully delete');
             return $this->getResponseArrayJson(); 
