@@ -56,6 +56,11 @@ class SanctionController extends Controller
     {
         if ($request->ajax()) {
             $sanction = Sanction::find($id);
+            if (empty($sanction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Sanction not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Sanction successfully recovered');
             $this->addToResponseArray('data', $sanction);
@@ -69,6 +74,11 @@ class SanctionController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $sanction = Sanction::find($id);
+            if (empty($sanction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Sanction not found');
+                return $this->getResponseArrayJson();
+            }
             $sanction->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $sanction);
@@ -82,6 +92,11 @@ class SanctionController extends Controller
     {
         if ($request->ajax()) {
             $sanction = Sanction::find($id);
+            if (empty($sanction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Sanction not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($sanction->delete());
             $this->addToResponseArray('message', 'Sanction successfully delete');
             return $this->getResponseArrayJson(); 
