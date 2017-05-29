@@ -26300,14 +26300,19 @@ window.vm = new Vue({
             console.log('get url:', url, this.actionUrl);
         },
         'showSuccess': function showSuccess(file, response) {
+            var _this3 = this;
+
             console.log('A file was successfully uploaded', response);
+            Vue.nextTick(function () {
+                return _this3.$refs.vuetable.refresh();
+            });
         }
 
     },
 
     events: {
         'filter-set': function filterSet(filterText) {
-            var _this3 = this;
+            var _this4 = this;
 
             console.log('Desde el padre:' + filterText);
 
@@ -26315,26 +26320,26 @@ window.vm = new Vue({
                 filter: filterText
             };
             Vue.nextTick(function () {
-                return _this3.$refs.vuetable.refresh();
-            });
-        },
-        'filter-reset': function filterReset() {
-            var _this4 = this;
-
-            this.moreParams = {};
-            Vue.nextTick(function () {
                 return _this4.$refs.vuetable.refresh();
             });
         },
-        'per-page': function perPage(value) {
+        'filter-reset': function filterReset() {
             var _this5 = this;
+
+            this.moreParams = {};
+            Vue.nextTick(function () {
+                return _this5.$refs.vuetable.refresh();
+            });
+        },
+        'per-page': function perPage(value) {
+            var _this6 = this;
 
             console.log('per-page activado:' + value);
             this.moreParams = {
                 per_page: value
             };
             Vue.nextTick(function () {
-                return _this5.$refs.vuetable.refresh();
+                return _this6.$refs.vuetable.refresh();
             });
         },
         'vuetable-action': function vuetableAction(action, data) {
