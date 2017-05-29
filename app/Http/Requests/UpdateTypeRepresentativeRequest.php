@@ -24,7 +24,7 @@ class UpdateTypeRepresentativeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_representatives,name,'.$this->id,
+            'name' => 'required|min:1|max:30|unique:type_representatives,name,'.$this->id,
         ];
     }
 }
