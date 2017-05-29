@@ -80,6 +80,12 @@
                         method: 'GET',
                         url: "{{ route('api.v1.typeCommunities.select-list') }}/"
                     }
+                },
+                community_photo: {
+                    store: {
+                        method: 'POST',
+                        url: "{{ route('api.communities.addPhoto') }}/"
+                    }
                 }
             }
         };
