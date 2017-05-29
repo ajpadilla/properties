@@ -14,7 +14,7 @@ class TypeIdentificationController extends Controller
     {
     	if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('types_identifications', $sortCol)) {
+            if (\Schema::hasColumn('type_identifications', $sortCol)) {
                 $query = TypeIdentification::orderBy($sortCol, $sortDir);
             }else{
                 $query = TypeIdentification::sortBy($sortCol, $sortDir);
