@@ -13,7 +13,7 @@ class TypeInfractionController extends Controller
     {
     	if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('types_infractions', $sortCol)) {
+            if (\Schema::hasColumn('type_infractions', $sortCol)) {
                 $query = TypeInfraction::orderBy($sortCol, $sortDir);
             }else{
                 $query = TypeInfraction::sortBy($sortCol, $sortDir);
