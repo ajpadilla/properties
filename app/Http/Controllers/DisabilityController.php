@@ -54,6 +54,11 @@ class DisabilityController extends Controller
     {
         if ($request->ajax()) {
             $disability = Disability::find($id);
+            if (empty($disability)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Disability not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Disability successfully recovered');
             $this->addToResponseArray('data', $disability);
@@ -67,6 +72,11 @@ class DisabilityController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $disability = Disability::find($id);
+            if (empty($disability)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Disability not found');
+                return $this->getResponseArrayJson();
+            }
             $disability->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $disability);
@@ -80,6 +90,11 @@ class DisabilityController extends Controller
     {
         if ($request->ajax()) {
             $disability = Disability::find($id);
+            if (empty($disability)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Disability not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($disability->delete());
             $this->addToResponseArray('message', 'Disability delete');
             return $this->getResponseArrayJson(); 
