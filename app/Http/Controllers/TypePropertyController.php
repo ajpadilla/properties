@@ -56,6 +56,11 @@ class TypePropertyController extends Controller
     {
         if ($request->ajax()) {
             $typeProperty = TypeProperty::find($id);
+            if (empty($typeProperty)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of property not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of property successfully recovered');
             $this->addToResponseArray('data', $typeProperty);
@@ -69,6 +74,11 @@ class TypePropertyController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeProperty = TypeProperty::find($id);
+            if (empty($typeProperty)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of property not found');
+                return $this->getResponseArrayJson();
+            }
             $typeProperty->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeProperty);
@@ -82,6 +92,11 @@ class TypePropertyController extends Controller
     {
         if ($request->ajax()) {
             $typeProperty = TypeProperty::find($id);
+            if (empty($typeProperty)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of property not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeProperty->delete());
             $this->addToResponseArray('message', 'Type of property delete');
             return $this->getResponseArrayJson(); 
