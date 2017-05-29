@@ -13,7 +13,7 @@ class TypeCommunityController extends Controller
     {
     	if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('types_communities', $sortCol)) {
+            if (\Schema::hasColumn('type_communities', $sortCol)) {
                 $query = TypeCommunity::orderBy($sortCol, $sortDir);
             }else{
                 $query = TypeCommunity::sortBy($sortCol, $sortDir);
