@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'educational.levels',
-			'uses' =>'EducationalLevelController@list'
+			'uses' =>'EducationalLevelController@showList'
 		]);	
 	});
 
