@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typeIdentifications',
-			'uses' => 'TypeIdentificationController@list'
+			'uses' => 'TypeIdentificationController@showList'
 		]);	
 	});
 
