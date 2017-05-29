@@ -24,7 +24,7 @@ class UpdateTypePqrRequets extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_pqr,name,' .$this->id,
+            'name' => 'required|min:1|max:30|unique:type_services,name,' .$this->id,
         ];
     }
 }
