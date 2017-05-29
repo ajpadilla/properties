@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typeCommunities',
-			'uses' => 'TypeCommunityController@list'
+			'uses' => 'TypeCommunityController@showList'
 		]);	
 	});
 
