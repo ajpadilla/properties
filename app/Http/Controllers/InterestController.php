@@ -55,6 +55,11 @@ class InterestController extends Controller
     {
         if ($request->ajax()) {
             $interest = Interest::find($id);
+            if (empty($interest)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interest not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Interest successfully recovered');
             $this->addToResponseArray('data', $interest);
@@ -68,6 +73,11 @@ class InterestController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $interest = Interest::find($id);
+            if (empty($interest)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interest not found');
+                return $this->getResponseArrayJson();
+            }
             $interest->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $interest);
@@ -81,6 +91,11 @@ class InterestController extends Controller
     {
         if ($request->ajax()) {
             $interest = Interest::find($id);
+            if (empty($interest)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interest not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($interest->delete());
             $this->addToResponseArray('message', 'Interest successfully delete');
             return $this->getResponseArrayJson(); 
