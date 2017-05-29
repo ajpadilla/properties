@@ -34,7 +34,7 @@ class TypeIdentificationController extends Controller
 
     }
 
-    public function list()
+    public function showList()
     {
         return view('typeIdentifications.index');
     }
