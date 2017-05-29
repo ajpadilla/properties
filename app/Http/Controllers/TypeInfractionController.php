@@ -33,7 +33,7 @@ class TypeInfractionController extends Controller
 
     }
 
-    public function list()
+    public function showList()
     {
         return view('typeInfractions.index');
     }

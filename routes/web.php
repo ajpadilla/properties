@@ -136,7 +136,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typeInfractions',
-			'uses' => 'TypeInfractionController@list'
+			'uses' => 'TypeInfractionController@showList'
 		]);	
 	});
 
