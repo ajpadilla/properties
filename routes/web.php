@@ -147,7 +147,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'countries',
-			'uses' => 'CountryController@list'
+			'uses' => 'CountryController@showList'
 		]);	
 	});
 
