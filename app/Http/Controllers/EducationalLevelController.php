@@ -54,6 +54,11 @@ class EducationalLevelController extends Controller
     {
         if ($request->ajax()) {
             $educationalLevel = EducationalLevel::find($id);
+            if (empty($educationalLevel)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Educational level not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Educational level successfully recovered');
             $this->addToResponseArray('data', $educationalLevel);
@@ -67,6 +72,11 @@ class EducationalLevelController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $educationalLevel = EducationalLevel::find($id);
+            if (empty($educationalLevel)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Educational level not found');
+                return $this->getResponseArrayJson();
+            }
             $educationalLevel->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $educationalLevel);
@@ -80,6 +90,11 @@ class EducationalLevelController extends Controller
     {
         if ($request->ajax()) {
             $educationalLevel = EducationalLevel::find($id);
+            if (empty($educationalLevel)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Educational level not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($educationalLevel->delete());
             $this->addToResponseArray('message', 'Educational level delete');
             return $this->getResponseArrayJson(); 
