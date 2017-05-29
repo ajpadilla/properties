@@ -125,7 +125,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typeRepresentatives',
-			'uses' =>'TypeRepresentativeController@list'
+			'uses' =>'TypeRepresentativeController@showList'
 		]);	
 	});
 
