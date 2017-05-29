@@ -55,6 +55,11 @@ class TypeInfractionController extends Controller
     {
         if ($request->ajax()) {
             $typeInfraction = TypeInfraction::find($id);
+            if (empty($typeInfraction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of infraction not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of infraction successfully recovered');
             $this->addToResponseArray('data', $typeInfraction);
@@ -68,6 +73,11 @@ class TypeInfractionController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeInfraction = TypeInfraction::find($id);
+            if (empty($typeInfraction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of infraction not found');
+                return $this->getResponseArrayJson();
+            }
             $typeInfraction->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeInfraction);
@@ -81,6 +91,11 @@ class TypeInfractionController extends Controller
     {
         if ($request->ajax()) {
             $typeInfraction = TypeInfraction::find($id);
+            if (empty($typeInfraction)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of infraction not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeInfraction->delete());
             $this->addToResponseArray('message', 'Type of infraction delete');
             return $this->getResponseArrayJson(); 
