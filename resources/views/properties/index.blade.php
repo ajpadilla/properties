@@ -61,6 +61,12 @@
                         url: "{{ route('api.v1.persons.select-list') }}/"
                     }
                 },
+                property_photo:{
+                    store: {
+                        method: 'POST',
+                        url: "{{ route('api.properties.addPhoto') }}/"
+                    }
+                }
             }
     };
     </script>
