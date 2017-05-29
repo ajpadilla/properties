@@ -54,6 +54,11 @@ class TypeAnimalController extends Controller
     {
         if ($request->ajax()) {
             $typeAnimal = TypeAnimal::find($id);
+            if (empty($typeAnimal)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of animal not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of animal successfully recovered');
             $this->addToResponseArray('data', $typeAnimal);
@@ -67,6 +72,11 @@ class TypeAnimalController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeAnimal = TypeAnimal::find($id);
+            if (empty($typeAnimal)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of animal not found');
+                return $this->getResponseArrayJson();
+            }
             $typeAnimal->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeAnimal);
@@ -80,6 +90,11 @@ class TypeAnimalController extends Controller
     {
         if ($request->ajax()) {
             $typeAnimal = TypeAnimal::find($id);
+            if (empty($typeAnimal)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of animal not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeAnimal->delete());
             $this->addToResponseArray('message', 'Type of animal delete');
             return $this->getResponseArrayJson(); 
