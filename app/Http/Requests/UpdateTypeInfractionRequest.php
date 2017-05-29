@@ -24,7 +24,7 @@ class UpdateTypeInfractionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_infractions,name,' .$this->id,
+            'name' => 'required|min:1|max:30|unique:type_infractions,name,' .$this->id,
         ];
     }
 }
