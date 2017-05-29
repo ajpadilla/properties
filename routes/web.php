@@ -47,7 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typeAnimals',
-			'uses' => 'TypeAnimalController@list'
+			'uses' => 'TypeAnimalController@showList'
 		]);	
 	});
 
