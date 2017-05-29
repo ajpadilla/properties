@@ -66,7 +66,7 @@ class PersonController extends Controller
             $person = Person::find($id);
             if (empty($person)) {
                 $this->setSuccess(false);
-                $this->addToResponseArray('message', 'Person of animal not found');
+                $this->addToResponseArray('message', 'Person not found');
                 return $this->getResponseArrayJson();
             }
             $this->setSuccess(true);
@@ -92,7 +92,7 @@ class PersonController extends Controller
             $person = Person::find($id);
             if (empty($person)) {
                 $this->setSuccess(false);
-                $this->addToResponseArray('message', 'Person of animal not found');
+                $this->addToResponseArray('message', 'Person not found');
                 return $this->getResponseArrayJson();
             }
             $person->update($input);
@@ -110,7 +110,7 @@ class PersonController extends Controller
             $person = Person::find($id);
             if (empty($person)) {
                 $this->setSuccess(false);
-                $this->addToResponseArray('message', 'Person of animal not found');
+                $this->addToResponseArray('message', 'Person not found');
                 return $this->getResponseArrayJson();
             }
             $this->setSuccess($person->delete());
