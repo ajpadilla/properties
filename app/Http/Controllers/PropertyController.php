@@ -64,6 +64,11 @@ class PropertyController extends Controller
     {
     	if ($request->ajax()) {
             $property = Property::find($id);
+            if (empty($property)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Property not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Property successfully recovered');
             $this->addToResponseArray('data', $property);
@@ -83,6 +88,11 @@ class PropertyController extends Controller
 			$input['person_id'] = $request->input('person_related.value');
 			unset($input['person_related']);
 			$property = Property::find($id);
+            if (empty($property)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Property not found');
+                return $this->getResponseArrayJson();
+            }
 			$property->update($input);
 			$this->setSuccess(true);
 			$this->addToResponseArray('data', $property);
@@ -96,6 +106,11 @@ class PropertyController extends Controller
     {
         if ($request->ajax()) {
             $property = Property::find($id);
+            if (empty($property)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Property not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($property->delete());
             $this->addToResponseArray('message', 'Property successfully delete');
             return $this->getResponseArrayJson(); 
@@ -141,6 +156,11 @@ class PropertyController extends Controller
     {
         if($request->ajax()){
             $community = Community::find($communityId);
+            if (empty($community)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Community not found');
+                return $this->getResponseArrayJson();
+            }
             $properties = $community->properties->pluck('number', 'id')->toArray();
             $this->addToResponseArray('data', $properties);
             $this->setSuccess(true);
