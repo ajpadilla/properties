@@ -32,7 +32,7 @@ class DisabilityController extends Controller
 		return response()->json($result);
 	}
 
-    public function list()
+    public function showList()
     {
         return view('disabilities.index');
     }
