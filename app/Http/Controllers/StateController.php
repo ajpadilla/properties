@@ -34,7 +34,7 @@ class StateController extends Controller
 		return response()->json($result);
 	}
 
-    public function list()
+    public function showList()
     {
         return view('states.index');
     }
@@ -57,6 +57,11 @@ class StateController extends Controller
     {
         if ($request->ajax()) {
             $state = State::find($id);
+            if (empty($state)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'State not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'State successfully recovered');
             $this->addToResponseArray('data', $state);
@@ -71,6 +76,11 @@ class StateController extends Controller
             $input = $request->all();
             $input['country_id'] = $request->input('country_related.value');
             $state = State::find($id);
+            if (empty($state)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'State not found');
+                return $this->getResponseArrayJson();
+            }
             $state->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $state);
@@ -84,6 +94,11 @@ class StateController extends Controller
     {
         if ($request->ajax()) {
             $state = State::find($id);
+            if (empty($state)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'State not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($state->delete());
             $this->addToResponseArray('message', 'State delete');
             return $this->getResponseArrayJson(); 
@@ -108,6 +123,11 @@ class StateController extends Controller
     {
         if($request->ajax()){
             $country = Country::find($countryId);
+            if (empty($country)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Country not found');
+                return $this->getResponseArrayJson();
+            }
             $states = $country->states->pluck('name', 'id')->toArray();
             $this->addToResponseArray('data', $states);
             $this->setSuccess(true);
