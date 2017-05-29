@@ -24,7 +24,7 @@ class UpdateTypeIdentificationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:50|unique:types_identifications,name,'.$this->id,
+            'name' => 'required|min:1|max:50|unique:type_identifications,name,'.$this->id,
         ];
     }
 }
