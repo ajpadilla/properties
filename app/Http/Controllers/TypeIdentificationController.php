@@ -56,6 +56,11 @@ class TypeIdentificationController extends Controller
     {
         if ($request->ajax()) {
             $typeIdentification = TypeIdentification::find($id);
+            if (empty($typeIdentification)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of identification not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of identification successfully recovered');
             $this->addToResponseArray('data', $typeIdentification);
@@ -69,6 +74,11 @@ class TypeIdentificationController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeIdentification = TypeIdentification::find($id);
+            if (empty($typeIdentification)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of identification not found');
+                return $this->getResponseArrayJson();
+            }
             $typeIdentification->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeIdentification);
@@ -82,6 +92,11 @@ class TypeIdentificationController extends Controller
     {
         if ($request->ajax()) {
             $typeIdentification = TypeIdentification::find($id);
+            if (empty($typeIdentification)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of identification not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeIdentification->delete());
             $this->addToResponseArray('message', 'Type of identification delete');
             return $this->getResponseArrayJson(); 
