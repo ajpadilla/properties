@@ -56,6 +56,11 @@ class TypePqrController extends Controller
     {
         if ($request->ajax()) {
             $typePqr = TypePqr::find($id);
+            if (empty($typePqr)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of pqr not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of pqr successfully recovered');
             $this->addToResponseArray('data', $typePqr);
@@ -69,6 +74,11 @@ class TypePqrController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typePqr = TypePqr::find($id);
+            if (empty($typePqr)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of pqr not found');
+                return $this->getResponseArrayJson();
+            }
             $typePqr->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typePqr);
@@ -82,6 +92,11 @@ class TypePqrController extends Controller
     {
         if ($request->ajax()) {
             $typePqr = TypePqr::find($id);
+            if (empty($typePqr)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of pqr not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typePqr->delete());
             $this->addToResponseArray('message', 'Type of pqr delete');
             return $this->getResponseArrayJson(); 
