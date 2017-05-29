@@ -14,7 +14,7 @@ class TypeRepresentativeController extends Controller
     {
     	if ($request->has('sort')) {
             list($sortCol, $sortDir) = explode('|', $request->sort);
-            if (\Schema::hasColumn('types_representatives', $sortCol)) {
+            if (\Schema::hasColumn('type_representatives', $sortCol)) {
                 $query = TypeRepresentative::orderBy($sortCol, $sortDir);
             }else{
                 $query = TypeRepresentative::sortBy($sortCol, $sortDir);
