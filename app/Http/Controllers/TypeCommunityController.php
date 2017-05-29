@@ -54,6 +54,11 @@ class TypeCommunityController extends Controller
     {
         if ($request->ajax()) {
             $typeCommunity = TypeCommunity::find($id);
+            if (empty($typeCommunity)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of community not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of community successfully recovered');
             $this->addToResponseArray('data', $typeCommunity);
@@ -67,6 +72,11 @@ class TypeCommunityController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeCommunity = TypeCommunity::find($id);
+            if (empty($typeCommunity)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of community not found');
+                return $this->getResponseArrayJson();
+            }
             $typeCommunity->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeCommunity);
@@ -80,6 +90,11 @@ class TypeCommunityController extends Controller
     {
         if ($request->ajax()) {
             $typeCommunity = TypeCommunity::find($id);
+            if (empty($typeCommunity)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of community not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeCommunity->delete());
             $this->addToResponseArray('message', 'Type of community delete');
             return $this->getResponseArrayJson(); 
