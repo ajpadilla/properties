@@ -114,7 +114,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'typePqr',
-			'uses' => 'TypePqrController@list'
+			'uses' => 'TypePqrController@showList'
 		]);	
 	});
 
