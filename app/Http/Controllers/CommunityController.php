@@ -60,6 +60,11 @@ class CommunityController extends Controller
     {
     	if ($request->ajax()) {
             $community = Community::find($id);
+            if (empty($community)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Community not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Community successfully recovered');
             $this->addToResponseArray('data', $community);
@@ -77,6 +82,11 @@ class CommunityController extends Controller
             $input['type_community_id'] = (int) $request->input('type_community_related.value');
             unset($input['type_community_related']);
             $community = Community::find($id);
+            if (empty($community)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Community not found');
+                return $this->getResponseArrayJson();
+            }
             $community->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $community);
@@ -91,6 +101,11 @@ class CommunityController extends Controller
     {
         if ($request->ajax()) {
             $community = Community::find($id);
+            if (empty($community)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Community not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($community->delete());
             $this->addToResponseArray('message', 'Community successfully delete');
             return $this->getResponseArrayJson(); 
