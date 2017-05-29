@@ -63,6 +63,11 @@ class BriefcaseController extends Controller
     {
     	if ($request->ajax()) {
             $briefcase = Briefcase::find($id);
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Briefcase successfully recovered');
             $this->addToResponseArray('data', $briefcase);
@@ -78,6 +83,11 @@ class BriefcaseController extends Controller
             $input['property_id'] = (int) $request->input('property_related.value');
             unset($input['property_related']);
             $briefcase = Briefcase::find($id);
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
             $briefcase->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $briefcase);
@@ -91,6 +101,11 @@ class BriefcaseController extends Controller
     {
         if ($request->ajax()) {
             $briefcase = Briefcase::find($id);
+            if (empty($briefcase)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Briefcase not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($briefcase->delete());
             $this->addToResponseArray('message', 'Briefcase successfully delete');
             return $this->getResponseArrayJson(); 
