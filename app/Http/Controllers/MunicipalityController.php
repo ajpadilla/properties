@@ -34,7 +34,7 @@ class MunicipalityController extends Controller
 		return response()->json($result);
 	}
 
-    public function list()
+    public function showList()
     {
         return view('municipalities.index');
     }
@@ -57,6 +57,11 @@ class MunicipalityController extends Controller
     {
         if ($request->ajax()) {
             $municipality = Municipality::find($id);
+            if (empty($municipality)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Municipality not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Municipality successfully recovered');
             $this->addToResponseArray('data', $municipality);
@@ -71,6 +76,11 @@ class MunicipalityController extends Controller
             $input = $request->all();
             $input['state_id'] = $request->input('state_related.value');
             $municipality = Municipality::find($id);
+             if (empty($municipality)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Municipality not found');
+                return $this->getResponseArrayJson();
+            }
             $municipality->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $municipality);
@@ -84,6 +94,11 @@ class MunicipalityController extends Controller
     {
         if ($request->ajax()) {
             $municipality = Municipality::find($id);
+            if (empty($municipality)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Municipality not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($municipality->delete());
             $this->addToResponseArray('message', 'Municipality delete');
             return $this->getResponseArrayJson(); 
@@ -109,6 +124,11 @@ class MunicipalityController extends Controller
     {
         if($request->ajax()){
             $state = State::find($stateId);
+            if (empty($state)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'State not found');
+                return $this->getResponseArrayJson();
+            }
             $municipalities = $state->municipalities->pluck('name', 'id')->toArray();
             $this->addToResponseArray('data', $municipalities);
             $this->setSuccess(true);
