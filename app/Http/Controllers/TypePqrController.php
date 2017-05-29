@@ -34,7 +34,7 @@ class TypePqrController extends Controller
 
     }
 
-    public function list()
+    public function showList()
     {
         return view('typePqr.index');
     }
