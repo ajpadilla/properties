@@ -24,7 +24,7 @@ class UpdateTypeCommunityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_communities,name,'.$this->id,
+            'name' => 'required|min:1|max:30|unique:type_communities,name,'.$this->id,
         ];
     }
 }

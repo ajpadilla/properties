@@ -24,7 +24,7 @@ class CreateTypeCommunityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:30|unique:types_communities,name',
+            'name' => 'required|min:1|max:30|unique:type_communities,name',
         ];
     }
 }
