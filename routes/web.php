@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 
 		Route::get('', [
 			'as' => 'disabilities',
-			'uses' => 'DisabilityController@list'
+			'uses' => 'DisabilityController@showList'
 		]);	
 	});
 
