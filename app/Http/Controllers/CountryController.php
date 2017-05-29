@@ -32,7 +32,7 @@ class CountryController extends Controller
 		return response()->json($result);
 	}
 
-    public function list()
+    public function showList()
     {
         return view('countries.index');
     }
@@ -55,6 +55,11 @@ class CountryController extends Controller
     {
         if ($request->ajax()) {
             $country = Country::find($id);
+            if (empty($country)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Country not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Country successfully recovered');
             $this->addToResponseArray('data', $country);
@@ -69,6 +74,11 @@ class CountryController extends Controller
             $input = $request->all();
             $input['currency_id'] = $request->input('currency_related.value');
             $country = Country::find($id);
+            if (empty($country)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Country not found');
+                return $this->getResponseArrayJson();
+            }
             $country->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $country);
@@ -82,6 +92,11 @@ class CountryController extends Controller
     {
         if ($request->ajax()) {
             $country = Country::find($id);
+            if (empty($country)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Country not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($country->delete());
             $this->addToResponseArray('message', 'Country delete');
             return $this->getResponseArrayJson(); 
