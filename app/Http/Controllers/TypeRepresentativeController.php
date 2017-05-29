@@ -34,7 +34,7 @@ class TypeRepresentativeController extends Controller
 
     }
 
-    public function list()
+    public function showList()
     {
         return view('typeRepresentatives.index');
     }
@@ -56,6 +56,11 @@ class TypeRepresentativeController extends Controller
     {
         if ($request->ajax()) {
             $typeRepresentative = TypeRepresentative::find($id);
+            if (empty($typeRepresentative)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of representative not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess(true);
             $this->addToResponseArray('message', 'Type of representative successfully recovered');
             $this->addToResponseArray('data', $typeRepresentative);
@@ -69,6 +74,11 @@ class TypeRepresentativeController extends Controller
         if ($request->ajax()) {
             $input = $request->all();
             $typeRepresentative = TypeRepresentative::find($id);
+            if (empty($typeRepresentative)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of representative not found');
+                return $this->getResponseArrayJson();
+            }
             $typeRepresentative->update($input);
             $this->setSuccess(true);
             $this->addToResponseArray('data', $typeRepresentative);
@@ -82,6 +92,11 @@ class TypeRepresentativeController extends Controller
     {
         if ($request->ajax()) {
             $typeRepresentative = TypeRepresentative::find($id);
+            if (empty($typeRepresentative)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Type of representative not found');
+                return $this->getResponseArrayJson();
+            }
             $this->setSuccess($typeRepresentative->delete());
             $this->addToResponseArray('message', 'Type of representative delete');
             return $this->getResponseArrayJson(); 
