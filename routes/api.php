@@ -729,6 +729,11 @@ Route::group(['prefix' => 'briefcases'], function()
 			'uses' => 'BriefcaseController@deleteSanction'
 		]);
 
+		Route::get('availableSanctions/{id?}', [
+			'as' => 'api.v1.briefcases.available.sanctions',
+			'uses' => 'BriefcaseController@availableSanctions'
+		]);
+
 	});
 
 	/**
