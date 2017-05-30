@@ -690,6 +690,12 @@ Route::group(['prefix' => 'briefcases'], function()
 			'as' => 'api.v1.briefcases.interests.delete',
 			'uses' => 'BriefcaseController@deleteInterest'
 		]);
+
+		Route::get('availableInterests/{id?}', [
+			'as' => 'api.v1.briefcases.available.interests',
+			'uses' => 'BriefcaseController@availableInterests'
+		]);
+
 	});
 
 
