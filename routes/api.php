@@ -766,6 +766,11 @@ Route::group(['prefix' => 'briefcases'], function()
 			'uses' => 'BriefcaseController@deleteDue'
 		]);
 
+		Route::get('availableDues/{id?}', [
+			'as' => 'api.v1.briefcases.available.dues',
+			'uses' => 'BriefcaseController@availableDues'
+		]);
+
 	});
 
 });
