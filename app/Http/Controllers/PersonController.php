@@ -124,10 +124,9 @@ class PersonController extends Controller
     {
         if ($request->ajax())
         {   
+            $persons = Person::all()->pluck('full_name', 'id');
             $this->setSuccess(true);
-            $this->addToResponseArray('data', 
-                Person::all()->pluck('first_name', 'id')->toArray()
-            );
+            $this->addToResponseArray('data', $persons);
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
