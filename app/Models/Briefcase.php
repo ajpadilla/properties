@@ -140,5 +140,12 @@ class Briefcase extends Model
         return Interest::whereNotIn('id', $interestsId)->pluck('name', 'id');
     }
 
+    public function scopeAvailableSanctions($query, $id)
+    {
+        $sanctionsId = $query->findOrFail($id)->sanctions->pluck('id');
+        return Sanction::whereNotIn('id', $sanctionsId)->pluck('name', 'id');
+    }
+
+
 
 }
