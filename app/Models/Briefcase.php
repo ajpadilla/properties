@@ -134,5 +134,11 @@ class Briefcase extends Model
       ];
     }
 
+    public function scopeAvailableInterests($query, $id)
+    {
+        $interestsId = $query->findOrFail($id)->interests->pluck('id');
+        return Interest::whereNotIn('id', $interestsId)->pluck('name', 'id');
+    }
+
 
 }
