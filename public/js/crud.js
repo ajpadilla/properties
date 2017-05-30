@@ -26281,8 +26281,8 @@ window.vm = new Vue({
                 this.actionUrl = this.url.foreign[related].index.url + data.id;
                 document.location = this.url.foreign[related].index.url + data.id;
             }
-            //this.row = data;
-            console.log('slotAction', action, data, this.actionUrl);
+            this.row.id = data.id;
+            console.log('slotAction', action, this.row, this.actionUrl);
         },
         slotActionPivot: function slotActionPivot() {
             var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;

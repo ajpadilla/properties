@@ -416,8 +416,8 @@ Vue.component('my-detail-row', {
                 this.actionUrl = this.url.foreign[related].index.url + data.id;
                 document.location = this.url.foreign[related].index.url + data.id;
             }
-            //this.row = data;
-            console.log('slotAction', action, data, this.actionUrl);
+            this.row.id = data.id;
+            console.log('slotAction', action, this.row, this.actionUrl);
         },
         slotActionPivot: function (action = null, data = null , related = null){
             var url = this.url.foreign[related].show.url + data.pivot[related + '_id'];
