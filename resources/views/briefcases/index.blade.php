@@ -92,7 +92,7 @@
                     },
                     select: {
                         method: 'GET',
-                        url: "{{ route('api.v1.dues.select-list') }}/"
+                        url: "{{ route('api.v1.briefcases.available.dues') }}/"
                     },
                     store: {
                         method: 'POST',
@@ -119,11 +119,8 @@
         }
 
         var loadDues = function () {
-            vm.getForeignData(vm.url.foreign.due.select.url, 'dueOptions', 'due', 'select');
+            vm.getForeignData(vm.url.foreign.due.select.url + vm.row.id, 'dueOptions', 'due', 'select');
         }
-
-        loadComminities();
-        loadDues();
 
         var loadProperties = function () {
             vm.getForeignData(vm.url.foreign.property.byCommunity.url + vm.row.community_related.value, 'propertyOptions', 'property', 'byCommunity');
@@ -140,6 +137,15 @@
         vm.$watch('localModals.sanctions_ADD', function (value) {
             loadSanctions();
         });
+
+        vm.$watch('localModals.dues_ADD', function (value) {
+            if(value){
+                loadDues(); 
+            }
+        });
+
+        loadComminities();
+
 
     </script>
 @endpush
