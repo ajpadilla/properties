@@ -56,7 +56,8 @@ var modals = {
 var options = {
     propertyOptions: [],
     interestOptions:[],
-    sanctionOptions:[]
+    sanctionOptions:[],
+    dueOptions:[]
 };
 
 
