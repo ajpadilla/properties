@@ -78,7 +78,7 @@
                     },
                     select: {
                         method: 'GET',
-                        url: "{{ route('api.v1.sanctions.select-list') }}/"
+                        url: "{{ route('api.v1.briefcases.available.sanctions') }}/"
                     },
                     store: {
                         method: 'POST',
@@ -115,7 +115,7 @@
         }
 
         var loadSanctions = function () {
-            vm.getForeignData(vm.url.foreign.sanction.select.url, 'sanctionOptions', 'sanction', 'select');
+            vm.getForeignData(vm.url.foreign.sanction.select.url + vm.row.id, 'sanctionOptions', 'sanction', 'select');
         }
 
         var loadDues = function () {
@@ -123,7 +123,6 @@
         }
 
         loadComminities();
-        loadSanctions();
         loadDues();
 
         var loadProperties = function () {
@@ -136,6 +135,10 @@
 
         vm.$watch('localModals.interests_ADD', function (value) {
             loadInterests();
+        });
+
+        vm.$watch('localModals.sanctions_ADD', function (value) {
+            loadSanctions();
         });
 
     </script>
