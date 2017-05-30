@@ -132,7 +132,7 @@ class BriefcaseController extends Controller
 
     public function availableSanctions(Request $request, $id = null)
     {
-        //if ($request->ajax()) {
+        if ($request->ajax()) {
             $sanctions = Briefcase::availableSanctions($id)->toArray();
             if (empty($sanctions)) {
                 $this->setSuccess(false);
@@ -142,6 +142,22 @@ class BriefcaseController extends Controller
             $this->setSuccess(true);
             $this->addToResponseArray('data', $sanctions);
             $this->addToResponseArray('message', 'Sanction successfully recovered');
+            return $this->getResponseArrayJson();
+        }
+    }
+
+    public function availableDues(Request $request, $id = null)
+    {
+        //if ($request->ajax()) {
+            $dues = Briefcase::availableDues($id)->toArray();
+            if (empty($dues)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Dues not found');
+                return $this->getResponseArrayJson();
+            }
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $dues);
+            $this->addToResponseArray('message', 'Dues successfully recovered');
             return $this->getResponseArrayJson();
         //}
     }
