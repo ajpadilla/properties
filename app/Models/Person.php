@@ -232,4 +232,9 @@ class Person extends Model
         return false;
     }
 
+    public function getFullNameAttribute()
+    {
+      return $this->first_name." ". $this->second_name ." ". $this->first_surname ." ".$this->second_surname;
+    }
+
 }
