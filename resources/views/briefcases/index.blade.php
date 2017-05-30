@@ -64,7 +64,7 @@
                     },
                     select: {
                         method: 'GET',
-                        url: "{{ route('api.v1.interests.select-list') }}/"
+                        url: "{{ route('api.v1.briefcases.available.interests') }}/"
                     },
                     store: {
                         method: 'POST',
@@ -111,7 +111,7 @@
         };
 
         var loadInterests = function () {
-            vm.getForeignData(vm.url.foreign.interest.select.url, 'interestOptions', 'interest', 'select');
+            vm.getForeignData(vm.url.foreign.interest.select.url + vm.row.id, 'interestOptions', 'interest', 'select');
         }
 
         var loadSanctions = function () {
@@ -123,7 +123,6 @@
         }
 
         loadComminities();
-        loadInterests();
         loadSanctions();
         loadDues();
 
@@ -133,6 +132,10 @@
 
         vm.$watch('row.community_related.value', function (value) {
             loadProperties();
+        });
+
+        vm.$watch('localModals.interests_ADD', function (value) {
+            loadInterests();
         });
 
     </script>
