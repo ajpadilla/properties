@@ -113,6 +113,24 @@ class BriefcaseController extends Controller
         return $this->getResponseArrayJson(); 
     }
 
+
+    public function availableInterests(Request $request, $id = null)
+    {
+        //if ($request->ajax()) {
+            $interests = Briefcase::availableInterests($id)->toArray();
+            if (empty($interests)) {
+                $this->setSuccess(false);
+                $this->addToResponseArray('message', 'Interests not found');
+                return $this->getResponseArrayJson();
+            }
+            $this->setSuccess(true);
+            $this->addToResponseArray('data', $interests);
+            $this->addToResponseArray('message', 'Interests successfully recovered');
+            return $this->getResponseArrayJson();
+       // }
+    }
+
+
     public function storeInterest(RelationInterestBriefcaseRequest $request, $id = null )
     {
         if ($request->ajax()) 
