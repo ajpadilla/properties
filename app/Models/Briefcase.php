@@ -147,5 +147,10 @@ class Briefcase extends Model
     }
 
 
+    public function scopeAvailableDues($query, $id)
+    {
+        $duesId = $query->findOrFail($id)->dues->pluck('id');
+        return Due::whereNotIn('id', $duesId)->pluck('name', 'id');
+    }
 
 }
