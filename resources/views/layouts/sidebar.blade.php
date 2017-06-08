@@ -148,6 +148,11 @@
                 <i class="fa fa-circle-o"></i> Dues
               </a>
             </li>
+            <li>
+              <a href="{{ url('admin/suppliers') }}">
+                <i class="fa fa-circle-o"></i> Suppliers
+              </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
