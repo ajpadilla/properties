@@ -291,6 +291,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web']], function ()
 		]);	
 	});
 
+	/**
+	 * ------------------- Route index for Dues ---------------
+	 */
+	Route::group(['prefix' => 'suppliers'], function(){
+
+		Route::get('', [
+			'as' => 'suppliers.index',
+			'uses' => 'SupplierController@showList'
+		]);	
+	});
 
 
 }); 
