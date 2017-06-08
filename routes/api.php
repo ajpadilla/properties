@@ -873,3 +873,32 @@ Route::group(['prefix' => 'dues'], function()
 		'uses' => 'DueController@selectList'
 	]);
 });
+
+Route::group(['prefix' => 'suppliers'], function()
+{
+	Route::get('/',[
+		'as' => 'api.suppliers.index',
+		'uses' => 'SupplierController@index'
+	]);	
+
+	Route::post('store', [
+		'as' => 'api.suppliers.store',
+		'uses' => 'SupplierController@store'
+	]);
+
+	Route::get('show/{id?}', [
+			'as' => 'api.suppliers.show',
+			'uses' => 'SupplierController@show'
+	]);
+
+	Route::patch('update/{id?}', [
+			'as' => 'api.suppliers.update',
+			'uses' => 'SupplierController@update'
+	]);
+
+	Route::delete('delete/{id?}', [
+		'as' => 'api.suppliers.delete',
+		'uses' => 'SupplierController@destroy'
+	]);
+
+});
