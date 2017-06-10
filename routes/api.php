@@ -533,6 +533,11 @@ Route::group(['prefix' => 'communities'], function()
 		'as' => 'api.v1.communities.select-list',
 		'uses' => 'CommunityController@selectList'
 	]);
+
+	Route::get('total-briefcase-properties/{id?}', [
+		'as' => 'api.v1.communities.total.briefcase.properties',
+		'uses' => 'CommunityController@totalBriefcaseForProperties'
+	]);
 });
 
 /**
@@ -624,6 +629,12 @@ Route::group(['prefix' => 'properties'], function()
 		'as' => 'api.properties.addPhoto',
 		'uses' => 'PropertyController@addPhoto'
 	]);
+
+	Route::get('current-briefcase-total/{id?}', [
+		'as' => 'api.v1.properties.current.briefcase.total',
+		'uses' => 'PropertyController@currentBriefcaseTotal'
+	]);
+
 });
 
 
