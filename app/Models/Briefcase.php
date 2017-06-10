@@ -54,7 +54,7 @@ class Briefcase extends Model
     */
 
     protected $appends = [
-        'property_name',
+        'property_number',
         'property_related',
         'community_related'
     ];
@@ -111,7 +111,7 @@ class Briefcase extends Model
       $this->attributes['publication_date'] = date('Y-m-d', strtotime($value));
     }
 
-    public function getPropertyNameAttribute()
+    public function getPropertyNumberAttribute()
     {
       if($this->property)
         return $this->property->number;
