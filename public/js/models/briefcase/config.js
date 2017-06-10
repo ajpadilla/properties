@@ -104,9 +104,9 @@ var tableColumns = [
     visible: true
 },
 {
-    name: 'property_name',
+    name: 'property_number',
     title: 'Property',
-    sortField: 'property.name',
+    sortField: 'property.number',
     visible: true
 },
 {
