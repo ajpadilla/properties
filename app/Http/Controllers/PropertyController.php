@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection as Collection;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Models\PropertyPhoto;
 use App\Models\Community;
+use Carbon\Carbon;
 
 class PropertyController extends Controller
 {
@@ -167,6 +170,36 @@ class PropertyController extends Controller
             return $this->getResponseArrayJson(); 
         }
         return $this->getResponseArrayJson(); 
+    }
+
+    public function currentBriefcaseTotal(Request $request, $id)
+    {
+        $totalsBriefcases = [];
+
+        $dt = Carbon::now();
+
+        $property = Property::find($id);
+
+        $briefcases = $property->briefcases()->whereYear('date_cut', $dt->year)->get();
+
+        $totalsBriefcases [] = [
+            'honorarium' => $briefcases->sum('honorarium'),
+            'total_capital' => $briefcases->sum('total_capital'), 
+            'total_sanction' => $briefcases->sum('total_sanction'),
+            'total_interest' => $briefcases->sum('total_interest'), 
+            'total_debt' => $briefcases->sum('total_debt'),
+            'positive_balance' => $briefcases->sum('positive_balance'),
+            'debt_height' => $briefcases->sum('debt_height')
+        ];
+
+        Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
+ 
+            $excel->sheet('Briefcase', function($sheet) use ($totalsBriefcases) {
+ 
+                $sheet->fromArray($totalsBriefcases);
+ 
+            });
+        })->export('xls');
     }
 
 
