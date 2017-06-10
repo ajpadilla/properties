@@ -98,6 +98,10 @@ class Property extends Model
       return $this->photos->count();
     }
 
+    public function briefcases()
+    {
+      return  $this->hasMany(Briefcase::class);
+    }
 
 
     /**
