@@ -7,6 +7,8 @@ use App\Models\Community;
 use App\Http\Requests\CreateCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
 use App\Models\CommunityPhoto;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CommunityController extends Controller
 {
@@ -149,6 +151,58 @@ class CommunityController extends Controller
         }   
         return $this->getResponseArrayJson();  
     }   
+
+    public function totalBriefcaseForProperties(Request $request, $id)
+    {
+
+        $honorarium = 0;
+        $total_capital = 0;
+        $total_sanction = 0;
+        $total_interest = 0;
+        $total_debt = 0;
+        $positive_balance = 0;
+        $debt_height = 0;
+
+        $dt = Carbon::now();
+
+        $community = Community::find($id);
+
+        $properties = $community->properties()->get();
+
+        foreach ($properties as $property) {
+            $briefcases = $property->briefcases()
+                ->whereYear('date_cut', $dt->year)
+                ->orderBy('date_cut','asc')
+                ->get();
+            $honorarium += $briefcases->sum('honorarium');
+            $total_capital += $briefcases->sum('total_capital'); 
+            $total_sanction += $briefcases->sum('total_sanction');
+            $total_interest += $briefcases->sum('total_interest'); 
+            $total_debt += $briefcases->sum('total_debt');
+            $positive_balance += $briefcases->sum('positive_balance');
+            $debt_height += $briefcases->sum('debt_height');
+        }
+
+        $totalsBriefcases [] = [
+            'honorarium' => $honorarium,
+            'total_capital' => $total_capital, 
+            'total_sanction' => $total_sanction,
+            'total_interest' => $total_interest, 
+            'total_debt' => $total_debt,
+            'positive_balance' => $positive_balance,
+            'debt_height' => $debt_height
+        ];
+
+        Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
+ 
+            $excel->sheet('Total briefcases', function($sheet) use ($totalsBriefcases) {
+ 
+                $sheet->fromArray($totalsBriefcases);
+ 
+            });
+        })->export('xls');
+
+    }
 
 
 }
