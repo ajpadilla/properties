@@ -23,6 +23,11 @@
             <i class="glyphicon glyphicon-plus"></i>Add Photo
           </a>
         </li>
+        <li>
+          <a href="#"  @click.prevent="slotAction('', props.rowData, 'briefcase_property')">
+            <i class="glyphicon glyphicon-plus"></i>Print briefcase
+          </a>
+        </li>
       </ul>
     </div>
   </template>
