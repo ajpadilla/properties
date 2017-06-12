@@ -154,65 +154,62 @@ class CommunityController extends Controller
 
     public function totalBriefcaseForProperties(Request $request, $id)
     {
-        if ($request->ajax()) 
-        {
-            $honorarium = 0;
-            $total_capital = 0;
-            $total_sanction = 0;
-            $total_interest = 0;
-            $total_debt = 0;
-            $positive_balance = 0;
-            $debt_height = 0;
+        $honorarium = 0;
+        $total_capital = 0;
+        $total_sanction = 0;
+        $total_interest = 0;
+        $total_debt = 0;
+        $positive_balance = 0;
+        $debt_height = 0;
 
-            $dt = Carbon::now();
+        $dt = Carbon::now();
 
-            $community = Community::find($id);
+        $community = Community::find($id);
 
-            $properties = $community->properties()->get();
+        $properties = $community->properties()->get();
 
-            if (empty($properties)) {
-                $this->setSuccess(false);
-                $this->addToResponseArray('message', 'The community does not have an associated properties');
-                return $this->getResponseArrayJson();
-            }
-
-           foreach ($properties as $property) 
-           {
-                $briefcases = $property->briefcases()
-                ->whereYear('date_cut', $dt->year)
-                ->orderBy('date_cut','asc')
-                ->get();
-
-                if (!empty($briefcases)) 
-                {
-                    $honorarium += $briefcases->sum('honorarium');
-                    $total_capital += $briefcases->sum('total_capital'); 
-                    $total_sanction += $briefcases->sum('total_sanction');
-                    $total_interest += $briefcases->sum('total_interest'); 
-                    $total_debt += $briefcases->sum('total_debt');
-                    $positive_balance += $briefcases->sum('positive_balance');
-                    $debt_height += $briefcases->sum('debt_height');
-                }
-            }
-
-            $totalsBriefcases [] = [
-                'honorarium' => $honorarium,
-                'total_capital' => $total_capital, 
-                'total_sanction' => $total_sanction,
-                'total_interest' => $total_interest, 
-                'total_debt' => $total_debt,
-                'positive_balance' => $positive_balance,
-                'debt_height' => $debt_height
-            ];
-
-            Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
-
-                $excel->sheet('Total briefcases', function($sheet) use ($totalsBriefcases) {
-
-                    $sheet->fromArray($totalsBriefcases);
-
-                });
-            })->export('xls');
+        if (empty($properties)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'The community does not have an associated properties');
+            return $this->getResponseArrayJson();
         }
+
+        foreach ($properties as $property) 
+        {
+            $briefcases = $property->briefcases()
+            ->whereYear('date_cut', $dt->year)
+            ->orderBy('date_cut','asc')
+            ->get();
+
+            if (!empty($briefcases)) 
+            {
+                $honorarium += $briefcases->sum('honorarium');
+                $total_capital += $briefcases->sum('total_capital'); 
+                $total_sanction += $briefcases->sum('total_sanction');
+                $total_interest += $briefcases->sum('total_interest'); 
+                $total_debt += $briefcases->sum('total_debt');
+                $positive_balance += $briefcases->sum('positive_balance');
+                $debt_height += $briefcases->sum('debt_height');
+            }
+        }
+
+        $totalsBriefcases [] = [
+        'honorarium' => $honorarium,
+        'total_capital' => $total_capital, 
+        'total_sanction' => $total_sanction,
+        'total_interest' => $total_interest, 
+        'total_debt' => $total_debt,
+        'positive_balance' => $positive_balance,
+        'debt_height' => $debt_height
+        ];
+
+        Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
+
+            $excel->sheet('Total briefcases', function($sheet) use ($totalsBriefcases) {
+
+                $sheet->fromArray($totalsBriefcases);
+
+            });
+        })->export('xls');
     }
 }
