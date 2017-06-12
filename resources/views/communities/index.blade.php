@@ -86,6 +86,12 @@
                         method: 'POST',
                         url: "{{ route('api.communities.addPhoto') }}/"
                     }
+                },
+                briefcase_property:{
+                    index:{
+                        method: 'GET',
+                        url: "{{ route('api.v1.communities.total.briefcase.properties') }}/"
+                    }
                 }
             }
         };
