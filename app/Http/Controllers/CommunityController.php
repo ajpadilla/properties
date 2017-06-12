@@ -156,23 +156,23 @@ class CommunityController extends Controller
     {
         if ($request->ajax()) 
         {
-           $honorarium = 0;
-           $total_capital = 0;
-           $total_sanction = 0;
-           $total_interest = 0;
-           $total_debt = 0;
-           $positive_balance = 0;
-           $debt_height = 0;
+            $honorarium = 0;
+            $total_capital = 0;
+            $total_sanction = 0;
+            $total_interest = 0;
+            $total_debt = 0;
+            $positive_balance = 0;
+            $debt_height = 0;
 
-           $dt = Carbon::now();
+            $dt = Carbon::now();
 
-           $community = Community::find($id);
+            $community = Community::find($id);
 
-           $properties = $community->properties()->get();
+            $properties = $community->properties()->get();
 
-           if (empty($property)) {
+            if (empty($properties)) {
                 $this->setSuccess(false);
-                $this->addToResponseArray('message', 'Property not found');
+                $this->addToResponseArray('message', 'The community does not have an associated properties');
                 return $this->getResponseArrayJson();
             }
 
