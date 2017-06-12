@@ -66,6 +66,12 @@
                         method: 'POST',
                         url: "{{ route('api.properties.addPhoto') }}/"
                     }
+                },
+                current_briefcase:{
+                    index:{
+                        method: 'GET',
+                        url: "{{ route('api.v1.properties.current.briefcase.total') }}/"
+                    }
                 }
             }
     };
