@@ -174,47 +174,44 @@ class PropertyController extends Controller
 
     public function currentBriefcaseTotal(Request $request, $id)
     {
-        if ($request->ajax()) 
-        {
-            $totalsBriefcases = [];
+        $totalsBriefcases = [];
 
-            $dt = Carbon::now();
+        $dt = Carbon::now();
 
-            $property = Property::find($id);
+        $property = Property::find($id);
 
-            if (empty($property)) {
-                $this->setSuccess(false);
-                $this->addToResponseArray('message', 'Property not found');
-                return $this->getResponseArrayJson();
-            }
-
-            $briefcases = $property->briefcases()->whereYear('date_cut', $dt->year)->get();
-
-            if ($briefcases) {
-                $this->setSuccess(false);
-                $this->addToResponseArray('message', 'The property does not have an associated briefcases');
-                return $this->getResponseArrayJson();
-            }
-
-            $totalsBriefcases [] = [
-                'honorarium' => $briefcases->sum('honorarium'),
-                'total_capital' => $briefcases->sum('total_capital'), 
-                'total_sanction' => $briefcases->sum('total_sanction'),
-                'total_interest' => $briefcases->sum('total_interest'), 
-                'total_debt' => $briefcases->sum('total_debt'),
-                'positive_balance' => $briefcases->sum('positive_balance'),
-                'debt_height' => $briefcases->sum('debt_height')
-            ];
-
-            Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
-
-                $excel->sheet('Briefcase', function($sheet) use ($totalsBriefcases) {
-
-                    $sheet->fromArray($totalsBriefcases);
-
-                });
-            })->export('xls');
+        if (empty($property)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'Property not found');
+            return $this->getResponseArrayJson();
         }
+
+        $briefcases = $property->briefcases()->whereYear('date_cut', $dt->year)->get();
+
+        if (empty($briefcases)) {
+            $this->setSuccess(false);
+            $this->addToResponseArray('message', 'The property does not have an associated briefcases');
+            return $this->getResponseArrayJson();
+        }
+
+        $totalsBriefcases [] = [
+        'honorarium' => $briefcases->sum('honorarium'),
+        'total_capital' => $briefcases->sum('total_capital'), 
+        'total_sanction' => $briefcases->sum('total_sanction'),
+        'total_interest' => $briefcases->sum('total_interest'), 
+        'total_debt' => $briefcases->sum('total_debt'),
+        'positive_balance' => $briefcases->sum('positive_balance'),
+        'debt_height' => $briefcases->sum('debt_height')
+        ];
+
+        Excel::create('Laravel Excel', function($excel)  use ($totalsBriefcases) {
+
+            $excel->sheet('Briefcase', function($sheet) use ($totalsBriefcases) {
+
+                $sheet->fromArray($totalsBriefcases);
+
+            });
+        })->export('xls');
     }
 
 
